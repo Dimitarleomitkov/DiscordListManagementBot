@@ -3,18 +3,12 @@ import discord
 import requests
 import json
 import random
-#from keep_alive import keep_alive
+from keep_alive import keep_alive
 from replit import db
 
 TOKEN = os.environ['TOKEN']
 
 client = discord.Client();
-
-starter_Insults = [];
-Raiders = [];
-Raider_ranks = [];
-Raider_points = [];
-Points_for_ranks = [];
 
 def get_quote():
   response = requests.get("https://zenquotes.io/api/random");
@@ -66,7 +60,7 @@ async def on_message(message):
     quote = get_quote();
     await message.channel.send(quote);
 
-  options = starter_Insults;
+  options = [];
 
   if ("Insults" in db.keys()):
     options += db["Insults"]
@@ -82,18 +76,14 @@ async def on_message(message):
       await message.channel.send("New Insult added.");
 
   if (msg.startswith("$rminsult")):
-    Insults = [];
     if ("Insults" in db.keys()):
       index = int(msg.split("$rminsult", 1)[1]);
       remove_insults(index);
-      Insults = db["Insults"];
-    await message.channel.send("Insult with index " + str(index) + " was removed." );
+    await message.channel.send(f"Insult with index {str(index)} was removed." );
 
   if (msg.startswith("$listinsults")):
-    i = 0;
-    for each in db["Insults"]:
-      await message.channel.send(str(i) + ". " + each);
-      i = i + 1;
+    for index, each in enumerate(db["Insults"]):
+      await message.channel.send(f"{str(index)}. {each}");
 
-#keep_alive();
-client.run (TOKEN);
+keep_alive();
+client.run(TOKEN);
