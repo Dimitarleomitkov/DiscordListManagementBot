@@ -1,10 +1,10 @@
 import os
-import discord.py
+import discord
 import requests
 import json
 import random
+#from keep_alive import keep_alive
 from replit import db
-
 
 TOKEN = os.environ['TOKEN']
 
@@ -14,7 +14,7 @@ starter_Insults = [];
 Raiders = [];
 Raider_ranks = [];
 Raider_points = [];
-Points_for_ranks = []
+Points_for_ranks = [];
 
 def get_quote():
   response = requests.get("https://zenquotes.io/api/random");
@@ -95,4 +95,5 @@ async def on_message(message):
       await message.channel.send(str(i) + ". " + each);
       i = i + 1;
 
+#keep_alive();
 client.run (TOKEN);
