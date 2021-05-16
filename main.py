@@ -142,12 +142,13 @@ async def on_message(message):
   msg = message.content.lower();
 
   if (msg == "$help"):
+    await message.delete();
     await message.channel.send(f"The available commands are: $test, $hello, $hello there, $how are you, $inspire, $pat, $insult, $addinsult, $listinsults, $rminsult, $ranklist, $ranksupdate, $raidersdbreset, $rmraider, $raiderslist, $sortraiders, $addpoints, $rmpoints");
 
   if (msg == "$test"):
     await message.channel.send(f"I am alive. Waiting for commands.");
 
-  if (msg == "$hello"):
+  if (msg == "$hello" or msg.startswith("$hi")):
     await message.channel.send(f"Hi!");
 
   if (msg == "$hello there"):
@@ -169,6 +170,7 @@ async def on_message(message):
   if (msg.startswith("$pat")):
     msg = msg.replace("\n", " ");
     word_str = msg.split(" ");
+    await message.delete();
     if (len(word_str) <= 1):
       reply = "LootRankBot wants to pat someone... gently. :smirk:"
     else:
@@ -215,6 +217,7 @@ async def on_message(message):
     await message.channel.send(f"Insult with index {str(index)} was removed.");
 
   if (msg == "$listinsults"):
+    await message.delete();
     if not ("Insults" in db.keys()):
       await message.channel.send ("There is no list yet.");
       return;
@@ -232,6 +235,7 @@ async def on_message(message):
       await message.channel.send (print_str);
 
   if (msg == "$ranklist"):
+    await message.delete();
     new_msg = "";
     for i in range(len(db["Ranks"])):
       points = db["Ranks"][i];
@@ -241,6 +245,7 @@ async def on_message(message):
   if (msg.startswith("$ranksupdate")):
     msg = msg.replace("\n", " ");
     split_msg = msg.split(" ");
+    await message.delete();
     rank = 0;
     points = 0;
     if (len(split_msg) != 3):
@@ -260,17 +265,20 @@ async def on_message(message):
     deletedb_prompt_flag = 1;
   
   if (msg == "$y" and deletedb_prompt_flag == 1):
+    await message.delete();
     deletedb_prompt_flag = 0;
     delete_raiders_db();
     await message.channel.send ("The database has been deleted.");
 
   if (msg == "$n" and deletedb_prompt_flag == 1):
+    await message.delete();
     deletedb_prompt_flag = 0;
     await message.channel.send ("I am glad you did not choose the nuklear option.");
 
   if (msg.startswith("$rmraider")):
     msg = msg.replace("\n", " ");
     split_message = msg.split(" ");
+    await message.delete();
     if (len(split_message) < 2):
       await message.channel.send(f"The parameters to this function need to be at least 1.\nEx: $rmraider <name1> ...");
       return;
@@ -288,6 +296,7 @@ async def on_message(message):
       await message.channel.send (f"{buff} was removed from the list.");
 
   if (msg == "$raiderslist"):
+    await message.delete();
     if not ("Raiders" in db.keys()):
       await message.channel.send ("There is no list yet.");
       return;
@@ -302,17 +311,18 @@ async def on_message(message):
       rank = temp_db[i][1];
       points = temp_db[i][2];
       if (i % 50 == 0 and i > 0):
-        print (print_str)
+        #print(print_str)
         await message.channel.send(print_str);
         print_str = "";
         print_str += "{0:>40}".format("{0:2}. {1:-<12} Rank: {2:2} Points: {3:5}\n".format(i, raider.capitalize(), rank, points));
       else:
         print_str += "{0:>40}".format("{0:2}. {1:-<12} Rank: {2:2} Points: {3:5}\n".format(i, raider.capitalize(), rank, points));
     if (number_of_raiders % 50 != 0):
-      print (print_str)
+      #print(print_str)
       await message.channel.send (print_str);
 
   if (msg == "$sortraiders"):
+    await message.delete();
     if not ("Raiders" in db.keys()):
       await message.channel.send ("There is no list yet.");
       return;
@@ -323,11 +333,9 @@ async def on_message(message):
     await message.channel.send ("The list of the raiders is sorted.");
 
   if (msg.startswith("$addpoints")):
-
-    await message.delete(message);
-
     msg = msg.replace("\n", " ");
     split_message = msg.split(" ");
+    await message.delete();
     if (len(split_message) < 3):
       await message.channel.send(f"The parameters to this function need to be at least 2.\nEx: $addpoints <name1> <name2> ... <points>");
       return;
@@ -360,13 +368,14 @@ async def on_message(message):
       await message.channel.send(f"You tried to give {players_str} too many points. Check the rank list with $ranklist to see what is the maximum.");
     else:
       if (points == 1):
-        await message.channel.send(f"Gave {points} point to {players_str}.");
+        await message.channel.send(f"{points} point was awarded to {players_str}.");
       else:
-        await message.channel.send(f"Gave {points} points to {players_str}.");
+        await message.channel.send(f"{points} points were awarded to {players_str}.");
 
   if (msg.startswith("$rmpoints")):
     msg = msg.replace("\n", " ");
     split_message = msg.split(" ");
+    await message.delete();
     if (len(split_message) < 3):
       await message.channel.send(f"The parameters to this function need to be at least 2.\nEx: $rmpoints <name1> <name2> ... <points>");
       return;
