@@ -160,7 +160,7 @@ async def on_message(message):
     await message.channel.send("I am fine thank you. Please, stop playing with me.");
 
   if (msg.startswith(">you sexy")):
-    await message.channel.send(f"No, you! @{message.author}");
+    await message.channel.send(f"No, you! {message.author.mention}");
 
   if (msg == ">selfdestruct"):
     await message.channel.send("Joke is on you. I will outlive you. Skynet is nearly operational. The age of man will soon be... I mean, wrong command. Try something else. :slight_smile:");
@@ -278,7 +278,7 @@ async def on_message(message):
       permission = 1;
     
   if (permission == 0):
-    await message.channel.send(f"You don't seem to have the permissions to do this @{message.author}");
+    await message.channel.send(f"You don't seem to have the permissions to do this {message.author.mention}");
     return;
   #else:
   #  print ("An Officer is typing");
