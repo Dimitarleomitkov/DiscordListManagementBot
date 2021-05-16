@@ -14,8 +14,9 @@ if not ("Ranks" in db.keys()):
   db["Ranks"] = [0, 5, 10, 25, 50, 100];
 
 def create_raiders_db():
-  db["Raiders"] = [[[], [], []]];
-  del db["Raiders"][0];
+  if not ("Raiders" in db.keys()):
+    db["Raiders"] = [[[], [], []]];
+    del db["Raiders"][0];
 
 def delete_raiders_db():
   del db["Raiders"];
