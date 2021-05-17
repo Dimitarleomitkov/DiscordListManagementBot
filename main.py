@@ -16,9 +16,6 @@ if not ("Ranks" in db.keys()):
 def update_rank(rank_index, points):
   db["Ranks"][rank_index] = points;
 
-if not ("Raiders" in db.keys()):
-  create_raiders_db();
-
 def create_raiders_db():
   if not ("Raiders" in db.keys()):
     db["Raiders"] = [[[], [], []]];
@@ -26,6 +23,9 @@ def create_raiders_db():
 
 def delete_raiders_db():
   del db["Raiders"];
+  create_raiders_db();
+
+if not ("Raiders" in db.keys()):
   create_raiders_db();
 
 def sort_raider_list():
