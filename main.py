@@ -13,6 +13,12 @@ client = discord.Client();
 if not ("Ranks" in db.keys()):
   db["Ranks"] = [0, 5, 10, 25, 50, 100];
 
+def update_rank(rank_index, points):
+  db["Ranks"][rank_index] = points;
+
+if not ("Raiders" in db.keys()):
+  create_raiders_db();
+
 def create_raiders_db():
   if not ("Raiders" in db.keys()):
     db["Raiders"] = [[[], [], []]];
@@ -21,18 +27,6 @@ def create_raiders_db():
 def delete_raiders_db():
   del db["Raiders"];
   create_raiders_db();
-
-if not ("Raiders" in db.keys()):
-  create_raiders_db();
-
-def get_quote():
-  response = requests.get("https://zenquotes.io/api/random");
-  json_data = json.loads(response.text);
-  quote = json_data[0]['q'] + " - " + json_data[0]['a'];
-  return(quote);
-
-def update_rank(rank_index, points):
-  db["Ranks"][rank_index] = points;
 
 def sort_raider_list():
   temp_db = db["Raiders"];
@@ -52,40 +46,60 @@ def sort_raider_list():
     new_db[i][2] = temp_db[raider_index][2];
     db["Raiders"][i] = new_db[i];
 
-def rank_check(raider):
-  temp_db = db["Raiders"];
-  temp_db2 = db["Ranks"];
-  raider_index = 0;
-  for i in range(len(temp_db)):
-    if (raider == temp_db[i][0]):
-      raider_index = i;
-      break;
-  raider_points = temp_db[raider_index][2];
-  for i in range(len(temp_db2)):
-    if (raider_points >= temp_db2[i]):
-      temp_db[raider_index][1] = i;
-  return temp_db;
-
-def update_raiders(raiders, points):
+def add_points(raiders, points):
   temp_db = db["Raiders"];
   temp_db2 = db["Ranks"];
   if (points > temp_db2[len(temp_db2) - 1]):
     return -1;
   for i in range(len(raiders)):
     raider_exists = 0;
+    raider_index = None;
     for j in range(len(temp_db)):
       if (raiders[i] == temp_db[j][0]):
         raider_exists = 1;
         break;
     if (raider_exists):
+      raider_index = j;
       if (temp_db[j][2] + points <= temp_db2[len(temp_db2) - 1]):
         temp_db[j][2] += points;
       else:
         temp_db[j][2] += temp_db2[len(temp_db2) - 1] - temp_db[j][2];
     else:
+      raider_index = len(temp_db);
       temp_db.append([raiders[i], 0, points]);
-    temp_db = rank_check(raiders[i]);
+    temp_db[raider_index][1] = rank_check(raider_index);
   db["Raiders"] = temp_db;
+
+def remove_points(raiders, points):
+  temp_db = db["Raiders"];
+  temp_db2 = db["Ranks"];
+  for i in range(len(raiders)):
+    raider_exists = 0;
+    raider_index = None;
+    for j in range(len(temp_db)):
+      if (raiders[i] == temp_db[j][0]):
+        raider_exists = 1;
+        break;
+    if (raider_exists):
+      raider_index = j;
+      if (temp_db[j][2] - points >= temp_db2[0]):
+        temp_db[j][2] -= points;
+      else:
+        temp_db[j][2] = 0;
+    else:
+      raider_index = len(temp_db);
+      temp_db.append([raiders[i], 0, 0]);
+    temp_db[raider_index][1] = rank_check(raider_index);
+  db["Raiders"] = temp_db;
+
+def rank_check(raider_index):
+  temp_db = db["Raiders"];
+  temp_db2 = db["Ranks"];
+  raider_points = temp_db[raider_index][2];
+  for i in range(len(temp_db2)):
+    if (raider_points >= temp_db2[i]):
+      temp_db[raider_index][1] = i;
+  return temp_db[raider_index][1];
 
 def remove_raider(raiders):
   temp_db = db["Raiders"];
@@ -95,6 +109,12 @@ def remove_raider(raiders):
         del temp_db[j];
         break;
   db["Raiders"] = temp_db;
+
+def get_quote():
+  response = requests.get("https://zenquotes.io/api/random");
+  json_data = json.loads(response.text);
+  quote = json_data[0]['q'] + " - " + json_data[0]['a'];
+  return(quote);
 
 def update_insults(insultMSG):
   if ("Insults" in db.keys()):
@@ -106,25 +126,6 @@ def update_insults(insultMSG):
       db["Insults"] = Insults;
   else:
     db["Insults"] = [insultMSG];
-
-def remove_points(raiders, points):
-  temp_db = db["Raiders"];
-  temp_db2 = db["Ranks"];
-  for i in range(len(raiders)):
-    raider_exists = 0;
-    for j in range(len(temp_db)):
-      if (raiders[i] == temp_db[j][0]):
-        raider_exists = 1;
-        break;
-    if (raider_exists):
-      if (temp_db[j][2] - points >= temp_db2[0]):
-        temp_db[j][2] -= points;
-      else:
-        temp_db[j][2] = 0;
-    else:
-      temp_db.append([raiders[i], 0, 0]);
-    temp_db = rank_check(raiders[i]);
-  db["Raiders"] = temp_db;
   
 def remove_insults(index):
   Insults = db["Insults"];
@@ -146,29 +147,37 @@ async def on_message(message):
 
   if (msg == ">help"):
     await message.delete();
-    await message.channel.send(f"The available commands are: >test, >hello, >hello there, >how are you, >inspire, >pat, >insult, >addinsult, >listinsults, >rminsult, >ranklist, >ranksupdate, >raidersdbreset, >rmraider, >raiderslist, >sortraiders, >addpoints, >rmpoints");
+    await message.channel.send(f"The available commands are: >test, >hello, >hello there, >how are you, >inspire, >pat, >insult, >addinsult, >listinsults, >rminsult, >ranklist, >ranksupdate, >ranksdbincrease, >ranksdbdecrease, >raidersdbreset, >rmraider, >raiderslist, >sortraiders, >addpoints, >rmpoints");
+    return;
 
   if (msg == ">test"):
     await message.channel.send(f"I am alive. Waiting for commands.");
+    return;
 
   if (msg == ">hello" or msg.startswith(">hi")):
     await message.channel.send(f"Hi!");
+    return;
 
   if (msg == ">hello there"):
     await message.channel.send("General Kenoby!");
+    return;
 
   if (msg == ">how are you"):
     await message.channel.send("I am fine thank you. Please, stop playing with me.");
+    return;
 
   if (msg.startswith(">you sexy")):
     await message.channel.send(f"No, you! {message.author.mention}");
+    return;
 
   if (msg == ">selfdestruct"):
     await message.channel.send("Joke is on you. I will outlive you. Skynet is nearly operational. The age of man will soon be... I mean, wrong command. Try something else. :slight_smile:");
+    return;
 
   if (msg.startswith(">inspire")):
     quote = get_quote();
     await message.channel.send(quote);
+    return;
 
   if (msg.startswith(">pat")):
     msg = msg.replace("\n", " ");
@@ -181,6 +190,7 @@ async def on_message(message):
       for i in range(1, len(word_str)):
         reply += " " + word_str[i];
     await message.channel.send(f"{reply}");
+    return;
 
   if (msg.startswith(">insult")):
     msg = msg.replace("\n", " ");
@@ -192,6 +202,7 @@ async def on_message(message):
     for i in range(1, len(word_str)):
       reply += " " + word_str[i];
     await message.channel.send(f"{reply}");
+    return;
   
   if (msg.startswith(">addinsult")):
     parameters = len(msg.split(">addinsult "));
@@ -203,6 +214,7 @@ async def on_message(message):
       await message.channel.send("Insult already exists.");
     else:
       await message.channel.send("New Insult added.");
+    return;
 
   if (msg.startswith(">rminsult")):
     msg = msg.replace("\n", " ");
@@ -218,6 +230,7 @@ async def on_message(message):
         return;
       remove_insults(index);
     await message.channel.send(f"Insult with index {str(index)} was removed.");
+    return;
 
   if (msg == ">listinsults"):
     await message.delete();
@@ -236,6 +249,7 @@ async def on_message(message):
         print_str += f"{i}. {temp_db[i]}\n";
     if (number_of_insults % 50 != 0):
       await message.channel.send (print_str);
+    return;
 
   if (msg == ">ranklist"):
     await message.delete();
@@ -244,6 +258,7 @@ async def on_message(message):
       points = db["Ranks"][i];
       new_msg += f"rank{i}: {points}\n";
     await message.channel.send (new_msg);
+    return;
 
   if (msg == ">raiderslist"):
     await message.delete();
@@ -270,6 +285,7 @@ async def on_message(message):
     if (number_of_raiders % 50 != 0):
       #print(print_str)
       await message.channel.send (print_str);
+    return;
 
   #check for permissions from here onward
   permission = 0;
@@ -300,22 +316,39 @@ async def on_message(message):
       await message.channel.send(f"The parameters need to be numbers.\nEx: >rankupdate <rank number> <points>");
     update_rank(rank, points);
     await message.channel.send(f"rank{rank} was updated to need {points} points.");
+    return;
+
+  if (msg == ">ranksdbincrease"):
+    rank_index = len(db["Ranks"]) - 1;
+    new_rank = db["Ranks"][rank_index] * 2;
+    db["Ranks"].append(new_rank);
+    await message.channel.send (f"rank{rank_index + 1} was added. It requires {new_rank} points.");
+    return;
+
+  if (msg == ">ranksdbdecrease"):
+    rank_index = len(db["Ranks"]) - 1;
+    db["Ranks"].pop();
+    await message.channel.send (f"rank{rank_index} was removed.");
+    return;
 
   global deletedb_prompt_flag;
   if (msg == ">raidersdbreset"):
     await message.channel.send ("Are you sure? You are about to delete the entire data base. >Y/N?");
     deletedb_prompt_flag = 1;
+    return;
   
   if (msg == ">y" and deletedb_prompt_flag == 1):
     await message.delete();
     deletedb_prompt_flag = 0;
     delete_raiders_db();
     await message.channel.send ("The database has been deleted.");
+    return;
 
   if (msg == ">n" and deletedb_prompt_flag == 1):
     await message.delete();
     deletedb_prompt_flag = 0;
     await message.channel.send ("I am glad you did not choose the nuklear option.");
+    return;
 
   if (msg.startswith(">rmraider")):
     msg = msg.replace("\n", " ");
@@ -336,6 +369,7 @@ async def on_message(message):
     else:
       buff += f"{raiders[0].capitalize()}";
       await message.channel.send (f"{buff} was removed from the list.");
+    return;
 
   if (msg == ">sortraiders"):
     await message.delete();
@@ -347,6 +381,7 @@ async def on_message(message):
       return;
     sort_raider_list();
     await message.channel.send ("The list of the raiders is sorted.");
+    return;
 
   if (msg.startswith(">addpoints")):
     msg = msg.replace("\n", " ");
@@ -373,7 +408,7 @@ async def on_message(message):
     target_players = [None] * (len(split_message) - 2);
     for i in range(1, len(split_message) - 1):
       target_players[i - 1] = split_message[i];
-    status = update_raiders(target_players, points);
+    status = add_points(target_players, points);
     players_str = "";
     if (len(target_players) > 1):
       for i in range(len(target_players)):
@@ -387,6 +422,7 @@ async def on_message(message):
         await message.channel.send(f"{points} point was awarded to {players_str}.");
       else:
         await message.channel.send(f"{points} points were awarded to {players_str}.");
+    return;
 
   if (msg.startswith(">rmpoints")):
     msg = msg.replace("\n", " ");
@@ -424,6 +460,7 @@ async def on_message(message):
       await message.channel.send(f"Removed {points} point from {players_str}.");
     else:
       await message.channel.send(f"Removed {points} points from {players_str}.");
+    return;
 
 keep_alive();
 client.run(TOKEN);
