@@ -45,7 +45,7 @@ def print_list_log():
   temp_db = db["ListLog"];
   new_str = "";
   for i in range(len(temp_db)):
-    new_str += f"{temp_db[i][1]} {temp_db[i][2]}: {temp_db[i][3]}\n";
+    new_str += f"{temp_db[i][0]} {temp_db[i][1]}:\n {temp_db[i][2]}\n";
   return new_str;
 
 if not ("CommandsLog" in db.keys()):
