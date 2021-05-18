@@ -372,10 +372,8 @@ async def on_message(message):
   #else:
   #  print ("An Officer is typing");
 
-  #Log the command
-  log_command(msg, message.author);
-
   if (msg == ">cmdlog"):
+    log_command(msg, message.author);
     buff = print_commands_log();
     if (buff == ""):
       await message.channel.send(f"The commands log is empty.");
@@ -384,6 +382,7 @@ async def on_message(message):
     return;
 
   if (msg == ">showlistlog"):
+    log_command(msg, message.author);
     buff = print_list_log();
     if (buff == ""):
       await message.channel.send(f"The list log is empty.");
@@ -392,11 +391,13 @@ async def on_message(message):
     return;
 
   if (msg == ">loglist"):
+    log_command(msg, message.author);
     log_list();
     await message.channel.send(f"The Loot Rank list has been saved.");
     return;
 
   if (msg.startswith(">ranksupdate")):
+    log_command(msg, message.author);
     msg = msg.replace("\n", " ");
     split_msg = msg.split(" ");
     await message.delete();
@@ -415,6 +416,7 @@ async def on_message(message):
     return;
 
   if (msg == ">ranksdbincrease"):
+    log_command(msg, message.author);
     rank_index = len(db["Ranks"]) - 1;
     new_rank = db["Ranks"][rank_index] * 2;
     db["Ranks"].append(new_rank);
@@ -422,6 +424,7 @@ async def on_message(message):
     return;
 
   if (msg == ">ranksdbdecrease"):
+    log_command(msg, message.author);
     rank_index = len(db["Ranks"]) - 1;
     db["Ranks"].pop();
     await message.channel.send (f"rank{rank_index} was removed.");
@@ -429,11 +432,13 @@ async def on_message(message):
 
   global deletedb_prompt_flag;
   if (msg == ">raidersdbreset"):
+    log_command(msg, message.author);
     await message.channel.send ("Are you sure? You are about to delete the entire data base. >Y/N?");
     deletedb_prompt_flag = 1;
     return;
   
   if (msg == ">y" and deletedb_prompt_flag == 1):
+    log_command(msg, message.author);
     await message.delete();
     deletedb_prompt_flag = 0;
     delete_raiders_db();
@@ -441,12 +446,14 @@ async def on_message(message):
     return;
 
   if (msg == ">n" and deletedb_prompt_flag == 1):
+    log_command(msg, message.author);
     await message.delete();
     deletedb_prompt_flag = 0;
     await message.channel.send ("I am glad you did not choose the nuklear option.");
     return;
 
   if (msg.startswith(">rmraider")):
+    log_command(msg, message.author);
     msg = msg.replace("\n", " ");
     split_message = msg.split(" ");
     await message.delete();
@@ -468,6 +475,7 @@ async def on_message(message):
     return;
 
   if (msg == ">sortraiders"):
+    log_command(msg, message.author);
     await message.delete();
     if not ("Raiders" in db.keys()):
       await message.channel.send ("There is no list yet.");
@@ -480,6 +488,7 @@ async def on_message(message):
     return;
 
   if (msg.startswith(">addpoints")):
+    log_command(msg, message.author);
     msg = msg.replace("\n", " ");
     split_message = msg.split(" ");
     await message.delete();
@@ -521,6 +530,7 @@ async def on_message(message):
     return;
 
   if (msg.startswith(">rmpoints")):
+    log_command(msg, message.author);
     msg = msg.replace("\n", " ");
     split_message = msg.split(" ");
     await message.delete();
