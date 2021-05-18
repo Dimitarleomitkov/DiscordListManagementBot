@@ -5,10 +5,44 @@ import json
 import random
 from keep_alive import keep_alive
 from replit import db
+from datetime import datetime, date, timedelta
 
 TOKEN = os.environ['TOKEN']
 
 client = discord.Client();
+
+if not ("CommandsLog" in db.keys()):
+  #[[[User], [Date], [Time], [Command]]]
+  db["CommandsLog"] = [[[], [], [], []]];
+  del db["CommandsLog"][0];
+
+def clean_cmd_log(cmd_date):
+  temp_db = db["CommandsLog"];
+  target_date = (cmd_date - timedelta(days = 14)).strftime("%d-%m-%Y");
+  print (f"{target_date}");
+  for i in range(len(temp_db)):
+    if (target_date == temp_db[i][1]):
+      #print (f"Deleting entry {i} made on {temp_db[i][1]}");
+      del temp_db[i];
+  db["CommandsLog"] = temp_db;
+  return;
+
+def log_command(cmd, user):
+  cmd_date_obj = date.today();
+  cmd_date = cmd_date_obj.strftime("%d-%m-%Y");
+  cmd_now = datetime.now();
+  cmd_time = cmd_now.strftime("%H:%M:%S");
+  cmd_obj = [str(user), cmd_date, cmd_time, cmd];
+  db["CommandsLog"].append(cmd_obj);
+  clean_cmd_log(cmd_date_obj);
+  return;
+
+def print_commands_log():
+  temp_db = db["CommandsLog"];
+  new_str = "";
+  for i in range(len(db["CommandsLog"])):
+    new_str += f"{temp_db[i][0]}: {temp_db[i][1]} {temp_db[i][2]} - {temp_db[i][3]}\n";
+  return new_str;
 
 if not ("Ranks" in db.keys()):
   db["Ranks"] = [0, 5, 10, 25, 50, 100];
@@ -18,6 +52,7 @@ def update_rank(rank_index, points):
 
 def create_raiders_db():
   if not ("Raiders" in db.keys()):
+    #[[[Name], [Rank], [Points]]]
     db["Raiders"] = [[[], [], []]];
     del db["Raiders"][0];
 
@@ -147,7 +182,7 @@ async def on_message(message):
 
   if (msg == ">help"):
     await message.delete();
-    await message.channel.send(f"The available commands are: >test, >hello, >hello there, >how are you, >inspire, >pat, >insult, >addinsult, >listinsults, >rminsult, >ranklist, >ranksupdate, >ranksdbincrease, >ranksdbdecrease, >raidersdbreset, >rmraider, >raiderslist, >sortraiders, >addpoints, >rmpoints");
+    await message.channel.send(f"The available commands are: >test, >hello, >hello there, >how are you, >inspire, >pat, >insult, >addinsult, >listinsults, >rminsult, >ranklist, >ranksupdate, >ranksdbincrease, >ranksdbdecrease, >raidersdbreset, >rmraider, >raiderslist, >sortraiders, >addpoints, >rmpoints, >cmdlog");
     return;
 
   if (msg == ">test"):
@@ -299,6 +334,17 @@ async def on_message(message):
     return;
   #else:
   #  print ("An Officer is typing");
+
+  #Log the command
+  log_command(msg, message.author);
+
+  if (msg == ">cmdlog"):
+    buff = print_commands_log();
+    if (buff == ""):
+      await message.channel.send(f"The commands log is empty.");
+    else:
+      await message.channel.send(f"{buff}");
+    return;
 
   if (msg.startswith(">ranksupdate")):
     msg = msg.replace("\n", " ");
