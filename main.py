@@ -6,6 +6,7 @@ import random
 from keep_alive import keep_alive
 from replit import db
 from datetime import datetime, date, timedelta
+import re
 
 TOKEN = os.environ['TOKEN']
 
@@ -41,6 +42,7 @@ async def print_list_log(index, message):
   temp_db = db["ListLog"][index];
   number_of_raiders = len(temp_db[2]);
   print_str = "";
+  i = 0;
   for i in range(number_of_raiders):
     raider = temp_db[2][i][0];
     rank = temp_db[2][i][1];
@@ -52,7 +54,7 @@ async def print_list_log(index, message):
       print_str += "{0:>40}".format("{0:2}. {1:-<12} Rank: {2:2} Points: {3:5}\n".format(i, raider.capitalize(), rank, points));
     else:
       print_str += "{0:>40}".format("{0:2}. {1:-<12} Rank: {2:2} Points: {3:5}\n".format(i, raider.capitalize(), rank, points));
-  if (number_of_raiders % 50 != 0):
+  if (i % 50 != 0 or i % 50 == 1):
     #print(print_str);
     await message.channel.send (print_str);
   return;
@@ -83,12 +85,25 @@ def log_command(cmd, user):
   clean_cmd_log(cmd_date_obj);
   return;
 
-def print_commands_log():
+async def print_commands_log(index, message):
   temp_db = db["CommandsLog"];
-  new_str = "";
-  for i in range(len(temp_db)):
-    new_str += f"{temp_db[i][0]}: {temp_db[i][1]} {temp_db[i][2]} - {temp_db[i][3]}\n";
-  return new_str;
+  list_length = len(temp_db);
+  print_str = "";
+  i = 0;
+  for i in range(list_length):
+    user = temp_db[i][0];
+    theDate = temp_db[i][1];
+    theTime = temp_db[i][2];
+    command = temp_db[i][3];
+    if (i % 20 == 0 and i > 0):
+      await message.channel.send(print_str);
+      print_str = "";
+      print_str += "{0}: {1} {2} - {3}\n".format(user, theDate, theTime, command);
+    else:
+      print_str += "{0}: {1} {2} - {3}\n".format(user, theDate, theTime, command);
+  if (i % 20 != 0 or i % 20 == 1):
+    await message.channel.send(print_str);
+  return;
 
 if not ("Ranks" in db.keys()):
   db["Ranks"] = [0, 5, 10, 25, 50, 100];
@@ -221,10 +236,12 @@ async def on_ready():
 @client.event
 async def on_message(message):
   
-  msg = message.content.lower();
-
-  if not (msg.startswith(">")):
+  if not (message.content.startswith(">")):
     return;
+
+  msg = message.content.lower();
+  msg = msg.replace("\n", " ");
+  msg = re.sub(' +', ' ', msg);
 
   if (msg == ">help"):
     await message.delete();
@@ -264,7 +281,6 @@ async def on_message(message):
     return;
 
   if (msg.startswith(">pat")):
-    msg = msg.replace("\n", " ");
     word_str = msg.split(" ");
     await message.delete();
     if (len(word_str) <= 1):
@@ -277,7 +293,6 @@ async def on_message(message):
     return;
 
   if (msg.startswith(">insult")):
-    msg = msg.replace("\n", " ");
     options = [];
     if ("Insults" in db.keys()):
       options += db["Insults"]
@@ -301,7 +316,6 @@ async def on_message(message):
     return;
 
   if (msg.startswith(">rminsult")):
-    msg = msg.replace("\n", " ");
     if ("Insults" in db.keys()):
       parameters = len(msg.split(">rminsult "));
       if (parameters != 2):
@@ -355,6 +369,7 @@ async def on_message(message):
     temp_db = db["Raiders"];
     number_of_raiders = len(temp_db);
     print_str = "";
+    i = 0;
     for i in range(number_of_raiders):
       raider = temp_db[i][0];
       rank = temp_db[i][1];
@@ -366,7 +381,7 @@ async def on_message(message):
         print_str += "{0:>40}".format("{0:2}. {1:-<12} Rank: {2:2} Points: {3:5}\n".format(i, raider.capitalize(), rank, points));
       else:
         print_str += "{0:>40}".format("{0:2}. {1:-<12} Rank: {2:2} Points: {3:5}\n".format(i, raider.capitalize(), rank, points));
-    if (number_of_raiders % 50 != 0):
+    if (i % 50 != 0 or i % 50 == 1):
       #print(print_str)
       await message.channel.send (print_str);
     return;
@@ -385,12 +400,12 @@ async def on_message(message):
   #  print ("An Officer is typing");
 
   if (msg == ">cmdlog"):
-    log_command(msg, message.author);
-    buff = print_commands_log();
-    if (buff == ""):
+    temp_db = db["CommandsLog"];
+    log_length = len(temp_db);
+    if (log_length == 0):
       await message.channel.send(f"The commands log is empty.");
     else:
-      await message.channel.send(f"{buff}");
+      await print_commands_log(i, message);
     return;
 
   if (msg == ">showlistlog"):
@@ -413,7 +428,6 @@ async def on_message(message):
 
   if (msg.startswith(">ranksupdate")):
     log_command(msg, message.author);
-    msg = msg.replace("\n", " ");
     split_msg = msg.split(" ");
     await message.delete();
     rank = 0;
@@ -469,7 +483,6 @@ async def on_message(message):
 
   if (msg.startswith(">rmraider")):
     log_command(msg, message.author);
-    msg = msg.replace("\n", " ");
     split_message = msg.split(" ");
     await message.delete();
     if (len(split_message) < 2):
@@ -504,7 +517,6 @@ async def on_message(message):
 
   if (msg.startswith(">addpoints")):
     log_command(msg, message.author);
-    msg = msg.replace("\n", " ");
     split_message = msg.split(" ");
     await message.delete();
     if (len(split_message) < 3):
@@ -546,7 +558,6 @@ async def on_message(message):
 
   if (msg.startswith(">rmpoints")):
     log_command(msg, message.author);
-    msg = msg.replace("\n", " ");
     split_message = msg.split(" ");
     await message.delete();
     if (len(split_message) < 3):
