@@ -17,31 +17,35 @@ if not ("ListLog" in db.keys()):
   del db["ListLog"][0];
 
 def clean_list_log(cmd_date):
-  #temp_db = db["ListLog"];
-  #target_date = (cmd_date - timedelta(days = 14)).strftime("%d-%m-%Y");
+  temp_db = db["ListLog"];
+  target_date = (cmd_date - timedelta(days = 14)).strftime("%d-%m-%Y");
   #print (f"{target_date}");
-  #for i in range(len(temp_db)):
-  #  if (target_date == temp_db[i][1]):
+  for i in range(len(temp_db)):
+    if (target_date == temp_db[i][0]):
       #print (f"Deleting entry {i} made on {temp_db[i][1]}");
-  #    del temp_db[i];
-  #db["ListLog"] = temp_db;
+      del temp_db[i];
+  db["ListLog"] = temp_db;
   return;
 
-def log_list(cmd, user):
-  #cmd_date_obj = date.today();
-  #cmd_date = cmd_date_obj.strftime("%d-%m-%Y");
-  #cmd_now = datetime.now();
-  #cmd_time = cmd_now.strftime("%H:%M:%S");
-  #cmd_obj = [str(user), cmd_date, cmd_time, cmd];
-  #db["ListLog"].append(cmd_obj);
-  #clean_cmd_log(cmd_date_obj);
+def log_list():
+  date_obj = date.today();
+  today = date_obj.strftime("%d-%m-%Y");
+  now = datetime.now();
+  time_now = now.strftime("%H:%M:%S");
+  list_str = "";
+  temp_db = db["Raiders"];
+  for i in range(len(temp_db)):
+    list_str += "{0:>40}".format("{0:2}. {1:-<12} Rank: {2:2} Points: {3:5}\n".format(i, temp_db[i][0].capitalize(), temp_db[i][1], temp_db[i][2]));
+  list_obj = [today, time_now, list_str];
+  db["ListLog"].append(list_obj);
+  clean_list_log(date_obj);
   return;
 
 def print_list_log():
-  #temp_db = db["ListLog"];
+  temp_db = db["ListLog"];
   new_str = "";
-  #for i in range(len(db["ListLog"])):
-  #  new_str += f"{temp_db[i][0]}: {temp_db[i][1]} {temp_db[i][2]} - {temp_db[i][3]}\n";
+  for i in range(len(temp_db)):
+    new_str += f"{temp_db[i][1]} {temp_db[i][2]}: {temp_db[i][3]}\n";
   return new_str;
 
 if not ("CommandsLog" in db.keys()):
@@ -73,7 +77,7 @@ def log_command(cmd, user):
 def print_commands_log():
   temp_db = db["CommandsLog"];
   new_str = "";
-  for i in range(len(db["CommandsLog"])):
+  for i in range(len(temp_db)):
     new_str += f"{temp_db[i][0]}: {temp_db[i][1]} {temp_db[i][2]} - {temp_db[i][3]}\n";
   return new_str;
 
@@ -385,6 +389,12 @@ async def on_message(message):
       await message.channel.send(f"The list log is empty.");
     else:
       await message.channel.send(f"{buff}");
+    return;
+
+  if (msg == ">loglist"):
+    log_list();
+    await message.channel.send(f"The Loot Rank list has been saved.");
+    return;
 
   if (msg.startswith(">ranksupdate")):
     msg = msg.replace("\n", " ");
