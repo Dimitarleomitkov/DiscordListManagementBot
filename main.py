@@ -11,6 +11,39 @@ TOKEN = os.environ['TOKEN']
 
 client = discord.Client();
 
+if not ("ListLog" in db.keys()):
+  #[[[Date], [Time], [List]]]
+  db["ListLog"] = [[[], [], []]];
+  del db["ListLog"][0];
+
+def clean_list_log(cmd_date):
+  #temp_db = db["ListLog"];
+  #target_date = (cmd_date - timedelta(days = 14)).strftime("%d-%m-%Y");
+  #print (f"{target_date}");
+  #for i in range(len(temp_db)):
+  #  if (target_date == temp_db[i][1]):
+      #print (f"Deleting entry {i} made on {temp_db[i][1]}");
+  #    del temp_db[i];
+  #db["ListLog"] = temp_db;
+  return;
+
+def log_list(cmd, user):
+  #cmd_date_obj = date.today();
+  #cmd_date = cmd_date_obj.strftime("%d-%m-%Y");
+  #cmd_now = datetime.now();
+  #cmd_time = cmd_now.strftime("%H:%M:%S");
+  #cmd_obj = [str(user), cmd_date, cmd_time, cmd];
+  #db["ListLog"].append(cmd_obj);
+  #clean_cmd_log(cmd_date_obj);
+  return;
+
+def print_list_log():
+  #temp_db = db["ListLog"];
+  new_str = "";
+  #for i in range(len(db["ListLog"])):
+  #  new_str += f"{temp_db[i][0]}: {temp_db[i][1]} {temp_db[i][2]} - {temp_db[i][3]}\n";
+  return new_str;
+
 if not ("CommandsLog" in db.keys()):
   #[[[User], [Date], [Time], [Command]]]
   db["CommandsLog"] = [[[], [], [], []]];
@@ -18,11 +51,11 @@ if not ("CommandsLog" in db.keys()):
 
 def clean_cmd_log(cmd_date):
   temp_db = db["CommandsLog"];
-  target_date = (cmd_date - timedelta(days = 14)).strftime("%d-%m-%Y");
-  #print (f"{target_date}");
+  target_date = (cmd_date - timedelta(days = 14));
   for i in range(len(temp_db)):
-    if (target_date == temp_db[i][1]):
-      #print (f"Deleting entry {i} made on {temp_db[i][1]}");
+    #print (f'Is {target_date} >= {datetime.strptime(temp_db[i][1], "%d-%m-%Y").date()}');
+    if (target_date >= datetime.strptime(temp_db[i][1], "%d-%m-%Y").date()):
+      #print (f"Deleting entry {i} made on {temp_db[i][1]}.");
       del temp_db[i];
   db["CommandsLog"] = temp_db;
   return;
@@ -182,7 +215,7 @@ async def on_message(message):
 
   if (msg == ">help"):
     await message.delete();
-    await message.channel.send(f"The available commands are: >test, >hello, >hello there, >how are you, >inspire, >pat, >insult, >addinsult, >listinsults, >rminsult, >ranklist, >ranksupdate, >ranksdbincrease, >ranksdbdecrease, >raidersdbreset, >rmraider, >raiderslist, >sortraiders, >addpoints, >rmpoints, >cmdlog");
+    await message.channel.send(f"The available commands are: >test, >hello, >hello there, >how are you, >inspire, >pat, >insult, >addinsult, >listinsults, >rminsult, >ranklist, >ranksupdate, >ranksdbincrease, >ranksdbdecrease, >raidersdbreset, >rmraider, >raiderslist, >sortraiders, >addpoints, >rmpoints, >cmdlog, >loglist, >showlistlog");
     return;
 
   if (msg == ">test"):
@@ -345,6 +378,13 @@ async def on_message(message):
     else:
       await message.channel.send(f"{buff}");
     return;
+
+  if (msg == ">showlistlog"):
+    buff = print_list_log();
+    if (buff == ""):
+      await message.channel.send(f"The list log is empty.");
+    else:
+      await message.channel.send(f"{buff}");
 
   if (msg.startswith(">ranksupdate")):
     msg = msg.replace("\n", " ");
