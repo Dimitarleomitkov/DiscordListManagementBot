@@ -32,21 +32,30 @@ def log_list():
   today = date_obj.strftime("%d-%m-%Y");
   now = datetime.now();
   time_now = now.strftime("%H:%M:%S");
-  list_str = "";
-  temp_db = db["Raiders"];
-  for i in range(len(temp_db)):
-    list_str += "{0:>40}".format("{0:2}. {1:-<12} Rank: {2:2} Points: {3:5}\n".format(i, temp_db[i][0].capitalize(), temp_db[i][1], temp_db[i][2]));
-  list_obj = [today, time_now, list_str];
+  list_obj = [today, time_now, db["Raiders"]];
   db["ListLog"].append(list_obj);
   clean_list_log(date_obj);
   return;
 
-def print_list_log():
-  temp_db = db["ListLog"];
-  new_str = "";
-  for i in range(len(temp_db)):
-    new_str += f"{temp_db[i][0]} {temp_db[i][1]}:\n {temp_db[i][2]}\n";
-  return new_str;
+async def print_list_log(index, message):
+  temp_db = db["ListLog"][index];
+  number_of_raiders = len(temp_db[2]);
+  print_str = "";
+  for i in range(number_of_raiders):
+    raider = temp_db[2][i][0];
+    rank = temp_db[2][i][1];
+    points = temp_db[2][i][2];
+    if (i % 50 == 0 and i > 0):
+      #print(print_str);
+      await message.channel.send(print_str);
+      print_str = "";
+      print_str += "{0:>40}".format("{0:2}. {1:-<12} Rank: {2:2} Points: {3:5}\n".format(i, raider.capitalize(), rank, points));
+    else:
+      print_str += "{0:>40}".format("{0:2}. {1:-<12} Rank: {2:2} Points: {3:5}\n".format(i, raider.capitalize(), rank, points));
+  if (number_of_raiders % 50 != 0):
+    #print(print_str);
+    await message.channel.send (print_str);
+  return;
 
 if not ("CommandsLog" in db.keys()):
   #[[[User], [Date], [Time], [Command]]]
@@ -226,6 +235,9 @@ async def on_message(message):
     await message.channel.send(f"I am alive. Waiting for commands.");
     return;
 
+  if (msg == ">showmethemoney"):
+    await message.channel.send("https://itsadeliverything.com/images/show-me-the-money.jpg");
+
   if (msg == ">hello" or msg.startswith(">hi")):
     await message.channel.send(f"Hi!");
     return;
@@ -383,11 +395,14 @@ async def on_message(message):
 
   if (msg == ">showlistlog"):
     log_command(msg, message.author);
-    buff = print_list_log();
-    if (buff == ""):
+    temp_db = db["ListLog"];
+    log_length = len(temp_db);
+    if (log_length == 0):
       await message.channel.send(f"The list log is empty.");
     else:
-      await message.channel.send(f"{buff}");
+      for i in range(log_length):
+        await message.channel.send(f"{temp_db[i][0]} {temp_db[i][1]}:\n");
+        await print_list_log(i, message);
     return;
 
   if (msg == ">loglist"):
