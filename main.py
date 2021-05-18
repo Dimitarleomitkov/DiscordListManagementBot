@@ -19,7 +19,7 @@ if not ("CommandsLog" in db.keys()):
 def clean_cmd_log(cmd_date):
   temp_db = db["CommandsLog"];
   target_date = (cmd_date - timedelta(days = 14)).strftime("%d-%m-%Y");
-  print (f"{target_date}");
+  #print (f"{target_date}");
   for i in range(len(temp_db)):
     if (target_date == temp_db[i][1]):
       #print (f"Deleting entry {i} made on {temp_db[i][1]}");
