@@ -148,6 +148,14 @@ version = "5.1.0"
 
 [[package]]
 category = "main"
+description = "A simple way to ping in Python"
+name = "pythonping"
+optional = false
+python-versions = "*"
+version = "1.0.16"
+
+[[package]]
+category = "main"
 description = "A library for interacting with features of repl.it"
 name = "replit"
 optional = false
@@ -193,7 +201,7 @@ idna = ">=2.0"
 multidict = ">=4.0"
 
 [metadata]
-content-hash = "a23cd4611204a3d7548269e0b1c8b34fea3ce679bdc28920dbeeb0dc9f6c200d"
+content-hash = "f2367dbcba3df371373840e2e6fa98a08678228c2fecfea1adafc9fda146ebd0"
 python-versions = "^3.8"
 
 [metadata.files]
@@ -350,6 +358,10 @@ multidict = [
     {file = "multidict-5.1.0-cp39-cp39-win32.whl", hash = "sha256:fc13a9524bc18b6fb6e0dbec3533ba0496bbed167c56d0aabefd965584557d80"},
     {file = "multidict-5.1.0-cp39-cp39-win_amd64.whl", hash = "sha256:7df80d07818b385f3129180369079bd6934cf70469f99daaebfac89dca288359"},
     {file = "multidict-5.1.0.tar.gz", hash = "sha256:25b4e5f22d3a37ddf3effc0710ba692cfc792c2b9edfb9c05aefe823256e84d5"},
+]
+pythonping = [
+    {file = "pythonping-1.0.16-py3-none-any.whl", hash = "sha256:32f1e9ef84bc74e9e8755f4458b09a4b3d5d542edfa5b543efc1387f7e69cf62"},
+    {file = "pythonping-1.0.16.tar.gz", hash = "sha256:d025c8b25952580dea47bc241421e17a5a97f97f50098e1096dd10d845d0f156"},
 ]
 replit = [
     {file = "replit-3.0.0-py3-none-any.whl", hash = "sha256:3dd4f21b8b2a44b8c645a15e87398fa129b356cb6a88faa5eedd30374cc404e1"},

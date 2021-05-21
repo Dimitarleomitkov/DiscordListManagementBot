@@ -212,6 +212,11 @@ def get_quote():
   quote = json_data[0]['q'] + " - " + json_data[0]['a'];
   return(quote);
 
+def get_cwquote():
+  random_index = random.randint(0, 128);
+  quote = db["CWquotes"][random_index];
+  return quote;
+
 def update_insults(insultMSG):
   if ("Insults" in db.keys()):
     Insults = db["Insults"];
@@ -245,7 +250,7 @@ async def on_message(message):
 
   if (msg == ">help"):
     await message.delete();
-    await message.channel.send(f"The available commands are: >test, >hello, >hello there, >how are you, >inspire, >pat, >insult, >addinsult, >listinsults, >rminsult, >ranklist, >ranksupdate, >ranksdbincrease, >ranksdbdecrease, >raidersdbreset, >rmraider, >raiderslist, >sortraiders, >addpoints, >rmpoints, >cmdlog, >loglist, >showlistlog");
+    await message.channel.send(f"The available commands are: >help, >test, >hello, >inspire, >cwaow, >pat, >insult, >addinsult, >rminsult, >listinsults, >ranklist, >raiderslist\n Commands which require permissions are: >cmdlog, >showlistlog, >loglist, >ranksupdate, >ranksdbincrease, >ranksdbdecrease, >raidersdbreset, >rmraider, >sortraiders, >addpoints, >rmpoints.");
     return;
 
   if (msg == ">test"):
@@ -277,6 +282,11 @@ async def on_message(message):
 
   if (msg.startswith(">inspire")):
     quote = get_quote();
+    await message.channel.send(quote);
+    return;
+
+  if (msg.startswith(">cwaow")):
+    quote = get_cwquote();
     await message.channel.send(quote);
     return;
 
@@ -345,7 +355,7 @@ async def on_message(message):
         print_str += f"{i}. {temp_db[i]}\n";
       else:
         print_str += f"{i}. {temp_db[i]}\n";
-    if (number_of_insults % 50 != 0):
+    if (i % 50 != 0 or i % 50 == 1):
       await message.channel.send (print_str);
     return;
 
