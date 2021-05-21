@@ -250,13 +250,17 @@ async def on_ready():
 
 @client.event
 async def on_message(message):
-  
-  if not (message.content.startswith(">")):
-    return;
 
   msg = message.content.lower();
   msg = msg.replace("\n", " ");
   msg = re.sub(' +', ' ', msg);
+
+  if (msg == "hello there" or msg == "hello, there"):
+    await message.channel.send("General Kenoby!");
+    return;
+  
+  if not (message.content.startswith(">")):
+    return;
 
   if (msg == ">help"):
     await message.delete();
@@ -272,10 +276,6 @@ async def on_message(message):
 
   if (msg == ">hello" or msg.startswith(">hi")):
     await message.channel.send(f"Hi!");
-    return;
-
-  if (msg == ">hello there"):
-    await message.channel.send("General Kenoby!");
     return;
 
   if (msg == ">how are you"):
