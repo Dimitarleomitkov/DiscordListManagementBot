@@ -126,21 +126,30 @@ if not ("Raiders" in db.keys()):
 
 def sort_raider_list():
   temp_db = db["Raiders"];
-  raiders = [None] * len(temp_db);
-  for i in range(len(temp_db)):
+  number_of_raiders = len(temp_db);
+  raiders = [None] * number_of_raiders;
+  for i in range(number_of_raiders):
     raiders[i] = temp_db[i][0];
   sorted_raiders = sorted(raiders);
-  new_db = [[None] * 3] * len(temp_db);
-  for i in range(len(new_db)):
-    new_db[i][0] = sorted_raiders[i];
+  new_db = [[None] * 3];
+  del new_db[0];
+  for i in range(number_of_raiders):
     raider_index = 0;
-    for j in range(len(temp_db)):
+    for j in range(number_of_raiders):
       if (sorted_raiders[i] == temp_db[j][0]):
         raider_index = j;
         break;
-    new_db[i][1] = temp_db[raider_index][1];
-    new_db[i][2] = temp_db[raider_index][2];
-    db["Raiders"][i] = new_db[i];
+    new_db.append([sorted_raiders[i], temp_db[raider_index][1], temp_db[raider_index][2]]);
+  #db["Raiders"] = new_db;
+  number_of_ranks = len(db["Ranks"]);
+  new_db2 = [[None] * 3];
+  del new_db2[0];
+  for i in range(number_of_ranks, -1, -1):
+    for j in range(number_of_raiders):
+      if (i == new_db[j][1]):
+        new_db2.append(new_db[j]);
+  db["Raiders"] = new_db2;
+  return;
 
 def add_points(raiders, points):
   temp_db = db["Raiders"];
@@ -201,6 +210,7 @@ def remove_raider(raiders):
   temp_db = db["Raiders"];
   for i in range(len(raiders)):
     for j in range(len(temp_db)):
+      #print (f"{raiders[i]} == {temp_db[j][0]}");
       if (raiders[i] == temp_db[j][0]):
         del temp_db[j];
         break;
@@ -250,7 +260,7 @@ async def on_message(message):
 
   if (msg == ">help"):
     await message.delete();
-    await message.channel.send(f"The available commands are: >help, >test, >hello, >inspire, >cwaow, >pat, >insult, >addinsult, >rminsult, >listinsults, >ranklist, >raiderslist\n Commands which require permissions are: >cmdlog, >showlistlog, >loglist, >ranksupdate, >ranksdbincrease, >ranksdbdecrease, >raidersdbreset, >rmraider, >sortraiders, >addpoints, >rmpoints.");
+    await message.channel.send(f"The available commands are: >help, >test, >hello, >inspire, >cwaow, >pat >insult, >addinsult, >rminsult, >listinsults, >ranklist, >raiderslist\n Commands which require permissions are: >cmdlog, >showlistlog, >loglist, >ranksupdate, >ranksdbincrease, >ranksdbdecrease, >raidersdbreset, >rmraider, >sortraiders, >addpoints, >rmpoints.");
     return;
 
   if (msg == ">test"):
@@ -274,6 +284,13 @@ async def on_message(message):
 
   if (msg.startswith(">you sexy")):
     await message.channel.send(f"No, you! {message.author.mention}");
+    return;
+
+  if (msg == ">mew2"):
+    if (random.choice([0, 1])):
+      await message.channel.send("the circumstances of one's birth is irrelevent,it is what you do with the gift of life that determines who you are.");
+    else:
+      await message.channel.send('The world pushes us with no mercy and when some push back the world points and cries \"evil\""');
     return;
 
   if (msg == ">selfdestruct"):
@@ -550,6 +567,7 @@ async def on_message(message):
     target_players = [None] * (len(split_message) - 2);
     for i in range(1, len(split_message) - 1):
       target_players[i - 1] = split_message[i];
+    target_players = list(dict.fromkeys(target_players));
     status = add_points(target_players, points);
     players_str = "";
     if (len(target_players) > 1):
