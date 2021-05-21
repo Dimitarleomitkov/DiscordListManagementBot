@@ -255,7 +255,7 @@ async def on_message(message):
   msg = msg.replace("\n", " ");
   msg = re.sub(' +', ' ', msg);
 
-  if (msg == "hello there" or msg == "hello, there"):
+  if (msg == "hello there" or msg == "hello, there" or msg == "hello there." or msg == "hello, there."):
     await message.channel.send("General Kenoby!");
     return;
   
