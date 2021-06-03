@@ -19,12 +19,15 @@ if not ("ListLog" in db.keys()):
 
 def clean_list_log(cmd_date):
   temp_db = db["ListLog"];
-  target_date = (cmd_date - timedelta(days = 14)).strftime("%d-%m-%Y");
-  #print (f"{target_date}");
-  for i in range(len(temp_db)):
-    if (target_date == temp_db[i][0]):
-      #print (f"Deleting entry {i} made on {temp_db[i][1]}");
+  target_date = (cmd_date - timedelta(days = 14));
+  i = 0;
+  while i < len(temp_db):
+    #print (f"{target_date} >= {temp_db[i][0]}");
+    if (target_date >= datetime.strptime(temp_db[i][0], "%d-%m-%Y").date()):
       del temp_db[i];
+      print (f"[list]Deleting entry {i} made on {temp_db[i][0]}");
+      i -= 1;
+    i += 1;
   db["ListLog"] = temp_db;
   return;
 
@@ -67,11 +70,14 @@ if not ("CommandsLog" in db.keys()):
 def clean_cmd_log(cmd_date):
   temp_db = db["CommandsLog"];
   target_date = (cmd_date - timedelta(days = 14));
-  for i in range(len(temp_db)):
-    #print (f'Is {target_date} >= {datetime.strptime(temp_db[i][1], "%d-%m-%Y").date()}');
+  i = 0;
+  while i < len(temp_db):
+    #print (f'[cmd]{i}:{target_date} >= {datetime.strptime(temp_db[i][1], "%d-%m-%Y").date()}');
     if (target_date >= datetime.strptime(temp_db[i][1], "%d-%m-%Y").date()):
-      #print (f"Deleting entry {i} made on {temp_db[i][1]}.");
       del temp_db[i];
+      print (f"[cmd]Deleting entry {i} made on {temp_db[i][1]}.");
+      i -= 1;
+    i += 1;
   db["CommandsLog"] = temp_db;
   return;
 
@@ -261,6 +267,9 @@ async def on_message(message):
   
   if not (message.content.startswith(">")):
     return;
+  
+  if (message.content.startswith("> ")):
+    return;
 
   if (msg == ">help"):
     await message.delete();
@@ -280,10 +289,6 @@ async def on_message(message):
 
   if (msg == ">how are you"):
     await message.channel.send("I am fine thank you. Please, stop playing with me.");
-    return;
-
-  if (msg.startswith(">you sexy")):
-    await message.channel.send(f"No, you! {message.author.mention}");
     return;
 
   if (msg == ">mew2"):
