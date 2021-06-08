@@ -24,10 +24,10 @@ def clean_list_log(cmd_date):
   while i < len(temp_db):
     #print (f"{target_date} >= {temp_db[i][0]}");
     if (target_date >= datetime.strptime(temp_db[i][0], "%d-%m-%Y").date()):
-      del temp_db[i];
       print (f"[list]Deleting entry {i} made on {temp_db[i][0]}");
-      i -= 1;
-    i += 1;
+      del temp_db[i];
+    else:
+      i += 1;
   db["ListLog"] = temp_db;
   return;
 
@@ -74,10 +74,10 @@ def clean_cmd_log(cmd_date):
   while i < len(temp_db):
     #print (f'[cmd]{i}:{target_date} >= {datetime.strptime(temp_db[i][1], "%d-%m-%Y").date()}');
     if (target_date >= datetime.strptime(temp_db[i][1], "%d-%m-%Y").date()):
-      del temp_db[i];
       print (f"[cmd]Deleting entry {i} made on {temp_db[i][1]}.");
-      i -= 1;
-    i += 1;
+      del temp_db[i];
+    else:
+      i += 1;
   db["CommandsLog"] = temp_db;
   return;
 
@@ -101,13 +101,13 @@ async def print_commands_log(index, message):
     theDate = temp_db[i][1];
     theTime = temp_db[i][2];
     command = temp_db[i][3];
-    if (i % 20 == 0 and i > 0):
+    if (i % 10 == 0 and i > 0):
       await message.channel.send(print_str);
       print_str = "";
       print_str += "{0}: {1} {2} - {3}\n".format(user, theDate, theTime, command);
     else:
       print_str += "{0}: {1} {2} - {3}\n".format(user, theDate, theTime, command);
-  if (i % 20 != 0 or i % 20 == 1):
+  if (i % 10 != 0 or i % 10 == 1):
     await message.channel.send(print_str);
   return;
 
