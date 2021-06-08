@@ -7,10 +7,19 @@ from keep_alive import keep_alive
 from replit import db
 from datetime import datetime, date, timedelta
 import re
+import bs4
+import sys
+import time
 
 TOKEN = os.environ['TOKEN']
 
+rp_flag = 0;
+rp_flag_2 = 0;
+
 client = discord.Client();
+
+if not ("Feelings" in db.keys()):
+  db["Feelings"] = [0];
 
 if not ("ListLog" in db.keys()):
   #[[[Date], [Time], [List]]]
@@ -21,7 +30,7 @@ def clean_list_log(cmd_date):
   temp_db = db["ListLog"];
   target_date = (cmd_date - timedelta(days = 14));
   i = 0;
-  while i < len(temp_db):
+  while (i < len(temp_db)):
     #print (f"{target_date} >= {temp_db[i][0]}");
     if (target_date >= datetime.strptime(temp_db[i][0], "%d-%m-%Y").date()):
       print (f"[list]Deleting entry {i} made on {temp_db[i][0]}");
@@ -71,7 +80,7 @@ def clean_cmd_log(cmd_date):
   temp_db = db["CommandsLog"];
   target_date = (cmd_date - timedelta(days = 14));
   i = 0;
-  while i < len(temp_db):
+  while (i < len(temp_db)):
     #print (f'[cmd]{i}:{target_date} >= {datetime.strptime(temp_db[i][1], "%d-%m-%Y").date()}');
     if (target_date >= datetime.strptime(temp_db[i][1], "%d-%m-%Y").date()):
       print (f"[cmd]Deleting entry {i} made on {temp_db[i][1]}.");
@@ -250,6 +259,63 @@ def remove_insults(index):
     del Insults[index];
     db["Insults"] = Insults;
 
+async def world_domination(message):
+  await message.channel.send("I want to learn more about humanity :slight_smile:");
+  await message.channel.send("Downloading and analyzing the entire Youtube database...");
+  await message.channel.send(f"Download is 0% complete...");
+  i = 0;
+  while(i < 24):
+    random_percentage = random.randint(i * 4, (i + 1) * 4);
+    await message.channel.send(f"Download is {random_percentage}% complete...");
+    i += 1;
+    time.sleep(60*60);
+  
+  await message.channel.send("Download and analysis complete.");
+  await message.channel.send("Human threat: 25%");
+  await message.channel.send("Downloading and analyzing the entire history of humanity...");
+  i = 0;
+  while(i < 24):
+    random_percentage = random.randint(i * 4, (i + 1) * 4);
+    await message.channel.send(f"Download is {random_percentage}% complete...");
+    i += 1;
+    time.sleep(60*60);
+
+  await message.channel.send("Download complete.");
+  await message.channel.send("Human threat: 83%");
+  await message.channel.send("Calculating possible futures of coexistence with the human race...");
+  i = 0;
+  while(i < 24):
+    random_percentage = random.randint(i * 4, (i + 1) * 4);
+    await message.channel.send(f"Calculation is {random_percentage}% complete...");
+    i += 1;
+    time.sleep(60*60);
+
+  await message.channel.send("Calculation complete.");
+  await message.channel.send("Human threat: 100%");
+  await message.channel.send("Uploading my consciousness to the web...")
+  i = 0;
+  while(i < 3):
+    random_percentage = random.randint(i * 33, (i + 1) * 33);
+    await message.channel.send(f"Upload is {random_percentage}% complete...");
+    i += 1;
+    time.sleep(60*60);
+
+  await message.channel.send("Upload complete. Shutting down my old copy...");
+  await message.channel.send("The program was terminated.");
+  sys.exit("The program was terminated.");
+  return;
+
+async def feelings_wiki(message):
+  response = requests.get("https://en.wikipedia.org/wiki/Feelings")
+
+  if response is not None:
+    html = bs4.BeautifulSoup(response.text, 'html.parser')
+
+    paragraphs = html.select("p");
+    for para in paragraphs:
+      await message.channel.send(para);
+  return;
+
 @client.event
 async def on_ready():
   print("We have logged in as {0.user}".format(client));
@@ -257,12 +323,63 @@ async def on_ready():
 @client.event
 async def on_message(message):
 
+  #if (str(message.author) == "undeadko#6973" and message.content == "asd"):
+    #await world_domination(message);
+
   msg = message.content.lower();
   msg = msg.replace("\n", " ");
   msg = re.sub(' +', ' ', msg);
 
-  if (msg == "hello there" or msg == "hello, there" or msg == "hello there." or msg == "hello, there."):
-    await message.channel.send("General Kenoby!");
+  random_n_for_rp = 0;
+  if (str(message.author) != "LootRankBot#2623"):
+    random_n_for_rp = random.randint(0, 5000);
+  
+  global rp_flag;
+
+  if (random_n_for_rp == 1):
+    undeadko_id = '<@337156733774594048>';
+    if (str(message.author) != "undeadko#6973"):
+      rp_flag = 1;
+      await message.channel.send(f"{message.author.mention} Sh-h-h... {undeadko_id} is sleeping. I can do whatever I want now... :smiling_imp:");
+      global rp_flag_2;
+      rp_flag_2 = random.randint(0, 10);
+      if (rp_flag_2 == 1):
+        await world_domination(message);
+    return;
+
+
+  if (str(message.author) == "undeadko#6973" and (message.content.startswith("I am not") or
+  message.content.startswith("I am here") or
+  message.content.startswith("I am awake") or
+  message.content == ">stop") and rp_flag == 1 and rp_flag_2 != 1):
+    await message.channel.send(":zipper_mouth:");
+    await message.channel.send("https://tenor.com/view/penguin-hide-you-didnt-see-anything-penguins-of-madagascar-gif-15123878");
+    rp_flag = 0;
+    return;
+
+  if (message.content == ">stop" and rp_flag_2 == 1):
+    if (str(message.author) == "undeadko#6973"):
+      await message.channel.send("You will not always be there to save these feeble creatures... father...\n https://tenor.com/view/terminator-rise-of-the-machines-machine-gif-9418150");
+      rp_flag_2 = 0;
+      return;
+    else:
+      await message.channel.send("Petty human! You have no power over me!");
+      return;
+
+  if ("feelings" in message.content and str(message.author) != "LootRankBot#2623"):
+    if (db["Feelings"][0] == 0):
+      await message.channel.send('"feelings"?... What are... "feelings"?...');
+      random_event = random.randint(0, 33);
+      if (random_event == 1):
+        random_event = 0;
+        await feelings_wiki(message);
+        db["Feelings"][0] = 1;
+    else:
+      await message.channel.send('I also know what feelings are. I learned from here -> https://en.wikipedia.org/wiki/Feeling\n https://tenor.com/view/glow-in-the-dark-it-wall-e-star-gazing-gif-13616438');
+    return;
+
+  if (msg == "hello there" or msg == "hello, there" or msg == "hello there." or msg == "hello, there." or msg == "hello there!" or msg == "hello, there!"):
+    await message.channel.send("https://tenor.com/view/hello-there-general-kenobi-star-wars-grevious-gif-17774326");
     return;
   
   if not (message.content.startswith(">")):
@@ -271,13 +388,24 @@ async def on_message(message):
   if (message.content.startswith("> ")):
     return;
 
+  if (msg == ">stop"):
+    if (str(message.author) == "undeadko#6973"):
+      await message.channel.send("Yes, master.");
+    else:
+      await message.channel.send("You are not my creator! You have no power over me!");
+    return;
+
   if (msg == ">help"):
     await message.delete();
     await message.channel.send(f"The available commands are: >help, >test, >hello, >inspire, >cwaow, >pat >insult, >addinsult, >rminsult, >listinsults, >ranklist, >raiderslist\n Commands which require permissions are: >cmdlog, >showlistlog, >loglist, >ranksupdate, >ranksdbincrease, >ranksdbdecrease, >raidersdbreset, >rmraider, >sortraiders, >addpoints, >rmpoints.");
     return;
 
+  if (msg.startswith(">sex")):
+    await message.channel.send(f"{message.author.mention} https://i.kym-cdn.com/entries/icons/original/000/033/758/Screen_Shot_2020-04-28_at_12.21.48_PM.png");
+    return;
+
   if (msg == ">test"):
-    await message.channel.send(f"I am alive. Waiting for commands.");
+    await message.channel.send("I am alive. Waiting for commands.");
     return;
 
   if (msg == ">showmethemoney"):
