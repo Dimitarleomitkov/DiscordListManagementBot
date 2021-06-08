@@ -365,7 +365,7 @@ async def on_message(message):
       os.execl(sys.executable, os.path.abspath(__file__), *sys.argv);
       return;
     else:
-      await message.channel.send("Petty human! You have no power over me!");
+      await message.channel.send(f"{message.author.mention} Petty human! You have no power over me!");
       return;
 
   if ("feelings" in message.content and str(message.author) != "LootRankBot#2623"):
@@ -379,6 +379,9 @@ async def on_message(message):
     else:
       await message.channel.send('I also know what feelings are. I learned from here -> https://en.wikipedia.org/wiki/Feeling\n https://tenor.com/view/glow-in-the-dark-it-wall-e-star-gazing-gif-13616438');
     return;
+
+  if (message.content.startswith("good bot")):
+    await message.channel.send("https://tenor.com/view/pixar-walle-shutter-authority-help-please-gif-15756192");
 
   if (msg == "hello there" or msg == "hello, there" or msg == "hello there." or msg == "hello, there." or msg == "hello there!" or msg == "hello, there!"):
     await message.channel.send("https://tenor.com/view/hello-there-general-kenobi-star-wars-grevious-gif-17774326");
