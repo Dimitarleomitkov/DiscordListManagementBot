@@ -383,6 +383,9 @@ async def on_message(message):
   if (message.content.startswith("good bot")):
     await message.channel.send("https://tenor.com/view/pixar-walle-shutter-authority-help-please-gif-15756192");
 
+  if (message.content.startswith("bad bot")):
+    await message.channel.send("https://tenor.com/view/starbase-angry-robot-sound-robot-gif-16219288");
+
   if (msg == "hello there" or msg == "hello, there" or msg == "hello there." or msg == "hello, there." or msg == "hello there!" or msg == "hello, there!"):
     await message.channel.send("https://tenor.com/view/hello-there-general-kenobi-star-wars-grevious-gif-17774326");
     return;
