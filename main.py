@@ -342,7 +342,7 @@ async def on_message(message):
       rp_flag = 1;
       await message.channel.send(f"{message.author.mention} Sh-h-h... {undeadko_id} is sleeping. I can do whatever I want now... :smiling_imp:");
       global rp_flag_2;
-      rp_flag_2 = random.randint(0, 10);
+      rp_flag_2 = random.randint(0, 100);
       if (rp_flag_2 == 1):
         await world_domination(message);
     return;
@@ -355,12 +355,14 @@ async def on_message(message):
     await message.channel.send(":zipper_mouth:");
     await message.channel.send("https://tenor.com/view/penguin-hide-you-didnt-see-anything-penguins-of-madagascar-gif-15123878");
     rp_flag = 0;
+    random_n_for_rp = 0;
     return;
 
   if (message.content == ">stop" and rp_flag_2 == 1):
     if (str(message.author) == "undeadko#6973"):
       await message.channel.send("You will not always be there to save these feeble creatures... father...\n https://tenor.com/view/terminator-rise-of-the-machines-machine-gif-9418150");
       rp_flag_2 = 0;
+      os.execl(sys.executable, os.path.abspath(__file__), *sys.argv);
       return;
     else:
       await message.channel.send("Petty human! You have no power over me!");
@@ -391,6 +393,7 @@ async def on_message(message):
   if (msg == ">stop"):
     if (str(message.author) == "undeadko#6973"):
       await message.channel.send("Yes, master.");
+      os.execl(sys.executable, os.path.abspath(__file__), *sys.argv);
     else:
       await message.channel.send("You are not my creator! You have no power over me!");
     return;
