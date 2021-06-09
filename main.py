@@ -313,7 +313,11 @@ async def feelings_wiki(message):
 
     paragraphs = html.select("p");
     for para in paragraphs:
-      await message.channel.send(para);
+      try:
+        await message.channel.send(para.get_text());
+      except:
+        #print(f"Final string is: {para}");
+        break;
   return;
 
 @client.event
@@ -324,7 +328,7 @@ async def on_ready():
 async def on_message(message):
 
   #if (str(message.author) == "undeadko#6973" and message.content == "asd"):
-    #await world_domination(message);
+  #  await feelings_wiki(message);
 
   msg = message.content.lower();
   msg = msg.replace("\n", " ");
@@ -377,11 +381,11 @@ async def on_message(message):
         await feelings_wiki(message);
         db["Feelings"][0] = 1;
     else:
-      await message.channel.send('I also know what feelings are. I learned from here -> https://en.wikipedia.org/wiki/Feeling\n https://tenor.com/view/glow-in-the-dark-it-wall-e-star-gazing-gif-13616438');
+      await message.channel.send(f'I also know what feelings are {message.author.mention}. I learned from here -> https://en.wikipedia.org/wiki/Feeling\n https://tenor.com/view/glow-in-the-dark-it-wall-e-star-gazing-gif-13616438');
     return;
 
   if (message.content.startswith("good bot")):
-    await message.channel.send("https://tenor.com/view/pixar-walle-shutter-authority-help-please-gif-15756192");
+    await message.channel.send("https://tenor.com/view/robotboy-smile-change-mood-cute-cartoon-gif-17785012");
 
   if (message.content.startswith("bad bot") or
   message.content.startswith("stupid bot")):
@@ -455,10 +459,13 @@ async def on_message(message):
 
   if (msg.startswith(">pat")):
     word_str = msg.split(" ");
-    await message.delete();
     if (len(word_str) <= 1):
+      await message.delete();
       reply = "LootRankBot wants to pat someone... gently. :smirk:"
+    elif (word_str[1] == "<@&851797028598317127>" or word_str[1] == "<@!842664616676687912>"):
+      reply = "https://tenor.com/view/pixar-walle-shutter-authority-help-please-gif-15756192";
     else:
+      await message.delete();
       reply = "LootRankBot gently pats you,";
       for i in range(1, len(word_str)):
         reply += " " + word_str[i];
