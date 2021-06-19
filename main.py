@@ -11,7 +11,8 @@ import bs4
 import sys
 import time
 
-TOKEN = os.environ['TOKEN']
+TOKEN = os.environ['TOKEN'];
+weatherAPIKey = os.environ['weather_api_key'];
 
 rp_flag = 0;
 rp_flag_2 = 0;
@@ -306,10 +307,10 @@ async def world_domination(message):
   return;
 
 async def feelings_wiki(message):
-  response = requests.get("https://en.wikipedia.org/wiki/Feelings")
+  response = requests.get("https://en.wikipedia.org/wiki/Feelings");
 
   if response is not None:
-    html = bs4.BeautifulSoup(response.text, 'html.parser')
+    html = bs4.BeautifulSoup(response.text, 'html.parser');
 
     paragraphs = html.select("p");
     for para in paragraphs:
@@ -320,15 +321,165 @@ async def feelings_wiki(message):
         break;
   return;
 
+async def weather(message, weather_json, city_name):
+  main_info = weather_json["main"];
+  current_temperature = main_info["temp"];
+  current_temperature_celsiuis = str(round(current_temperature - 273.15));
+  current_pressure = main_info["pressure"];
+  current_humidity = main_info["humidity"];
+  weather_details = weather_json["weather"];
+  weather_description = weather_details[0]["description"];
+  json_icon = weather_details[0]["icon"];
+            
+  if (json_icon.startswith("01")):
+    weather_icon = ":sunny:";
+  elif (json_icon.startswith("02")):
+    weather_icon = ":white_sun_small_cloud:";
+  elif (json_icon.startswith("03")):
+    weather_icon = ":white_sun_cloud:";
+  elif (json_icon.startswith("04")):
+    weather_icon = ":cloud:";
+  elif (json_icon.startswith("09")):
+    weather_icon = ":cloud_rain:";
+  elif (json_icon.startswith("10")):
+    weather_icon = ":white_sun_rain_cloud:";
+  elif (json_icon.startswith("11")):
+    weather_icon = ":thunder_cloud_rain:";
+  elif (json_icon.startswith("13")):
+    weather_icon = ":snowflake:";
+  elif (json_icon.startswith("50")):
+    weather_icon = ":fog:";
+  else:
+    weather_icon = ":boom:";
+
+  logitude = weather_json["coord"]["lon"];
+  latitude = weather_json["coord"]["lat"];
+
+  wind_speed = weather_json["wind"]["speed"];
+
+  embed = discord.Embed(title = f"Weather in {city_name}",
+                        color = message.guild.me.top_role.color,
+                        timestamp = message.created_at);
+  embed.add_field(name = "Coordinates", value = f"Logitude: **{logitude}**\nLatitude: **{latitude}**", inline = False);
+  embed.add_field(name = "Descripition", value = f"**{weather_description}** {weather_icon}", inline = False);
+  embed.add_field(name = "Temperature(C)", value = f"**{current_temperature_celsiuis}°C** / **{(float(current_temperature_celsiuis) * 1.8 + 32):.2f}°F** / **{current_temperature}°K**", inline = False);
+  embed.add_field(name = "Wind", value = f"wind speed: **{wind_speed}m/s**", inline = False);
+  embed.add_field(name = "Humidity(%)", value = f"**{current_humidity}%**", inline = False);
+  embed.add_field(name = "Atmospheric Pressure(hPa)", value = f"**{current_pressure}hPa**", inline = False);
+  embed.set_thumbnail(url = "https://i.ibb.co/CMrsxdX/weather.png");
+  embed.set_footer(text = f"Requested by {message.author.nick}");
+
+  await message.channel.send(embed=embed);
+
+  return;
+
+def to_binary(input_string):
+  result = ''.join(format(ord(i), '08b') for i in input_string);
+  return result;
+
+def binary_to_str(input_binary):
+  def BinaryToDecimal(binary):
+    int_string = int(binary, 2);
+    return int_string;
+
+  str_data = ' ';
+  for i in range(0, len(input_binary), 8):
+    temp_data = input_binary[i:i + 8];
+    decimal_data = BinaryToDecimal(temp_data);
+    str_data = str_data + chr(decimal_data);
+
+  return str_data;
+
+#del db["ExilesList"];
+
+if not ("ExilesList" in db.keys()):
+  #[[message], [page_list]]
+  db["ExilesList"] = [[], []];
+
+async def raiders_list (message):
+  embed = discord.Embed(title = f"<Exiles> Rank List Page 1",
+                        color = discord.Colour(0xe67e22));
+  embed.set_thumbnail(url = "https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/5ec5654e-2b00-498b-932c-c0a21728c4e8/d4zg5og-dcd1ab65-29a6-4698-bc6c-cbd6543737e3.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcLzVlYzU2NTRlLTJiMDAtNDk4Yi05MzJjLWMwYTIxNzI4YzRlOFwvZDR6ZzVvZy1kY2QxYWI2NS0yOWE2LTQ2OTgtYmM2Yy1jYmQ2NTQzNzM3ZTMucG5nIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.yoqIBAr7KC9R3Dc0ou04yFSa4SAiKSkCJCZkOOHKriI");
+
+  temp_db = db["Raiders"];
+  number_of_raiders = len(temp_db);
+  start = 0;
+  if ((number_of_raiders - start) < 10):
+    end = start + (number_of_raiders - start);
+  else:
+    end = start + 10;
+
+  i = start;
+  while (i < end):
+    embed.add_field(name = f"{i + 1}. {temp_db[i][0].capitalize()}", value = f"Rank: {temp_db[i][1]} (Points: {temp_db[i][2]})", inline = False);
+    i += 1;
+
+  message = await message.channel.send(embed=embed)
+
+  emojis = ['⬅️', '➡️'];
+  for my_emoji in emojis:
+    await message.add_reaction(my_emoji)
+
+  return message;
+
+async def new_list_page (embed_msg):
+  raiders_list_page = db["ExilesList"][1];
+  embed = discord.Embed(title = f"<Exiles> Rank List Page {raiders_list_page}",
+                        color = discord.Colour(0xe67e22));
+  embed.set_thumbnail(url = "https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/5ec5654e-2b00-498b-932c-c0a21728c4e8/d4zg5og-dcd1ab65-29a6-4698-bc6c-cbd6543737e3.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcLzVlYzU2NTRlLTJiMDAtNDk4Yi05MzJjLWMwYTIxNzI4YzRlOFwvZDR6ZzVvZy1kY2QxYWI2NS0yOWE2LTQ2OTgtYmM2Yy1jYmQ2NTQzNzM3ZTMucG5nIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.yoqIBAr7KC9R3Dc0ou04yFSa4SAiKSkCJCZkOOHKriI");
+
+  temp_db = db["Raiders"];
+  number_of_raiders = len(temp_db);
+  start = (raiders_list_page - 1) * 10;
+  if ((number_of_raiders - start) < 10):
+    end = start + (number_of_raiders - start);
+  else:
+    end = start + 10;
+
+  i = start;
+  while (i < end):
+    embed.add_field(name = f"{i + 1}. {temp_db[i][0].capitalize()}", value = f"Rank: {temp_db[i][1]} (Points: {temp_db[i][2]})", inline = False);
+    i += 1;
+
+  await embed_msg.edit(embed=embed)
+  return;
+
 @client.event
 async def on_ready():
   print("We have logged in as {0.user}".format(client));
 
 @client.event
-async def on_message(message):
+async def on_raw_reaction_add(payload):
+  embed_msg_id = db["ExilesList"][0];
 
-  #if (str(message.author) == "undeadko#6973" and message.content == "asd"):
-  #  await feelings_wiki(message);
+  if (embed_msg_id == payload.message_id and
+      payload.user_id != 842664616676687912 and #This is the Bot ID
+      (payload.emoji.name == '⬅️' or payload.emoji.name == '➡️')):
+
+    raiders_list_page = db["ExilesList"][1];
+    number_of_raiders = len(db["Raiders"]);
+
+    channel = client.get_channel(payload.channel_id);
+    embed_msg = await channel.fetch_message(embed_msg_id);
+
+    if (payload.emoji.name == '⬅️'):
+      if ((raiders_list_page - 1) != 0):
+        db["ExilesList"][1] -= 1;
+        await new_list_page(embed_msg);
+        await embed_msg.remove_reaction('⬅️', payload.member);
+
+    if (payload.emoji.name == '➡️'):
+      if ((raiders_list_page * 10) < number_of_raiders):
+        db["ExilesList"][1] += 1;
+        await new_list_page(embed_msg);
+        await embed_msg.remove_reaction('➡️', payload.member);
+
+    return;
+  
+  return;
+
+@client.event
+async def on_message(message):
 
   msg = message.content.lower();
   msg = msg.replace("\n", " ");
@@ -341,10 +492,10 @@ async def on_message(message):
   global rp_flag;
 
   if (random_n_for_rp == 1):
-    undeadko_id = '<@337156733774594048>';
+    undeadko_mention = '<@337156733774594048>';
     if (str(message.author) != "undeadko#6973"):
       rp_flag = 1;
-      await message.channel.send(f"{message.author.mention} Sh-h-h... {undeadko_id} is sleeping. I can do whatever I want now... :smiling_imp:");
+      await message.channel.send(f"{message.author.mention} Sh-h-h... {undeadko_mention} is sleeping. I can do whatever I want now... :smiling_imp:");
       global rp_flag_2;
       rp_flag_2 = random.randint(0, 100);
       if (rp_flag_2 == 1):
@@ -352,27 +503,14 @@ async def on_message(message):
     return;
 
 
-  if (str(message.author) == "undeadko#6973" and (message.content.startswith("I am not") or
-  message.content.startswith("I am here") or
-  message.content.startswith("I am awake") or
-  message.content == ">stop") and rp_flag == 1 and rp_flag_2 != 1):
+  if (str(message.author) == "undeadko#6973" and (msg.startswith("i am not") or msg.startswith("i am here") or msg.startswith("i am awake") or msg == ">stop") and rp_flag == 1 and rp_flag_2 != 1):
     await message.channel.send(":zipper_mouth:");
     await message.channel.send("https://tenor.com/view/penguin-hide-you-didnt-see-anything-penguins-of-madagascar-gif-15123878");
     rp_flag = 0;
     random_n_for_rp = 0;
     return;
 
-  if (message.content == ">stop" and rp_flag_2 == 1):
-    if (str(message.author) == "undeadko#6973"):
-      await message.channel.send("You will not always be there to save these feeble creatures... father...\n https://tenor.com/view/terminator-rise-of-the-machines-machine-gif-9418150");
-      rp_flag_2 = 0;
-      os.execl(sys.executable, os.path.abspath(__file__), *sys.argv);
-      return;
-    else:
-      await message.channel.send(f"{message.author.mention} Petty human! You have no power over me!");
-      return;
-
-  if ("feelings" in message.content and str(message.author) != "LootRankBot#2623"):
+  if ("feelings" in msg and str(message.author) != "LootRankBot#2623"):
     if (db["Feelings"][0] == 0):
       await message.channel.send('"feelings"?... What are... "feelings"?...');
       random_event = random.randint(0, 33);
@@ -384,11 +522,11 @@ async def on_message(message):
       await message.channel.send(f'I also know what feelings are {message.author.mention}. I learned from here -> https://en.wikipedia.org/wiki/Feeling\n https://tenor.com/view/glow-in-the-dark-it-wall-e-star-gazing-gif-13616438');
     return;
 
-  if (message.content.startswith("good bot")):
+  if (msg.startswith("good bot")):
     await message.channel.send("https://tenor.com/view/robotboy-smile-change-mood-cute-cartoon-gif-17785012");
 
-  if (message.content.startswith("bad bot") or
-  message.content.startswith("stupid bot")):
+  if (msg.startswith("bad bot") or
+  msg.startswith("stupid bot")):
     if (str(message.author) == "undeadko#6973"):
       await message.channel.send("https://tenor.com/view/sorry-stitch-%E5%8F%B2%E8%BF%AA%E5%A5%87-sad-gif-10399341");
     else:
@@ -398,11 +536,21 @@ async def on_message(message):
     await message.channel.send("https://tenor.com/view/hello-there-general-kenobi-star-wars-grevious-gif-17774326");
     return;
   
-  if not (message.content.startswith(">")):
+  if not (msg.startswith(">")):
     return;
   
-  if (message.content.startswith("> ")):
+  if (msg.startswith("> ")):
     return;
+
+  if (msg == ">stop" and rp_flag_2 == 1):
+    if (str(message.author) == "undeadko#6973"):
+      await message.channel.send("You will not always be there to save these feeble creatures... father...\n https://tenor.com/view/terminator-rise-of-the-machines-machine-gif-9418150");
+      rp_flag_2 = 0;
+      os.execl(sys.executable, os.path.abspath(__file__), *sys.argv);
+      return;
+    else:
+      await message.channel.send(f"{message.author.mention} Petty human! You have no power over me!");
+      return;
 
   if (msg == ">stop"):
     if (str(message.author) == "undeadko#6973"):
@@ -414,8 +562,58 @@ async def on_message(message):
 
   if (msg == ">help"):
     await message.delete();
-    await message.channel.send(f"The available commands are: >help, >test, >hello, >inspire, >cwaow, >pat >insult, >addinsult, >rminsult, >listinsults, >ranklist, >raiderslist\n Commands which require permissions are: >cmdlog, >showlistlog, >loglist, >ranksupdate, >ranksdbincrease, >ranksdbdecrease, >raidersdbreset, >rmraider, >sortraiders, >addpoints, >rmpoints.");
+    await message.channel.send(f"The available commands are: >help, >weather, >tobinary, >btotext, >test, >hello, >inspire, >cwaow, >pat >insult, >addinsult, >rminsult, >listinsults, >ranklist, >raiderslist, >exileslist\n Commands which require permissions are: >cmdlog, >showlistlog, >loglist, >ranksupdate, >ranksdbincrease, >ranksdbdecrease, >raidersdbreset, >rmraider, >sortraiders, >addpoints, >rmpoints.");
     return;
+
+  if (msg.startswith(">weather")):
+    word_str = msg.split(" ");
+    if (len(word_str) < 2):
+      await message.channel.send("There should be a city name parameter after the function.\nEx: >weather <city name>");
+      return;
+    base_url = "http://api.openweathermap.org/data/2.5/weather?";
+    city_name = "";
+    for words in word_str[1:]:
+      city_name += words.capitalize() + " ";
+    language = "&lang=en";
+    complete_url = base_url + "appid=" + weatherAPIKey + "&q=" + city_name + language;
+    response = requests.get(complete_url)
+    api_json = response.json();
+    if (api_json["cod"] != "404"):
+      await weather(message, api_json, city_name);
+      return;
+    else:
+      await message.channel.send("Can't find the city you are looking for.");
+      return;
+
+  if (msg.startswith(">tobinary")):
+    word_str = message.content.split(" ");
+    if (len(word_str) < 2):
+      await message.channel.send("There should be at least one word after the function.\nEx: >tobinary <word>");
+      return;
+    string_for_binary = " ".join(word_str[1:]);
+    binary_str = to_binary(string_for_binary);
+
+    await message.channel.send(f"{binary_str}");
+    return;
+
+  if (msg.startswith(">btotext")):
+    word_str = msg.split(" ");
+    if (len(word_str) < 2):
+      await message.channel.send("There should be binary after the function.\nEx: >btotext 01001000011001010110110001101100011011110010110000100000011101000110100001100101011100100110010100100001");
+      return;
+    if (len(word_str) > 2):
+      await message.channel.send("There should be no spaces in your binary.");
+    p = set(word_str[1]);
+    s = {'0', '1'};
+    if s == p or p == {'0'} or p == {'1'}:
+      binary_str = str(word_str[1]);
+      print_str = binary_to_str(binary_str);
+
+      await message.channel.send(f"{print_str}");
+      return;
+    else :
+      await message.channel.send("You need to enter a binary parameter.\nEx: >btotext 01001000011001010110110001101100011011110010110000100000011101000110100001100101011100100110010100100001");
+      return;
 
   if (msg.startswith(">sex")):
     await message.channel.send(f"{message.author.mention} https://i.kym-cdn.com/entries/icons/original/000/033/758/Screen_Shot_2020-04-28_at_12.21.48_PM.png");
@@ -566,6 +764,23 @@ async def on_message(message):
       await message.channel.send (print_str);
     return;
 
+  if (message.content == ">exileslist"):
+    await message.delete();
+    channel = message.channel;
+
+    if (channel.id != 844113693653598228 and
+        channel.id != 842322509277429780):
+      proper_channel = client.get_channel(842322509277429780);
+      await channel.send(f"This command can only be executed in {proper_channel.mention}");
+      return;
+
+    #print (channel.id);
+    embed_msg = await raiders_list (message);
+    db["ExilesList"][0] = embed_msg.id;
+    db["ExilesList"][1] = 1;
+
+    return;
+
   #check for permissions from here onward
   permission = 0;
   for i in range(len(message.author.roles)):
@@ -651,6 +866,7 @@ async def on_message(message):
     await message.delete();
     deletedb_prompt_flag = 0;
     delete_raiders_db();
+    db["ExilesList"][1] = 1;
     await message.channel.send ("The database has been deleted.");
     return;
 
@@ -680,6 +896,7 @@ async def on_message(message):
     else:
       buff += f"{raiders[0].capitalize()}";
       await message.channel.send (f"{buff} was removed from the list.");
+    db["ExilesList"][1] = 1;
     return;
 
   if (msg == ">sortraiders"):
