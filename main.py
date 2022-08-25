@@ -565,6 +565,14 @@ async def on_message(message):
     await message.channel.send(f"The available commands are: >help, >weather, >tobinary, >btotext, >test, >hello, >inspire, >cwaow, >pat >insult, >addinsult, >rminsult, >listinsults, >ranklist, >raiderslist, >exileslist\n Commands which require permissions are: >cmdlog, >showlistlog, >loglist, >ranksupdate, >ranksdbincrease, >ranksdbdecrease, >raidersdbreset, >rmraider, >sortraiders, >addpoints, >rmpoints.");
     return;
 
+  if (msg.startswith(">playsong ")):
+    word_str = msg.split(" ");
+    song_request = "";
+    for words in word_str[1:]:
+      song_request += words;
+    await message.channel.send(f"Trying to play the song {song_request}");
+    pass;
+
   if (msg.startswith(">weather")):
     word_str = msg.split(" ");
     if (len(word_str) < 2):
