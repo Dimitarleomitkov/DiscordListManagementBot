@@ -10,6 +10,14 @@ import re
 import bs4
 import sys
 import time
+import urllib.request
+import re
+import youtube_dl
+import pafy
+import nacl
+from discord import FFmpegPCMAudio, PCMVolumeTransformer
+
+FFMPEG_OPTIONS = {'before_options': '-reconnect 1 -reconnect_streamed 1 -reconnect_delay_max 5','options': '-vn'}
 
 TOKEN = os.environ['TOKEN'];
 weatherAPIKey = os.environ['weather_api_key'];
@@ -17,7 +25,7 @@ weatherAPIKey = os.environ['weather_api_key'];
 rp_flag = 0;
 rp_flag_2 = 0;
 
-client = discord.Client();
+client = discord.Client(intents=discord.Intents.all());
 
 if not ("Feelings" in db.keys()):
   db["Feelings"] = [0];
@@ -26,6 +34,14 @@ if not ("ListLog" in db.keys()):
   #[[[Date], [Time], [List]]]
   db["ListLog"] = [[[], [], []]];
   del db["ListLog"][0];
+
+def get_video_result(search_str):
+  url = urllib.parse.quote(search_str)
+  html = urllib.request.urlopen(
+      f"https://www.youtube.com/results?search_query={url}")
+  video_ids = re.findall(r"watch\?v=(\S{11})", html.read().decode())
+  link = f"https://www.youtube.com/watch?v={video_ids[0]}"
+  return link
 
 def clean_list_log(cmd_date):
   temp_db = db["ListLog"];
@@ -480,7 +496,7 @@ async def on_raw_reaction_add(payload):
 
 @client.event
 async def on_message(message):
-
+  
   msg = message.content.lower();
   msg = msg.replace("\n", " ");
   msg = re.sub(' +', ' ', msg);
@@ -566,12 +582,32 @@ async def on_message(message):
     return;
 
   if (msg.startswith(">playsong ")):
-    word_str = msg.split(" ");
-    song_request = "";
+    word_str = msg.split(" ")
+    song_request = ""
     for words in word_str[1:]:
-      song_request += words;
-    await message.channel.send(f"Trying to play the song {song_request}");
-    pass;
+      song_request += " " + words
+  
+    song_request = song_request.lstrip()
+    link = get_video_result(song_request)
+    await message.channel.send(f"Playing: {link}")
+    voice_channel = message.author.voice.channel
+    voice = discord.utils.get(message.guild.voice_channels, name = voice_channel)
+    voice_client = discord.utils.get(client.voice_clients, guild = message.guild)
+    if voice_client == None:
+      await voice.connect()
+    else:
+      await voice_client.move_to(voice_channel)
+    if voice_channel is not None:
+      await voice_channel.connect()
+      song = pafy.new(link)
+      audio = song.getbestaudio()
+      source = FFmpegPCMAudio(audio.url, **FFMPEG_OPTIONS)
+      voice_client.play(source)
+      # while voice_client.is_playing():
+      #   sleep(.1)
+
+      # await voice_channel.disconnect()
+    return
 
   if (msg.startswith(">weather")):
     word_str = msg.split(" ");
