@@ -4,7 +4,7 @@ import requests
 import json
 import random
 from keep_alive import keep_alive
-from replit import db
+#from replit import db
 from datetime import datetime, date, timedelta
 import re
 import bs4
@@ -12,274 +12,274 @@ import sys
 import time
 import urllib.request
 import re
-import youtube_dl
-import pafy
-import nacl
-from discord import FFmpegPCMAudio, PCMVolumeTransformer
+#import youtube_dl
+#import pafy
+#import nacl
+#from discord import FFmpegPCMAudio, PCMVolumeTransformer
 
-FFMPEG_OPTIONS = {
-    'before_options':
-    '-reconnect 1 -reconnect_streamed 1 -reconnect_delay_max 5',
-    'options': '-vn'
-}
+#FFMPEG_OPTIONS = {
+#    'before_options':
+#    '-reconnect 1 -reconnect_streamed 1 -reconnect_delay_max 5',
+#    'options': '-vn'
+#}
 
-TOKEN = os.environ['TOKEN']
-weatherAPIKey = os.environ['weather_api_key']
+TOKEN = 'ODQyNjY0NjE2Njc2Njg3OTEy.GnFLR8.p0TShJ5YzbOaq4FZrDbFyJK0RwHwQGAr8u6AA4'
+weatherAPIKey = 'd357a8766df0a496362ce1ec354b855d'
 
 rp_flag = 0
 rp_flag_2 = 0
 
-client = discord.Client(intents=discord.Intents.all())
+client = discord.Client(intents = discord.Intents.all())
 
-if not ("Feelings" in db.keys()):
-    db["Feelings"] = [0]
+#if not ("Feelings" in db.keys()):
+#    db["Feelings"] = [0]
 
-if not ("ListLog" in db.keys()):
-    #[[[Date], [Time], [List]]]
-    db["ListLog"] = [[[], [], []]]
-    del db["ListLog"][0]
-
-
-def get_video_result(search_str):
-    url = urllib.parse.quote(search_str)
-    html = urllib.request.urlopen(
-        f"https://www.youtube.com/results?search_query={url}")
-    video_ids = re.findall(r"watch\?v=(\S{11})", html.read().decode())
-    link = f"https://www.youtube.com/watch?v={video_ids[0]}"
-    return link
+#if not ("ListLog" in db.keys()):
+#    #[[[Date], [Time], [List]]]
+#    db["ListLog"] = [[[], [], []]]
+#    del db["ListLog"][0]
 
 
-def clean_list_log(cmd_date):
-    temp_db = db["ListLog"]
-    target_date = (cmd_date - timedelta(days=14))
-    i = 0
-    while (i < len(temp_db)):
-        #print (f"{target_date} >= {temp_db[i][0]}");
-        if (target_date >= datetime.strptime(temp_db[i][0],
-                                             "%d-%m-%Y").date()):
-            print(f"[list]Deleting entry {i} made on {temp_db[i][0]}")
-            del temp_db[i]
-        else:
-            i += 1
-    db["ListLog"] = temp_db
-    return
+#def get_video_result(search_str):
+#    url = urllib.parse.quote(search_str)
+#    html = urllib.request.urlopen(
+#        f"https://www.youtube.com/results?search_query={url}")
+#    video_ids = re.findall(r"watch\?v=(\S{11})", html.read().decode())
+#    link = f"https://www.youtube.com/watch?v={video_ids[0]}"
+#    return link
 
 
-def log_list():
-    date_obj = date.today()
-    today = date_obj.strftime("%d-%m-%Y")
-    now = datetime.now()
-    time_now = now.strftime("%H:%M:%S")
-    list_obj = [today, time_now, db["Raiders"]]
-    db["ListLog"].append(list_obj)
-    clean_list_log(date_obj)
-    return
+#def clean_list_log(cmd_date):
+#    temp_db = db["ListLog"]
+#    target_date = (cmd_date - timedelta(days=14))
+#    i = 0
+#    while (i < len(temp_db)):
+#        #print (f"{target_date} >= {temp_db[i][0]}");
+#        if (target_date >= datetime.strptime(temp_db[i][0],
+#                                             "%d-%m-%Y").date()):
+#            print(f"[list]Deleting entry {i} made on {temp_db[i][0]}")
+#            del temp_db[i]
+#        else:
+#            i += 1
+#    db["ListLog"] = temp_db
+#    return
 
 
-async def print_list_log(index, message):
-    temp_db = db["ListLog"][index]
-    number_of_raiders = len(temp_db[2])
-    print_str = ""
-    i = 0
-    for i in range(number_of_raiders):
-        raider = temp_db[2][i][0]
-        rank = temp_db[2][i][1]
-        points = temp_db[2][i][2]
-        if (i % 50 == 0 and i > 0):
-            #print(print_str);
-            await message.channel.send(print_str)
-            print_str = ""
-            print_str += "{0:>40}".format(
-                "{0:2}. {1:-<12} Rank: {2:2} Points: {3:5}\n".format(
-                    i, raider.capitalize(), rank, points))
-        else:
-            print_str += "{0:>40}".format(
-                "{0:2}. {1:-<12} Rank: {2:2} Points: {3:5}\n".format(
-                    i, raider.capitalize(), rank, points))
-    if (i % 50 != 0 or i % 50 == 1):
-        #print(print_str);
-        await message.channel.send(print_str)
-    return
+#def log_list():
+#    date_obj = date.today()
+#    today = date_obj.strftime("%d-%m-%Y")
+#    now = datetime.now()
+#    time_now = now.strftime("%H:%M:%S")
+#    list_obj = [today, time_now, db["Raiders"]]
+#    db["ListLog"].append(list_obj)
+#    clean_list_log(date_obj)
+#    return
 
 
-if not ("CommandsLog" in db.keys()):
-    #[[[User], [Date], [Time], [Command]]]
-    db["CommandsLog"] = [[[], [], [], []]]
-    del db["CommandsLog"][0]
+#async def print_list_log(index, message):
+#    temp_db = db["ListLog"][index]
+#    number_of_raiders = len(temp_db[2])
+#    print_str = ""
+#    i = 0
+#    for i in range(number_of_raiders):
+#        raider = temp_db[2][i][0]
+#        rank = temp_db[2][i][1]
+#        points = temp_db[2][i][2]
+#        if (i % 50 == 0 and i > 0):
+#            #print(print_str);
+#            await message.channel.send(print_str)
+#            print_str = ""
+#            print_str += "{0:>40}".format(
+#                "{0:2}. {1:-<12} Rank: {2:2} Points: {3:5}\n".format(
+#                    i, raider.capitalize(), rank, points))
+#        else:
+#            print_str += "{0:>40}".format(
+#                "{0:2}. {1:-<12} Rank: {2:2} Points: {3:5}\n".format(
+#                    i, raider.capitalize(), rank, points))
+#    if (i % 50 != 0 or i % 50 == 1):
+#        #print(print_str);
+#        await message.channel.send(print_str)
+#    return
 
 
-def clean_cmd_log(cmd_date):
-    temp_db = db["CommandsLog"]
-    target_date = (cmd_date - timedelta(days=14))
-    i = 0
-    while (i < len(temp_db)):
-        #print (f'[cmd]{i}:{target_date} >= {datetime.strptime(temp_db[i][1], "%d-%m-%Y").date()}');
-        if (target_date >= datetime.strptime(temp_db[i][1],
-                                             "%d-%m-%Y").date()):
-            print(f"[cmd]Deleting entry {i} made on {temp_db[i][1]}.")
-            del temp_db[i]
-        else:
-            i += 1
-    db["CommandsLog"] = temp_db
-    return
+#if not ("CommandsLog" in db.keys()):
+#    #[[[User], [Date], [Time], [Command]]]
+#    db["CommandsLog"] = [[[], [], [], []]]
+#    del db["CommandsLog"][0]
 
 
-def log_command(cmd, user):
-    cmd_date_obj = date.today()
-    cmd_date = cmd_date_obj.strftime("%d-%m-%Y")
-    cmd_now = datetime.now()
-    cmd_time = cmd_now.strftime("%H:%M:%S")
-    cmd_obj = [str(user), cmd_date, cmd_time, cmd]
-    db["CommandsLog"].append(cmd_obj)
-    clean_cmd_log(cmd_date_obj)
-    return
+#def clean_cmd_log(cmd_date):
+#    temp_db = db["CommandsLog"]
+#    target_date = (cmd_date - timedelta(days=14))
+#    i = 0
+#    while (i < len(temp_db)):
+#        #print (f'[cmd]{i}:{target_date} >= {datetime.strptime(temp_db[i][1], "%d-%m-%Y").date()}');
+#        if (target_date >= datetime.strptime(temp_db[i][1],
+#                                             "%d-%m-%Y").date()):
+#            print(f"[cmd]Deleting entry {i} made on {temp_db[i][1]}.")
+#            del temp_db[i]
+#        else:
+#            i += 1
+#    db["CommandsLog"] = temp_db
+#    return
 
 
-async def print_commands_log(index, message):
-    temp_db = db["CommandsLog"]
-    list_length = len(temp_db)
-    print_str = ""
-    i = 0
-    for i in range(list_length):
-        user = temp_db[i][0]
-        theDate = temp_db[i][1]
-        theTime = temp_db[i][2]
-        command = temp_db[i][3]
-        if (i % 10 == 0 and i > 0):
-            await message.channel.send(print_str)
-            print_str = ""
-            print_str += "{0}: {1} {2} - {3}\n".format(user, theDate, theTime,
-                                                       command)
-        else:
-            print_str += "{0}: {1} {2} - {3}\n".format(user, theDate, theTime,
-                                                       command)
-    if (i % 10 != 0 or i % 10 == 1):
-        await message.channel.send(print_str)
-    return
+#def log_command(cmd, user):
+#    cmd_date_obj = date.today()
+#    cmd_date = cmd_date_obj.strftime("%d-%m-%Y")
+#    cmd_now = datetime.now()
+#    cmd_time = cmd_now.strftime("%H:%M:%S")
+#    cmd_obj = [str(user), cmd_date, cmd_time, cmd]
+#    db["CommandsLog"].append(cmd_obj)
+#    clean_cmd_log(cmd_date_obj)
+#    return
 
 
-if not ("Ranks" in db.keys()):
-    db["Ranks"] = [0, 5, 10, 25, 50, 100]
+#async def print_commands_log(index, message):
+#    temp_db = db["CommandsLog"]
+#    list_length = len(temp_db)
+#    print_str = ""
+#    i = 0
+#    for i in range(list_length):
+#        user = temp_db[i][0]
+#        theDate = temp_db[i][1]
+#        theTime = temp_db[i][2]
+#        command = temp_db[i][3]
+#        if (i % 10 == 0 and i > 0):
+#            await message.channel.send(print_str)
+#            print_str = ""
+#            print_str += "{0}: {1} {2} - {3}\n".format(user, theDate, theTime,
+#                                                       command)
+#        else:
+#            print_str += "{0}: {1} {2} - {3}\n".format(user, theDate, theTime,
+#                                                       command)
+#    if (i % 10 != 0 or i % 10 == 1):
+#        await message.channel.send(print_str)
+#    return
 
 
-def update_rank(rank_index, points):
-    db["Ranks"][rank_index] = points
+#if not ("Ranks" in db.keys()):
+#    db["Ranks"] = [0, 5, 10, 25, 50, 100]
 
 
-def create_raiders_db():
-    if not ("Raiders" in db.keys()):
-        #[[[Name], [Rank], [Points]]]
-        db["Raiders"] = [[[], [], []]]
-        del db["Raiders"][0]
+#def update_rank(rank_index, points):
+#    db["Ranks"][rank_index] = points
 
 
-def delete_raiders_db():
-    del db["Raiders"]
-    create_raiders_db()
+#def create_raiders_db():
+#    if not ("Raiders" in db.keys()):
+#        #[[[Name], [Rank], [Points]]]
+#        db["Raiders"] = [[[], [], []]]
+#        del db["Raiders"][0]
 
 
-if not ("Raiders" in db.keys()):
-    create_raiders_db()
+#def delete_raiders_db():
+#    del db["Raiders"]
+#    create_raiders_db()
 
 
-def sort_raider_list():
-    temp_db = db["Raiders"]
-    number_of_raiders = len(temp_db)
-    raiders = [None] * number_of_raiders
-    for i in range(number_of_raiders):
-        raiders[i] = temp_db[i][0]
-    sorted_raiders = sorted(raiders)
-    new_db = [[None] * 3]
-    del new_db[0]
-    for i in range(number_of_raiders):
-        raider_index = 0
-        for j in range(number_of_raiders):
-            if (sorted_raiders[i] == temp_db[j][0]):
-                raider_index = j
-                break
-        new_db.append([
-            sorted_raiders[i], temp_db[raider_index][1],
-            temp_db[raider_index][2]
-        ])
-    #db["Raiders"] = new_db;
-    number_of_ranks = len(db["Ranks"])
-    new_db2 = [[None] * 3]
-    del new_db2[0]
-    for i in range(number_of_ranks, -1, -1):
-        for j in range(number_of_raiders):
-            if (i == new_db[j][1]):
-                new_db2.append(new_db[j])
-    db["Raiders"] = new_db2
-    return
+#if not ("Raiders" in db.keys()):
+#    create_raiders_db()
 
 
-def add_points(raiders, points):
-    temp_db = db["Raiders"]
-    temp_db2 = db["Ranks"]
-    if (points > temp_db2[len(temp_db2) - 1]):
-        return -1
-    for i in range(len(raiders)):
-        raider_exists = 0
-        raider_index = None
-        for j in range(len(temp_db)):
-            if (raiders[i] == temp_db[j][0]):
-                raider_exists = 1
-                break
-        if (raider_exists):
-            raider_index = j
-            if (temp_db[j][2] + points <= temp_db2[len(temp_db2) - 1]):
-                temp_db[j][2] += points
-            else:
-                temp_db[j][2] += temp_db2[len(temp_db2) - 1] - temp_db[j][2]
-        else:
-            raider_index = len(temp_db)
-            temp_db.append([raiders[i], 0, points])
-        temp_db[raider_index][1] = rank_check(raider_index)
-    db["Raiders"] = temp_db
+#def sort_raider_list():
+#    temp_db = db["Raiders"]
+#    number_of_raiders = len(temp_db)
+#    raiders = [None] * number_of_raiders
+#    for i in range(number_of_raiders):
+#        raiders[i] = temp_db[i][0]
+#    sorted_raiders = sorted(raiders)
+#    new_db = [[None] * 3]
+#    del new_db[0]
+#    for i in range(number_of_raiders):
+#        raider_index = 0
+#        for j in range(number_of_raiders):
+#            if (sorted_raiders[i] == temp_db[j][0]):
+#                raider_index = j
+#                break
+#        new_db.append([
+#            sorted_raiders[i], temp_db[raider_index][1],
+#            temp_db[raider_index][2]
+#        ])
+#    #db["Raiders"] = new_db;
+#    number_of_ranks = len(db["Ranks"])
+#    new_db2 = [[None] * 3]
+#    del new_db2[0]
+#    for i in range(number_of_ranks, -1, -1):
+#        for j in range(number_of_raiders):
+#            if (i == new_db[j][1]):
+#                new_db2.append(new_db[j])
+#    db["Raiders"] = new_db2
+#    return
 
 
-def remove_points(raiders, points):
-    temp_db = db["Raiders"]
-    temp_db2 = db["Ranks"]
-    for i in range(len(raiders)):
-        raider_exists = 0
-        raider_index = None
-        for j in range(len(temp_db)):
-            if (raiders[i] == temp_db[j][0]):
-                raider_exists = 1
-                break
-        if (raider_exists):
-            raider_index = j
-            if (temp_db[j][2] - points >= temp_db2[0]):
-                temp_db[j][2] -= points
-            else:
-                temp_db[j][2] = 0
-        else:
-            raider_index = len(temp_db)
-            temp_db.append([raiders[i], 0, 0])
-        temp_db[raider_index][1] = rank_check(raider_index)
-    db["Raiders"] = temp_db
+#def add_points(raiders, points):
+#    temp_db = db["Raiders"]
+#    temp_db2 = db["Ranks"]
+#    if (points > temp_db2[len(temp_db2) - 1]):
+#        return -1
+#    for i in range(len(raiders)):
+#        raider_exists = 0
+#        raider_index = None
+#        for j in range(len(temp_db)):
+#            if (raiders[i] == temp_db[j][0]):
+#                raider_exists = 1
+#                break
+#        if (raider_exists):
+#            raider_index = j
+#            if (temp_db[j][2] + points <= temp_db2[len(temp_db2) - 1]):
+#                temp_db[j][2] += points
+#            else:
+#                temp_db[j][2] += temp_db2[len(temp_db2) - 1] - temp_db[j][2]
+#        else:
+#            raider_index = len(temp_db)
+#            temp_db.append([raiders[i], 0, points])
+#        temp_db[raider_index][1] = rank_check(raider_index)
+#    db["Raiders"] = temp_db
 
 
-def rank_check(raider_index):
-    temp_db = db["Raiders"]
-    temp_db2 = db["Ranks"]
-    raider_points = temp_db[raider_index][2]
-    for i in range(len(temp_db2)):
-        if (raider_points >= temp_db2[i]):
-            temp_db[raider_index][1] = i
-    return temp_db[raider_index][1]
+#def remove_points(raiders, points):
+#    temp_db = db["Raiders"]
+#    temp_db2 = db["Ranks"]
+#    for i in range(len(raiders)):
+#        raider_exists = 0
+#        raider_index = None
+#        for j in range(len(temp_db)):
+#            if (raiders[i] == temp_db[j][0]):
+#                raider_exists = 1
+#                break
+#        if (raider_exists):
+#            raider_index = j
+#            if (temp_db[j][2] - points >= temp_db2[0]):
+#                temp_db[j][2] -= points
+#            else:
+#                temp_db[j][2] = 0
+#        else:
+#            raider_index = len(temp_db)
+#            temp_db.append([raiders[i], 0, 0])
+#        temp_db[raider_index][1] = rank_check(raider_index)
+#    db["Raiders"] = temp_db
 
 
-def remove_raider(raiders):
-    temp_db = db["Raiders"]
-    for i in range(len(raiders)):
-        for j in range(len(temp_db)):
-            #print (f"{raiders[i]} == {temp_db[j][0]}");
-            if (raiders[i] == temp_db[j][0]):
-                del temp_db[j]
-                break
-    db["Raiders"] = temp_db
+#def rank_check(raider_index):
+#    temp_db = db["Raiders"]
+#    temp_db2 = db["Ranks"]
+#    raider_points = temp_db[raider_index][2]
+#    for i in range(len(temp_db2)):
+#        if (raider_points >= temp_db2[i]):
+#            temp_db[raider_index][1] = i
+#    return temp_db[raider_index][1]
+
+
+#def remove_raider(raiders):
+#    temp_db = db["Raiders"]
+#    for i in range(len(raiders)):
+#        for j in range(len(temp_db)):
+#            #print (f"{raiders[i]} == {temp_db[j][0]}");
+#            if (raiders[i] == temp_db[j][0]):
+#                del temp_db[j]
+#                break
+#    db["Raiders"] = temp_db
 
 
 def get_quote():
@@ -289,29 +289,29 @@ def get_quote():
     return (quote)
 
 
-def get_cwquote():
-    random_index = random.randint(0, 128)
-    quote = db["CWquotes"][random_index]
-    return quote
+#def get_cwquote():
+#    random_index = random.randint(0, 128)
+#    quote = db["CWquotes"][random_index]
+#    return quote
 
 
-def update_insults(insultMSG):
-    if ("Insults" in db.keys()):
-        Insults = db["Insults"]
-        if (insultMSG in Insults):
-            return -1
-        else:
-            Insults.append(insultMSG)
-            db["Insults"] = Insults
-    else:
-        db["Insults"] = [insultMSG]
+#def update_insults(insultMSG):
+#    if ("Insults" in db.keys()):
+#        Insults = db["Insults"]
+#        if (insultMSG in Insults):
+#            return -1
+#        else:
+#            Insults.append(insultMSG)
+#            db["Insults"] = Insults
+#    else:
+#        db["Insults"] = [insultMSG]
 
 
-def remove_insults(index):
-    Insults = db["Insults"]
-    if (len(Insults) > index):
-        del Insults[index]
-        db["Insults"] = Insults
+#def remove_insults(index):
+#    Insults = db["Insults"]
+#    if (len(Insults) > index):
+#        del Insults[index]
+#        db["Insults"] = Insults
 
 
 async def world_domination(message):
@@ -369,20 +369,20 @@ async def world_domination(message):
     return
 
 
-async def feelings_wiki(message):
-    response = requests.get("https://en.wikipedia.org/wiki/Feelings")
+#async def feelings_wiki(message):
+#    response = requests.get("https://en.wikipedia.org/wiki/Feelings")
 
-    if response is not None:
-        html = bs4.BeautifulSoup(response.text, 'html.parser')
+#    if response is not None:
+#        html = bs4.BeautifulSoup(response.text, 'html.parser')
 
-        paragraphs = html.select("p")
-        for para in paragraphs:
-            try:
-                await message.channel.send(para.get_text())
-            except:
-                #print(f"Final string is: {para}");
-                break
-    return
+#        paragraphs = html.select("p")
+#        for para in paragraphs:
+#            try:
+#                await message.channel.send(para.get_text())
+#            except:
+#                #print(f"Final string is: {para}");
+#                break
+#    return
 
 
 async def weather(message, weather_json, city_name):
@@ -474,71 +474,71 @@ def binary_to_str(input_binary):
 
 #del db["ExilesList"];
 
-if not ("ExilesList" in db.keys()):
-    #[[message], [page_list]]
-    db["ExilesList"] = [[], []]
+#if not ("ExilesList" in db.keys()):
+#    #[[message], [page_list]]
+#    db["ExilesList"] = [[], []]
 
 
-async def raiders_list(message):
-    embed = discord.Embed(title=f"<Exiles> Rank List Page 1",
-                          color=discord.Colour(0xe67e22))
-    embed.set_thumbnail(
-        url=
-        "https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/5ec5654e-2b00-498b-932c-c0a21728c4e8/d4zg5og-dcd1ab65-29a6-4698-bc6c-cbd6543737e3.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcLzVlYzU2NTRlLTJiMDAtNDk4Yi05MzJjLWMwYTIxNzI4YzRlOFwvZDR6ZzVvZy1kY2QxYWI2NS0yOWE2LTQ2OTgtYmM2Yy1jYmQ2NTQzNzM3ZTMucG5nIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.yoqIBAr7KC9R3Dc0ou04yFSa4SAiKSkCJCZkOOHKriI"
-    )
+#async def raiders_list(message):
+#    embed = discord.Embed(title=f"<Exiles> Rank List Page 1",
+#                          color=discord.Colour(0xe67e22))
+#    embed.set_thumbnail(
+#        url=
+#        "https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/5ec5654e-2b00-498b-932c-c0a21728c4e8/d4zg5og-dcd1ab65-29a6-4698-bc6c-cbd6543737e3.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcLzVlYzU2NTRlLTJiMDAtNDk4Yi05MzJjLWMwYTIxNzI4YzRlOFwvZDR6ZzVvZy1kY2QxYWI2NS0yOWE2LTQ2OTgtYmM2Yy1jYmQ2NTQzNzM3ZTMucG5nIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.yoqIBAr7KC9R3Dc0ou04yFSa4SAiKSkCJCZkOOHKriI"
+#    )
+#
+#    temp_db = db["Raiders"]
+#    number_of_raiders = len(temp_db)
+#    start = 0
+#    if ((number_of_raiders - start) < 10):
+#        end = start + (number_of_raiders - start)
+#    else:
+#        end = start + 10
+#
+#    i = start
+#    while (i < end):
+#        embed.add_field(
+#            name=f"{i + 1}. {temp_db[i][0].capitalize()}",
+#            value=f"Rank: {temp_db[i][1]} (Points: {temp_db[i][2]})",
+#            inline=False)
+#        i += 1
+#
+#    message = await message.channel.send(embed=embed)
+#
+#    emojis = ['⬅️', '➡️']
+#    for my_emoji in emojis:
+#        await message.add_reaction(my_emoji)
+#
+#    return message
 
-    temp_db = db["Raiders"]
-    number_of_raiders = len(temp_db)
-    start = 0
-    if ((number_of_raiders - start) < 10):
-        end = start + (number_of_raiders - start)
-    else:
-        end = start + 10
 
-    i = start
-    while (i < end):
-        embed.add_field(
-            name=f"{i + 1}. {temp_db[i][0].capitalize()}",
-            value=f"Rank: {temp_db[i][1]} (Points: {temp_db[i][2]})",
-            inline=False)
-        i += 1
-
-    message = await message.channel.send(embed=embed)
-
-    emojis = ['⬅️', '➡️']
-    for my_emoji in emojis:
-        await message.add_reaction(my_emoji)
-
-    return message
-
-
-async def new_list_page(embed_msg):
-    raiders_list_page = db["ExilesList"][1]
-    embed = discord.Embed(title=f"<Exiles> Rank List Page {raiders_list_page}",
-                          color=discord.Colour(0xe67e22))
-    embed.set_thumbnail(
-        url=
-        "https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/5ec5654e-2b00-498b-932c-c0a21728c4e8/d4zg5og-dcd1ab65-29a6-4698-bc6c-cbd6543737e3.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcLzVlYzU2NTRlLTJiMDAtNDk4Yi05MzJjLWMwYTIxNzI4YzRlOFwvZDR6ZzVvZy1kY2QxYWI2NS0yOWE2LTQ2OTgtYmM2Yy1jYmQ2NTQzNzM3ZTMucG5nIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.yoqIBAr7KC9R3Dc0ou04yFSa4SAiKSkCJCZkOOHKriI"
-    )
-
-    temp_db = db["Raiders"]
-    number_of_raiders = len(temp_db)
-    start = (raiders_list_page - 1) * 10
-    if ((number_of_raiders - start) < 10):
-        end = start + (number_of_raiders - start)
-    else:
-        end = start + 10
-
-    i = start
-    while (i < end):
-        embed.add_field(
-            name=f"{i + 1}. {temp_db[i][0].capitalize()}",
-            value=f"Rank: {temp_db[i][1]} (Points: {temp_db[i][2]})",
-            inline=False)
-        i += 1
-
-    await embed_msg.edit(embed=embed)
-    return
+#async def new_list_page(embed_msg):
+#    raiders_list_page = db["ExilesList"][1]
+#    embed = discord.Embed(title=f"<Exiles> Rank List Page {raiders_list_page}",
+#                          color=discord.Colour(0xe67e22))
+#    embed.set_thumbnail(
+#        url=
+#        "https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/5ec5654e-2b00-498b-932c-c0a21728c4e8/d4zg5og-dcd1ab65-29a6-4698-bc6c-cbd6543737e3.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcLzVlYzU2NTRlLTJiMDAtNDk4Yi05MzJjLWMwYTIxNzI4YzRlOFwvZDR6ZzVvZy1kY2QxYWI2NS0yOWE2LTQ2OTgtYmM2Yy1jYmQ2NTQzNzM3ZTMucG5nIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.yoqIBAr7KC9R3Dc0ou04yFSa4SAiKSkCJCZkOOHKriI"
+#    )
+#
+#    temp_db = db["Raiders"]
+#    number_of_raiders = len(temp_db)
+#    start = (raiders_list_page - 1) * 10
+#    if ((number_of_raiders - start) < 10):
+#        end = start + (number_of_raiders - start)
+#    else:
+#        end = start + 10
+#
+#    i = start
+#    while (i < end):
+#        embed.add_field(
+#            name=f"{i + 1}. {temp_db[i][0].capitalize()}",
+#            value=f"Rank: {temp_db[i][1]} (Points: {temp_db[i][2]})",
+#            inline=False)
+#        i += 1
+#
+#    await embed_msg.edit(embed=embed)
+#    return
 
 
 @client.event
@@ -546,35 +546,35 @@ async def on_ready():
     print("We have logged in as {0.user}".format(client))
 
 
-@client.event
-async def on_raw_reaction_add(payload):
-    embed_msg_id = db["ExilesList"][0]
-
-    if (embed_msg_id == payload.message_id
-            and payload.user_id != 842664616676687912 and  #This is the Bot ID
-        (payload.emoji.name == '⬅️' or payload.emoji.name == '➡️')):
-
-        raiders_list_page = db["ExilesList"][1]
-        number_of_raiders = len(db["Raiders"])
-
-        channel = client.get_channel(payload.channel_id)
-        embed_msg = await channel.fetch_message(embed_msg_id)
-
-        if (payload.emoji.name == '⬅️'):
-            if ((raiders_list_page - 1) != 0):
-                db["ExilesList"][1] -= 1
-                await new_list_page(embed_msg)
-                await embed_msg.remove_reaction('⬅️', payload.member)
-
-        if (payload.emoji.name == '➡️'):
-            if ((raiders_list_page * 10) < number_of_raiders):
-                db["ExilesList"][1] += 1
-                await new_list_page(embed_msg)
-                await embed_msg.remove_reaction('➡️', payload.member)
-
-        return
-
-    return
+#@client.event
+#async def on_raw_reaction_add(payload):
+#    embed_msg_id = db["ExilesList"][0]
+#
+#    if (embed_msg_id == payload.message_id
+#            and payload.user_id != 842664616676687912 and  #This is the Bot ID
+#        (payload.emoji.name == '⬅️' or payload.emoji.name == '➡️')):
+#
+#        raiders_list_page = db["ExilesList"][1]
+#        number_of_raiders = len(db["Raiders"])
+#
+#        channel = client.get_channel(payload.channel_id)
+#        embed_msg = await channel.fetch_message(embed_msg_id)
+#
+#        if (payload.emoji.name == '⬅️'):
+#            if ((raiders_list_page - 1) != 0):
+#                db["ExilesList"][1] -= 1
+#                await new_list_page(embed_msg)
+#                await embed_msg.remove_reaction('⬅️', payload.member)
+#
+#        if (payload.emoji.name == '➡️'):
+#            if ((raiders_list_page * 10) < number_of_raiders):
+#                db["ExilesList"][1] += 1
+#                await new_list_page(embed_msg)
+#                await embed_msg.remove_reaction('➡️', payload.member)
+#
+#        return
+#
+#    return
 
 
 @client.event
