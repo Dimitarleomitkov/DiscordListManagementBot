@@ -1,8 +1,5 @@
 from flask import Flask, render_template
 from threading import Thread
-#import subprocess
-#import platform
-#import time
 app = Flask(__name__)
 
 @app.route('/')

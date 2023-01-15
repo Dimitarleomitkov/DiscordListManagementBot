@@ -40,7 +40,6 @@ class weather(commands.Cog):
 
 
 async def weather_func(ctx, weather_json, city_name):
-    print("So close yet so far.")
     main_info = weather_json["main"]
     current_temperature = main_info["temp"]
     current_temperature_celsiuis = str(round(current_temperature - 273.15))

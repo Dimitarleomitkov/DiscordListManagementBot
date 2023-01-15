@@ -1,4 +1,5 @@
 import discord
+import platform
 from discord.ext import commands
 
 async def setup(bot):
@@ -22,4 +23,4 @@ class test(commands.Cog):
                         help = 'The bot will respond.',
                         brief = '- Response.')
     async def test_func(self, ctx):
-        await ctx.send("I am alive. Waiting for commands.")
+        await ctx.send(f"[{platform.system()}] I am alive. Waiting for commands.")
