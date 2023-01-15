@@ -16,15 +16,13 @@ import re
 #import pafy
 #import nacl
 #from discord import FFmpegPCMAudio, PCMVolumeTransformer
+from keys import *
 
 #FFMPEG_OPTIONS = {
 #    'before_options':
 #    '-reconnect 1 -reconnect_streamed 1 -reconnect_delay_max 5',
 #    'options': '-vn'
 #}
-
-TOKEN = 'ODQyNjY0NjE2Njc2Njg3OTEy.GnFLR8.p0TShJ5YzbOaq4FZrDbFyJK0RwHwQGAr8u6AA4'
-weatherAPIKey = 'd357a8766df0a496362ce1ec354b855d'
 
 rp_flag = 0
 rp_flag_2 = 0
