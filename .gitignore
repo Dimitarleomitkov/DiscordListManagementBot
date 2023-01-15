@@ -1,2 +1,5 @@
 token.py
+pyvenv.cfg
 Disc/
+Lib/
+__pycache__/
