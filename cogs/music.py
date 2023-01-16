@@ -1,7 +1,4 @@
 import discord
-import urllib
-import re
-import pafy
 from youtube_dl import YoutubeDL
 from discord.ext import commands
 
@@ -109,7 +106,7 @@ class music(commands.Cog):
             self.is_paused = False
             self.vc.resume()
 
-    @commands.command(  name = 'mskip',
+    @commands.command(  aliases = ['mskip', 'mnext'],
                         help = 'skip the song.',
                         brief = '- Skip the song.')
     async def skip(self, ctx):
@@ -117,7 +114,7 @@ class music(commands.Cog):
             self.vc.stop()
             self.play_next('skip')
 
-    @commands.command(  name = 'mqueue',
+    @commands.command(  aliases = ['mqueue', 'mlist'],
                         help = 'displays all the songs currently in the queue.',
                         brief = '- Displays all the songs currently in the queue.')
     async def queue(self, ctx):
