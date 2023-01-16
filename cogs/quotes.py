@@ -1,4 +1,6 @@
 import discord
+import requests
+import json
 from discord.ext import commands
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
 from apscheduler.triggers.cron import CronTrigger
@@ -32,12 +34,7 @@ class quotes(commands.Cog):
                         help = 'The bot will get a random quote and print it.',
                         brief = '- Prints a random quote in the chat.')
     async def quotes(self, ctx, *args):
-        undeadko_mention = '<@337156733774594048>'
-        await ctx.send(f"{undeadko_mention} needs to fix me but he is too lazy to do so :kittendrink: ")
-
-
-# def get_quote():
-#     response = requests.get("https://zenquotes.io/api/random")
-#     json_data = json.loads(response.text)
-#     quote = json_data[0]['q'] + " - " + json_data[0]['a']
-#     return (quote)
+        response = requests.get("https://zenquotes.io/api/random")
+        json_data = json.loads(response.text)
+        quote = json_data[0]['q'] + " - " + json_data[0]['a']
+        await ctx.send(quote)
