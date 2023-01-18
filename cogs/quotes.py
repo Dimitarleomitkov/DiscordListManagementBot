@@ -28,7 +28,7 @@ class quotes(commands.Cog):
     @tasks.loop(time = time)
     async def good_morning_message(self):
         text_chan = self.bot.get_channel(337156974754136064)
-        quote = get_quote()
+        quote = self.get_quote()
         
         await text_chan.send(f"Good Morning Everyone!")
         await text_chan.send(f"Here is your daily quote:\n{quote}")
@@ -44,5 +44,5 @@ class quotes(commands.Cog):
                         help = 'The bot will get a random quote and print it.',
                         brief = '- Prints a random quote in the chat.')
     async def quotes(self, ctx, *args):
-        quote = get_quote()
+        quote = self.get_quote()
         await ctx.send(quote)
