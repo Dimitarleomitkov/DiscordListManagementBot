@@ -2,11 +2,16 @@ import discord
 import requests
 import json
 import datetime
+import dateutil.tz as dateutils
 from discord.ext import commands, tasks
 
 utc = datetime.timezone.utc
 # If no tzinfo is given then UTC is assumed.
-time = datetime.time(hour = 7, minute = 00, second = 00, tzinfo = utc)
+BG_time_zone = dateutils.tzoffset('UTC', 60 * 60 * 2)
+time = datetime.time(hour = 8,\
+                     minute = 00,\
+                     second = 00,\
+                     tzinfo = BG_time_zone)
 
 
 async def setup(bot):
