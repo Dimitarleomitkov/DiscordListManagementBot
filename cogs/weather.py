@@ -1,6 +1,7 @@
 import discord
 import requests
 import json
+import datetime
 from discord.ext import commands
 from keys import weatherAPIKey
 
@@ -32,14 +33,14 @@ class weather(commands.Cog):
         api_json = response.json()
 
         if (api_json["cod"] != "404"):
-            await weather_func(ctx, api_json, city_name)
+            await weather_func(ctx, api_json)
             return
         else:
             await ctx.send("Can't find the city you are looking for.")
             return
 
 
-async def weather_func(ctx, weather_json, city_name):
+async def weather_func(ctx, weather_json):
     main_info = weather_json["main"]
     current_temperature = main_info["temp"]
     current_temperature_celsiuis = str(round(current_temperature - 273.15))
@@ -48,6 +49,11 @@ async def weather_func(ctx, weather_json, city_name):
     weather_details = weather_json["weather"]
     weather_description = weather_details[0]["description"]
     json_icon = weather_details[0]["icon"]
+    city_name = weather_json["name"]
+    sys_info = weather_json["sys"]
+    country = sys_info["country"]
+    sunrise_time = datetime.datetime.fromtimestamp(sys_info["sunrise"])
+    sunset_time = datetime.datetime.fromtimestamp(sys_info["sunset"])
 
     if (json_icon.startswith("01")):
         weather_icon = ":sunny:"
@@ -75,7 +81,7 @@ async def weather_func(ctx, weather_json, city_name):
 
     wind_speed = weather_json["wind"]["speed"]
     
-    embed = discord.Embed(title = f"Weather in {city_name}",
+    embed = discord.Embed(title = f"Weather in {city_name}, {country}",
                           color = ctx.guild.me.top_role.color,
                           timestamp = ctx.message.created_at)
     embed.add_field(name = "Coordinates",
@@ -84,7 +90,9 @@ async def weather_func(ctx, weather_json, city_name):
                     inline = False)
 
     embed.add_field(name = "Descripition",
-                    value = f"**{weather_description}** {weather_icon}",
+                    value = f"**{weather_description}** {weather_icon}\n\
+                    **sunrise** at :sunrise:: {sunrise_time}\n\
+                    **sunset** at :city_dusk:: {sunset_time}",
                     inline = False)
 
     embed.add_field(name = "Temperature(C)",
