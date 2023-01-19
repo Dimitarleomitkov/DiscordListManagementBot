@@ -3,7 +3,6 @@ import datetime
 import dateutil.tz as dateutils
 from discord.ext import commands, tasks
 from jokeapi import Jokes
-import asyncio
 
 utc = datetime.timezone.utc
 # If no tzinfo is given then UTC is assumed.
