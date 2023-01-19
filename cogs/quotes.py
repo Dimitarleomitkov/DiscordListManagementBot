@@ -47,6 +47,6 @@ class quotes(commands.Cog):
     @commands.command(  name = 'quote',
                         help = 'The bot will get a random quote and print it.',
                         brief = '- Prints a random quote in the chat.')
-    async def quotes(self, ctx, *args):
+    async def quotes(self, ctx):
         quote = self.get_quote()
         await ctx.send(quote)
