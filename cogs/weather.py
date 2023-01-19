@@ -2,6 +2,7 @@ import discord
 import requests
 import json
 import datetime
+import dateutil.tz as dateutils
 from discord.ext import commands
 from keys import weatherAPIKey
 
@@ -13,9 +14,11 @@ class weather(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
+
     @commands.Cog.listener()
     async def on_ready(self):
         print("weather module is loaded.")
+
 
     @commands.command(  name = 'weather',
                         help = 'The bot will display the weather at the given location.',
@@ -52,8 +55,10 @@ async def weather_func(ctx, weather_json):
     city_name = weather_json["name"]
     sys_info = weather_json["sys"]
     country = sys_info["country"]
-    sunrise_time = datetime.datetime.fromtimestamp(sys_info["sunrise"])
-    sunset_time = datetime.datetime.fromtimestamp(sys_info["sunset"])
+
+    BG_time_zone = dateutils.tzoffset('UTC', 60 * 60 * 2)
+    sunrise_time = datetime.datetime.fromtimestamp(sys_info["sunrise"], tz = BG_time_zone).strftime('%Y-%m-%d %H:%M:%S')
+    sunset_time = datetime.datetime.fromtimestamp(sys_info["sunset"], tz = BG_time_zone).strftime('%Y-%m-%d %H:%M:%S')
 
     if (json_icon.startswith("01")):
         weather_icon = ":sunny:"

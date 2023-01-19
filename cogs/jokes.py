@@ -4,7 +4,6 @@ import dateutil.tz as dateutils
 from discord.ext import commands, tasks
 from jokeapi import Jokes
 
-utc = datetime.timezone.utc
 # If no tzinfo is given then UTC is assumed.
 BG_time_zone = dateutils.tzoffset('UTC', 60 * 60 * 2)
 time = datetime.time(hour = 8,\
