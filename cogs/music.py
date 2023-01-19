@@ -13,14 +13,23 @@ class music(commands.Cog):
         self.is_paused = False
 
         self.music_queue = []
-        self.YDL_OPTIONS = {'format': 'bestaudio/best', 'postprocessors': [{'key': 'FFmpegExtractAudio', 'preferredcodec': 'mp3', 'preferredquality': '320'}]}
-        self.FFMPEG_OPTIONS = {'before_options': '-reconnect 1 -reconnect_streamed 1 -reconnect_delay_max 5', 'options': '-vn'}
-
+        self.YDL_OPTIONS = {'noplaylist': 'True',
+                            'quiet': 'True',
+                            'audio-quality': '0',
+                            'postprocessors': [{
+                                'key': 'FFmpegExtractAudio',
+                                'preferredcodec': 'mp3',
+                                'preferredquality': '320'
+                            }]}
+        self.FFMPEG_OPTIONS = {'before_options': '-reconnect 1 -reconnect_streamed 1 -reconnect_delay_max 5',
+                                'options': '-vn'}
         self.vc = None
+
 
     @commands.Cog.listener()
     async def on_ready(self):
         print("music module is loaded.")
+
 
     @commands.command(  name = 'mplay',
                         help = 'The bot will connect to the voice chat and play the song.',
@@ -49,13 +58,26 @@ class music(commands.Cog):
                         self.play_next('play_func')
                         self.is_playing = True
 
+
     def search_yt(self, search_str):
         with YoutubeDL(self.YDL_OPTIONS) as ydl:
             try:
                 info = ydl.extract_info(f"ytsearch:{search_str}", download = False)['entries'][0]
             except Exception:
                 return False
-        return {'source': info['formats'][0]['url'], 'title': info['title']}
+
+        def find_index (the_list):
+            i = 0
+            save = 0
+            for attribute in the_list:
+                if attribute["format_id"] == '251':
+                    return i
+                i += 1
+
+        index = find_index(info['formats'])
+
+        return {'source': info['formats'][index]['url'], 'title': info['title']}
+
 
     def play_next(self, from_where):
         if len(self.music_queue) > 0:
@@ -66,9 +88,11 @@ class music(commands.Cog):
             if from_where != 'skip':
                 self.music_queue.pop(0)
             
-            self.vc.play(discord.FFmpegPCMAudio(m_url, **self.FFMPEG_OPTIONS), after = lambda e: self.play_next('callback'))
+            source = discord.FFmpegPCMAudio(m_url, **self.FFMPEG_OPTIONS)
+            self.vc.play(source, after = lambda e: self.play_next('callback'))
         else:
             self.is_playing = False
+
 
     async def check_and_connect(self, ctx):
         if len(self.music_queue) > 0:
@@ -84,6 +108,7 @@ class music(commands.Cog):
             self.is_playing = False
             await self.vc.disconnect()
 
+
     @commands.command(  name = 'mpause',
                         help = 'pause the music.',
                         brief = '- Pause the music.')
@@ -97,6 +122,7 @@ class music(commands.Cog):
             self.is_paused = False
             self.vc.resume()
 
+
     @commands.command(  name = 'mresume',
                         help = 'resume the music.',
                         brief = '- Resume the music.')
@@ -106,13 +132,18 @@ class music(commands.Cog):
             self.is_paused = False
             self.vc.resume()
 
+
     @commands.command(  aliases = ['mskip', 'mnext'],
                         help = 'skip the song.',
                         brief = '- Skip the song.')
     async def skip(self, ctx):
+        if len(self.music_queue) <= 0:
+            await self.vc.disconnect()
+
         if self.vc != None and self.vc:
             self.vc.stop()
             self.play_next('skip')
+
 
     @commands.command(  aliases = ['mqueue', 'mlist'],
                         help = 'displays all the songs currently in the queue.',
@@ -131,6 +162,7 @@ class music(commands.Cog):
         else:
             await ctx.send("No music in the queue.")
 
+
     @commands.command(  aliases = ['mbin', 'mclear'],
                         help = 'Stops the current song and clears the queue.',
                         brief = '- Stops the current song and clears the queue.')
@@ -139,6 +171,7 @@ class music(commands.Cog):
             self.vc.stop()
         self.music_queue = []
         await ctx.send("Music queue cleared.")
+
 
     @commands.command(  aliases = ['mleave', 'mdisconnect'],
                         help = 'Kicks the bot from the voice channel.',
