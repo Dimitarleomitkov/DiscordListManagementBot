@@ -35,4 +35,7 @@ class dogs(commands.Cog):
         doggy = self.get_dog_img()
         text_chan = self.bot.get_channel(1065691151052570634)
 
-        await text_chan.send(f"{ctx.author.mention} requested:\n{doggy}")
+        embed = discord.Embed()
+        embed.set_image(url = doggy)
+
+        await text_chan.send(f"{ctx.author.mention} requested:", embed = embed)
