@@ -44,7 +44,7 @@ class jokes(commands.Cog):
     @commands.Cog.listener()
     async def on_ready(self):
         print("jokes module is loaded.")
-        self.good_morning_message.start()
+        self.good_morning_joke.start()
 
 
     @commands.command(  name = 'joke',
