@@ -28,7 +28,7 @@ class space_images(commands.Cog):
         json_data = json.loads(response.text)
         space_img = json_data["hdurl"]
 
-        return space_pic
+        return space_img
 
 
     @tasks.loop(time = time)
