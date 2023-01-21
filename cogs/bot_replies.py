@@ -1,16 +1,20 @@
 import discord
 from discord.ext import commands
 
+
 async def setup(bot):
     await bot.add_cog(bot_replies(bot))
+
 
 class bot_replies(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
+
     @commands.Cog.listener()
     async def on_ready(self):
         print("bot_replies module is loaded.")
+
 
     @commands.Cog.listener()
     async def on_message(self, message):
@@ -37,6 +41,7 @@ class bot_replies(commands.Cog):
             await message.channel.send(
                 "https://tenor.com/view/hello-there-general-kenobi-star-wars-grevious-gif-17774326"
             )
+
         
     @commands.command(name = 'sex')
     async def sex_reply(self, ctx):
@@ -48,9 +53,11 @@ _2020-04-28_at_12.21.48_PM.png")
     async def hello_reply(self, ctx):
         await ctx.send("Hi!")
 
+
     @commands.command(name = 'how_are_you')
     async def how_are_you_reply(self, ctx):
         await ctx.send("I am fine thank you. Please, stop playing with me.")
+
 
     @commands.command(name = 'selfdestruct')
     async def self_destruct_reply(self, ctx):

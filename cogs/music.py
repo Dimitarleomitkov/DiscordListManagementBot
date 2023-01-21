@@ -2,16 +2,16 @@ import discord
 from youtube_dl import YoutubeDL
 from discord.ext import commands
 
+
 async def setup(bot):
     await bot.add_cog(music(bot))
+
 
 class music(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
-
         self.is_playing = False
         self.is_paused = False
-
         self.music_queue = []
         self.YDL_OPTIONS = {'noplaylist': 'True',
                             'quiet': 'True',

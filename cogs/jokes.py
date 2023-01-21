@@ -4,10 +4,11 @@ import dateutil.tz as dateutils
 from discord.ext import commands, tasks
 from jokeapi import Jokes
 
+
 # If no tzinfo is given then UTC is assumed.
 BG_time_zone = dateutils.tzoffset('UTC', 60 * 60 * 2)
 time = datetime.time(hour = 8,\
-                     minute = 00,\
+                     minute = 40,\
                      second = 59,\
                      tzinfo = BG_time_zone)
 
@@ -21,7 +22,7 @@ class jokes(commands.Cog):
         self.bot = bot
 
 
-    async def get_joke(self, *args):
+    async def get_jokes(self, *args):
         j = await Jokes()
         joke = await j.get_joke()
 
@@ -31,7 +32,7 @@ class jokes(commands.Cog):
     @tasks.loop(time = time)
     async def good_morning_joke(self):
         text_chan = self.bot.get_channel(337156974754136064)
-        joke = self.get_joke()
+        joke = self.get_jokes()
         
         await text_chan.send(f"Daily joke:\n")
         if joke["type"] == "single":
@@ -51,7 +52,7 @@ class jokes(commands.Cog):
                         help = 'The bot will get a random joke and print it.',
                         brief = '- Prints a random joke in the chat.')
     async def jokes(self, ctx, *args):
-        joke = await self.get_joke()
+        joke = await self.get_jokes()
         if joke["type"] == "single":
             await ctx.send(f"{joke['joke']}")
         else:

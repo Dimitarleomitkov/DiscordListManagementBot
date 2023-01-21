@@ -10,6 +10,7 @@ from keys import weatherAPIKey
 async def setup(bot):
     await bot.add_cog(weather(bot))
 
+
 class weather(commands.Cog):
     def __init__(self, bot):
         self.bot = bot

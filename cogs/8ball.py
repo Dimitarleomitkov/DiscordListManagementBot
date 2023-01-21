@@ -2,16 +2,20 @@ import discord
 import random
 from discord.ext import commands
 
+
 async def setup(bot):
     await bot.add_cog(ball8(bot))
+
 
 class ball8(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
+
     @commands.Cog.listener()
     async def on_ready(self):
         print("8ball module is loaded.")
+
 
     @commands.command(  name = '8ball',
                         help = 'The bot will respond with a magical 8 ball answer.',

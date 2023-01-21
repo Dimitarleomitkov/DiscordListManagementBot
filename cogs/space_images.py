@@ -35,8 +35,10 @@ class space_images(commands.Cog):
     async def good_morning_message(self):
         text_chan = self.bot.get_channel(337156974754136064)
         space_img = self.get_space_img()
+        embed = discord.Embed()
+        embed.set_image(url = space_img)
         
-        await text_chan.send(f"Your daily space image:\n{space_img}")
+        await text_chan.send(f"Your daily space image:\n", embed = embed)
 
 
     @commands.Cog.listener()

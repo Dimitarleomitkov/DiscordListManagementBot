@@ -2,19 +2,22 @@ import discord
 import random
 from discord.ext import commands
 
+
 async def setup(bot):
     await bot.add_cog(role_play(bot))
+
 
 class role_play(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
-
         self.rp_flag_1 = False
         self.random_n_for_rp = 0;
+
 
     @commands.Cog.listener()
     async def on_ready(self):
         print("role_play module is loaded.")
+
 
     @commands.Cog.listener()
     async def on_message(self, message):
