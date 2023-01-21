@@ -29,7 +29,7 @@ class jokes(commands.Cog):
         return joke
 
 
-    @tasks.loop(seconds = 30)
+    @tasks.loop(time = time)
     async def good_morning_joke(self):
         text_chan = self.bot.get_channel(337156974754136064)
         joke = await self.get_jokes()
