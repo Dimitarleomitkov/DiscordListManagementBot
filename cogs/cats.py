@@ -34,7 +34,7 @@ class cats(commands.Cog):
         await ctx.message.delete()
 
         catze = self.get_cat_img()
-        text_chan = self.bot.get_channel(1066306508524114011)
+        text_chan = self.bot.get_channel(1066377134836285480)
 
         embed = discord.Embed()
         embed.set_image(url = catze)

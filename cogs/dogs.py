@@ -33,7 +33,7 @@ class dogs(commands.Cog):
         await ctx.message.delete()
 
         doggy = self.get_dog_img()
-        text_chan = self.bot.get_channel(1065691151052570634)
+        text_chan = self.bot.get_channel(1066377134836285480)
 
         embed = discord.Embed()
         embed.set_image(url = doggy)
