@@ -48,8 +48,12 @@ async def weather_func(ctx, weather_json):
     main_info = weather_json["main"]
     current_temperature = main_info["temp"]
     current_temperature_celsiuis = str(round(current_temperature - 273.15))
+    feels_like_temp = main_info["feels_like"]
+    feels_like_temp_celsius = str(round(feels_like_temp - 273.15))
     current_pressure = main_info["pressure"]
     current_humidity = main_info["humidity"]
+    # sea_level = main_info["sea_level"]
+    # grnd_level = main_info["grnd_level"]
     weather_details = weather_json["weather"]
     weather_description = weather_details[0]["description"]
     json_icon = weather_details[0]["icon"]
@@ -101,10 +105,11 @@ async def weather_func(ctx, weather_json):
                     **sunset** at :city_dusk:: {sunset_time}",
                     inline = False)
 
-    embed.add_field(name = "Temperature(C)",
-                    value = f"**{current_temperature_celsiuis}°C** \
-                            / **{(float(current_temperature_celsiuis) * 1.8 + 32):.2f}°F** \
-                            / **{current_temperature}°K**",
+    embed.add_field(name = "Temperature (feels like)",
+                    value = f"**{current_temperature_celsiuis}({feels_like_temp_celsius})°C** \
+                            / **{(float(current_temperature_celsiuis) * 1.8 + 32):.2f}\
+                            ({(float(feels_like_temp_celsius) * 1.8 + 32):.2f})°F** \
+                            / **{current_temperature}({feels_like_temp})°K**",
                     inline = False)
 
     embed.add_field(name = "Wind",
