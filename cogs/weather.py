@@ -107,8 +107,7 @@ async def weather_func(ctx, weather_json):
 
     embed.add_field(name = "Temperature (feels like)",
                     value = f"**{current_temperature_celsiuis}({feels_like_temp_celsius})°C** \
-                            / **{(float(current_temperature_celsiuis) * 1.8 + 32):.2f}\
-                            ({(float(feels_like_temp_celsius) * 1.8 + 32):.2f})°F** \
+                            / **{(float(current_temperature_celsiuis) * 1.8 + 32):.2f}({(float(feels_like_temp_celsius) * 1.8 + 32):.2f})°F** \
                             / **{current_temperature}({feels_like_temp})°K**",
                     inline = False)
 
