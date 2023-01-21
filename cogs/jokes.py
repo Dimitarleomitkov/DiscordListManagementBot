@@ -8,7 +8,7 @@ from jokeapi import Jokes
 # If no tzinfo is given then UTC is assumed.
 BG_time_zone = dateutils.tzoffset('UTC', 60 * 60 * 2)
 time = datetime.time(hour = 8,\
-                     minute = 40,\
+                     minute = 00,\
                      second = 59,\
                      tzinfo = BG_time_zone)
 
@@ -29,16 +29,16 @@ class jokes(commands.Cog):
         return joke
 
 
-    @tasks.loop(time = time)
+    @tasks.loop(seconds = 30)
     async def good_morning_joke(self):
         text_chan = self.bot.get_channel(337156974754136064)
-        joke = self.get_jokes()
+        joke = await self.get_jokes()
         
         await text_chan.send(f"Daily joke:\n")
         if joke["type"] == "single":
-            await ctx.send(f"{joke['joke']}")
+            await text_chan.send(f"{joke['joke']}")
         else:
-            await ctx.send(f"{joke['setup']}\n{joke['delivery']}")
+            await text_chan.send(f"{joke['setup']}\n{joke['delivery']}")
 
 
 
