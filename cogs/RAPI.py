@@ -44,10 +44,10 @@ class rAPI(commands.Cog):
         return animal_fact
 
 
-    # def get_anime_img(self, anime_parameter):
-    #     anime_gif_URL = requests.get(self.anime_gif_URL + anime_parameter).json()["link"]
+    def get_anime_img(self, anime_parameter):
+        anime_gif_URL = requests.get(self.anime_gif_URL + anime_parameter).json()["link"]
 
-    #     return anime_gif_URL
+        return anime_gif_URL
 
 
     @commands.Cog.listener()
@@ -111,28 +111,28 @@ class rAPI(commands.Cog):
             await text_chan.send(f"{ctx.author.mention}, a fun fact about {animal}s:\n{animal_fact}")
 
 
-    # @commands.command(  name = 'ranime',
-    #                     help = 'The bot displays a random anime img/gif. Supports\
-    #                             "face-palm", "hug", "pat", "wink"',
-    #                     brief = 'The bot displays a random anime img/gif. Supports\
-    #                             "face-palm", "hug", "pat", "wink"')
-    # async def anime_gif(self, ctx, cmd, target = None):
-    #     if not cmd in self.options_anime_cmds:
-    #         await ctx.send(f"I know only {self.options_anime_cmds}")
-    #         return
+    @commands.command(  name = 'ranime',
+                        help = 'The bot displays a random anime img/gif. Supports\
+                                "face-palm", "hug", "pat", "wink"',
+                        brief = 'The bot displays a random anime img/gif. Supports\
+                                "face-palm", "hug", "pat", "wink"')
+    async def anime_gif(self, ctx, cmd, target = None):
+        if not cmd in self.options_anime_cmds:
+            await ctx.send(f"I know only {self.options_anime_cmds}")
+            return
 
-    #     await ctx.message.delete()
+        await ctx.message.delete()
 
-    #     anime_img = self.get_anime_img(cmd)
+        anime_img = self.get_anime_img(cmd)
 
-    #     print(anime_img)
+        print(anime_img)
 
-    #     embed = discord.Embed()
-    #     embed.set_image(url = anime_img)
+        embed = discord.Embed()
+        embed.set_image(url = anime_img)
 
-    #     if target is None:
-    #         await ctx.send(f'{anime_img}')
-    #     elif cmd == "face-palm":
-    #         await ctx.send(f'{ctx.message.author.mention} {cmd}s at {target}', embed = embed)
-    #     else:
-    #         await ctx.send(f'{ctx.message.author.mention} {cmd}s {target}', embed = embed)
+        if target is None:
+            await ctx.send(f'{anime_img}')
+        elif cmd == "face-palm":
+            await ctx.send(f'{ctx.message.author.mention} {cmd}s at {target}', embed = embed)
+        else:
+            await ctx.send(f'{ctx.message.author.mention} {cmd}s {target}', embed = embed)
