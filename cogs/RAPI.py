@@ -23,6 +23,7 @@ class rAPI(commands.Cog):
                                     "raccoon", "red_panda")
         self.anime_gif_URL = 'https://some-random-api.ml/animu/'
         self.options_anime_cmds = ("face-palm", "hug", "pat", "wink")
+        self.joke_URL = "https://some-random-api.ml/others/joke"
 
 
     def get_animal_img(self, animal_parameter):
@@ -48,6 +49,12 @@ class rAPI(commands.Cog):
         anime_gif_URL = requests.get(self.anime_gif_URL + anime_parameter).json()["link"]
 
         return anime_gif_URL
+
+
+    def get_a_joke(self):
+        joke = requests.get(self.joke_URL).json()["joke"]
+
+        return joke;
 
 
     @commands.Cog.listener()
