@@ -36,7 +36,7 @@ class space_images(commands.Cog):
         space_img_info = self.get_space_img()
 
         embed = discord.Embed(title = space_img_info["title"])
-        embed.set_image(url = space_img_info["hdirl"])
+        embed.set_image(url = space_img_info["hdurl"])
         embed.add_field(name = "Descripition",
                         value = space_img_info["explanation"],
                         inline = False)
