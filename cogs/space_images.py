@@ -23,7 +23,7 @@ class space_images(commands.Cog):
         self.bot = bot
 
 
-    def get_space_img(self):
+    async def get_space_img(self):
         response = requests.get("https://go-apod.herokuapp.com/apod")
         json_data = json.loads(response.text)
 
@@ -33,7 +33,7 @@ class space_images(commands.Cog):
     @tasks.loop(time = time)
     async def good_morning_message(self):
         text_chan = self.bot.get_channel(337156974754136064)
-        space_img_info = self.get_space_img()
+        space_img_info = await self.get_space_img()
 
         embed = discord.Embed(title = space_img_info["title"])
         embed.set_image(url = space_img_info["hdurl"])
