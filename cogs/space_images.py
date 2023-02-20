@@ -32,7 +32,7 @@ class space_images(commands.Cog):
     @commands.command(  name = 'space_image',
                         help = 'The bot show the daily space image from NASA.',
                         brief = '- Shows the daily space image from NASA.')
-    async def space_image_cmd(self):
+    async def space_image_cmd(self, ctx):
         text_chan = self.bot.get_channel(337156974754136064)
         space_img_info = await self.get_space_img()
         
