@@ -35,7 +35,7 @@ class space_images(commands.Cog):
     async def space_image_cmd(self, ctx):
         space_img_info = await self.get_space_img()
         explanation = ""
-        if len(space_img_info["explanation"] < 1024:
+        if len(space_img_info["explanation"]) < 1024:
             explanation = space_img_info["explanation"]
         else:
             explanation = "https://go-apod.herokuapp.com/apod"
@@ -53,7 +53,7 @@ class space_images(commands.Cog):
         text_chan = self.bot.get_channel(337156974754136064)
         space_img_info = await self.get_space_img()
         explanation = ""
-        if len(space_img_info["explanation"] < 1024:
+        if len(space_img_info["explanation"]) < 1024:
             explanation = space_img_info["explanation"]
         else:
             explanation = "https://go-apod.herokuapp.com/apod"
