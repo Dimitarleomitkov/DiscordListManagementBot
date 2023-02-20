@@ -46,7 +46,7 @@ class space_images(commands.Cog):
                         value = explanation,
                         inline = False)
         
-        await text_chan.send(embed = embed)
+        await ctx.send(embed = embed)
       
     @tasks.loop(time = time)
     async def good_morning_message(self):
