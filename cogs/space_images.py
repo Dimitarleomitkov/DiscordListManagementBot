@@ -29,7 +29,21 @@ class space_images(commands.Cog):
 
         return json_data
 
-
+    @commands.command(  name = 'space_image',
+                        help = 'The bot show the daily space image from NASA.',
+                        brief = '- Shows the daily space image from NASA.')
+    async def space_image_cmd(self):
+        text_chan = self.bot.get_channel(337156974754136064)
+        space_img_info = await self.get_space_img()
+        
+        embed = discord.Embed(title = space_img_info["title"])
+        embed.set_image(url = space_img_info["hdurl"])
+        embed.add_field(name = "Description",
+                        value = space_img_info["explanation"],
+                        inline = False)
+        
+        await text_chan.send(embed = embed)
+      
     @tasks.loop(time = time)
     async def good_morning_message(self):
         text_chan = self.bot.get_channel(337156974754136064)
