@@ -43,7 +43,7 @@ class space_images(commands.Cog):
         embed = discord.Embed(title = space_img_info["title"])
         embed.set_image(url = space_img_info["hdurl"])
         embed.add_field(name = "Description",
-                        value = space_img_info["explanation"],
+                        value = explanation,
                         inline = False)
         
         await text_chan.send(embed = embed)
