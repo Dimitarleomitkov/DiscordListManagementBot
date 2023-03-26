@@ -35,13 +35,17 @@ class space_images(commands.Cog):
     async def space_image_cmd(self, ctx):
         space_img_info = await self.get_space_img()
         explanation = ""
+
         if len(space_img_info["explanation"]) < 1024:
             explanation = space_img_info["explanation"]
         else:
             explanation = "https://go-apod.herokuapp.com/apod"
         
         embed = discord.Embed(title = space_img_info["title"])
-        embed.set_image(url = space_img_info["hdurl"])
+        
+        if space_img_info["media_type"] is "image":
+            embed.set_image(url = space_img_info["hdurl"])
+
         embed.add_field(name = "Description",
                         value = explanation,
                         inline = False)
@@ -53,18 +57,22 @@ class space_images(commands.Cog):
         text_chan = self.bot.get_channel(337156974754136064)
         space_img_info = await self.get_space_img()
         explanation = ""
+        
         if len(space_img_info["explanation"]) < 1024:
             explanation = space_img_info["explanation"]
         else:
             explanation = "https://go-apod.herokuapp.com/apod"
         
         embed = discord.Embed(title = space_img_info["title"])
-        embed.set_image(url = space_img_info["hdurl"])
+        
+        if space_img_info["media_type"] is "image":
+            embed.set_image(url = space_img_info["hdurl"]
+
         embed.add_field(name = "Descripition",
                         value = explanation,
                         inline = False)
         
-        await text_chan.send(f"Your daily space image:\n", embed = embed)
+        await text_chan.send(f"Your daily space imagery from NASA:\n", embed = embed)
 
 
     @commands.Cog.listener()
