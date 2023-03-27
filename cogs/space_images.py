@@ -66,7 +66,7 @@ class space_images(commands.Cog):
         embed = discord.Embed(title = space_img_info["title"])
         
         if space_img_info["media_type"] is "image":
-            embed.set_image(url = space_img_info["hdurl"]
+            embed.set_image(url = space_img_info["hdurl"])
 
         embed.add_field(name = "Descripition",
                         value = explanation,
