@@ -45,6 +45,8 @@ class space_images(commands.Cog):
         
         if space_img_info["media_type"] == "image":
             embed.set_image(url = space_img_info["hdurl"])
+        else:
+            explanation = "Not an image. https://go-apod.herokuapp.com/apod"
 
         embed.add_field(name = "Description",
                         value = explanation,
@@ -67,6 +69,8 @@ class space_images(commands.Cog):
         
         if space_img_info["media_type"] == "image":
             embed.set_image(url = space_img_info["hdurl"])
+        else:
+            explanation = "Not an image. https://go-apod.herokuapp.com/apod"
 
         embed.add_field(name = "Descripition",
                         value = explanation,
