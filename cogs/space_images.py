@@ -1,9 +1,10 @@
 import discord
 import requests
-import json
 import datetime
 import dateutil.tz as dateutils
 from discord.ext import commands, tasks
+from bs4 import BeautifulSoup
+import re
 
 
 # If no tzinfo is given then UTC is assumed.
@@ -24,10 +25,40 @@ class space_images(commands.Cog):
 
 
     async def get_space_img(self):
-        response = requests.get("https://go-apod.herokuapp.com/apod")
-        json_data = json.loads(response.text)
+        response = requests.get("https://apod.nasa.gov/apod/astropix.html")
+        soup = BeautifulSoup(response.text, "html.parser")
+        list_of_links = soup.find_all('a')
 
-        return json_data
+        data = []
+        image_links = []
+
+        for link in list_of_links:
+            if re.search("image", str(link)) != None:
+                image_links.append(re.search("image", str(link)).string)
+
+        image_link = re.split('href="', image_links[0])[1]
+        image_link = re.split('"', image_link)[0]
+
+        data.append("https://apod.nasa.gov/apod/" + image_link)
+
+        title = re.split("Image Credit", soup.find_all('center')[1].text)[0]
+        title = re.sub("\n", " ", title).strip(" ")
+
+        data.append(title)
+
+        explanation = None
+
+        list_of_ps = soup.find_all('p')
+
+        for paragraph in list_of_ps:
+            if re.search("Explanation", paragraph.text) != None:
+                explanation = re.split("Tomorrow", paragraph.text)[0]
+                explanation = re.sub("\n", " ", explanation).strip(" ")
+
+        data.append(explanation)
+
+        return data
+
 
     @commands.command(  name = 'space_image',
                         help = 'The bot show the daily space image from NASA.',
@@ -36,18 +67,13 @@ class space_images(commands.Cog):
         space_img_info = await self.get_space_img()
         explanation = ""
 
-        if len(space_img_info["explanation"]) < 1024:
+        if len(space_img_info[2]) < 1024:
             explanation = space_img_info["explanation"]
         else:
-            explanation = "https://go-apod.herokuapp.com/apod"
+            explanation = "https://apod.nasa.gov/apod/astropix.html"
         
-        embed = discord.Embed(title = space_img_info["title"])
-        
-        if space_img_info["media_type"] == "image":
-            embed.set_image(url = space_img_info["hdurl"])
-        else:
-            explanation = "Not an image. https://go-apod.herokuapp.com/apod"
-
+        embed = discord.Embed(title = space_img_info[1])
+        embed.set_image(url = space_img_info[0])
         embed.add_field(name = "Description",
                         value = explanation,
                         inline = False)
