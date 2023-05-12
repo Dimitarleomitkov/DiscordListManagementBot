@@ -35,14 +35,16 @@ class music(commands.Cog):
                         help = 'The bot will connect to the voice chat and play the song.',
                         brief = '- The bot will connect to the voice chat and play the song.')
     async def play_func(self, ctx, *args):
-        voice_channel = ctx.author.voice.channel
+        try:
+            voice_channel = ctx.author.voice.channel
+        except Exception as e:
+            await ctx.send("Please, connect to a voice channel.")
+            return
+
         query = " ".join(args)
-        
         songs = query.split(',')
         for song in songs:
-            if voice_channel is None:
-                await ctx.send("Please, connect to a voice channel.")
-            elif self.is_paused:
+            if self.is_paused:
                 self.vc.resume()
             else:
                 song = self.search_yt(song)
