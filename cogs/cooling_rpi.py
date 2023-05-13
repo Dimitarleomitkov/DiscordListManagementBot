@@ -56,7 +56,7 @@ class cooling_rpi(commands.Cog):
         # Pin control:
         GPIO.output(18, GPIO.LOW)
 
-        await ctx.message.add_reaction("<:hueduck:973273982776279080>")
+        await ctx.message.add_reaction("<:loshoMiE:448905900279857153>")
 
 
 
