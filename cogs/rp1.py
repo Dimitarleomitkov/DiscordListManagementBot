@@ -21,7 +21,7 @@ class role_play(commands.Cog):
 
     @commands.Cog.listener()
     async def on_message(self, message):
-        if (str(message.author) != "LootRankBot#2623" and\
+        if (str(message.author) != "undeadkoBot#2623" and\
             str(message.author) != "undeadko#6973"):
             self.random_n_for_rp = random.randint(0, 5000)
 
