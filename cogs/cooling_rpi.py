@@ -1,13 +1,18 @@
 import discord
 from discord.ext import commands
-import RPi.GPIO as GPIO
+import platform
 
+if platform.system() != "Windows":
+    import RPi.GPIO as GPIO
 
-GPIO.setwarnings(False)
+    GPIO.setwarnings(False)
 
 
 async def setup(bot):
-    await bot.add_cog(cooling_rpi(bot))
+    if platform.system() != "Windows":
+        await bot.add_cog(cooling_rpi(bot))
+    else:
+        pass
 
 
 class cooling_rpi(commands.Cog):
