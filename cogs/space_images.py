@@ -52,9 +52,11 @@ class space_images(commands.Cog):
 
         for paragraph in list_of_ps:
             if re.search("Explanation", paragraph.text) != None:
-                explanation = re.split("Tomorrow", paragraph.text)[0]
+                explanation = re.split("Explanation:", paragraph.text)[1]
+                explanation = re.split("Tomorrow", explanation)[0]
                 explanation = re.sub("\n", " ", explanation).strip(" ")
 
+        # print(type(explanation), explanation)
         data.append(explanation)
 
         return data
@@ -64,45 +66,54 @@ class space_images(commands.Cog):
                         help = 'The bot show the daily space image from NASA.',
                         brief = '- Shows the daily space image from NASA.')
     async def space_image_cmd(self, ctx):
-        space_img_info = await self.get_space_img()
-        explanation = ""
+        try:
+            space_img_info = await self.get_space_img()
+            explanation = ""
+            # print(space_img_info[0], "|", space_img_info[1], "|", space_img_info[2])
 
-        if len(space_img_info[2]) < 1024:
-            explanation = space_img_info["explanation"]
-        else:
-            explanation = "https://apod.nasa.gov/apod/astropix.html"
-        
-        embed = discord.Embed(title = space_img_info[1])
-        embed.set_image(url = space_img_info[0])
-        embed.add_field(name = "Description",
-                        value = explanation,
-                        inline = False)
-        
-        await ctx.send(embed = embed)
+            if len(space_img_info[2]) < 1024:
+                explanation = space_img_info[2]
+            else:
+                explanation = "https://apod.nasa.gov/apod/astropix.html"
+            
+            embed = discord.Embed(title = space_img_info[1])
+            embed.set_image(url = space_img_info[0])
+            embed.add_field(name = "Description",
+                            value = explanation,
+                            inline = False)
+            
+            await ctx.send(embed = embed)
+        except Exception as e:
+            await ctx.send("[space_images] I broke down again")
+            await ctx.send("https://tenor.com/view/serio-no-nop-robot-robot-down-gif-12270251")
+            # print(e)
+            return
       
     @tasks.loop(time = time)
     async def good_morning_message(self):
         text_chan = self.bot.get_channel(337156974754136064)
-        space_img_info = await self.get_space_img()
-        explanation = ""
-        
-        if len(space_img_info["explanation"]) < 1024:
-            explanation = space_img_info["explanation"]
-        else:
-            explanation = "https://go-apod.herokuapp.com/apod"
-        
-        embed = discord.Embed(title = space_img_info["title"])
-        
-        if space_img_info["media_type"] == "image":
-            embed.set_image(url = space_img_info["hdurl"])
-        else:
-            explanation = "Not an image. https://go-apod.herokuapp.com/apod"
+        try:
+            space_img_info = await self.get_space_img()
+            explanation = ""
+            # print(space_img_info[0], "|", space_img_info[1], "|", space_img_info[2])
 
-        embed.add_field(name = "Descripition",
-                        value = explanation,
-                        inline = False)
-        
-        await text_chan.send(f"Your daily space imagery from NASA:\n", embed = embed)
+            if len(space_img_info[2]) < 1024:
+                explanation = space_img_info[2]
+            else:
+                explanation = "https://apod.nasa.gov/apod/astropix.html"
+            
+            embed = discord.Embed(title = space_img_info[1])
+            embed.set_image(url = space_img_info[0])
+            embed.add_field(name = "Description",
+                            value = explanation,
+                            inline = False)
+            
+            await text_chan.send(embed = embed)
+        except Exception as e:
+            await text_chan.send("[space_images] I broke down again")
+            await text_chan.send("https://tenor.com/view/serio-no-nop-robot-robot-down-gif-12270251")
+            # print(e)
+            return
 
 
     @commands.Cog.listener()
