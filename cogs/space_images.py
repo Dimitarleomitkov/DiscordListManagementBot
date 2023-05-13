@@ -86,7 +86,10 @@ class space_images(commands.Cog):
         except Exception as e:
             await ctx.send("[space_images] I broke down again")
             await ctx.send("https://tenor.com/view/serio-no-nop-robot-robot-down-gif-12270251")
-            # print(e)
+            
+            text_chan = self.bot.get_channel(548554244932894750)
+            await text_chan.send(e)
+            
             return
       
     @tasks.loop(time = time)
@@ -112,7 +115,10 @@ class space_images(commands.Cog):
         except Exception as e:
             await text_chan.send("[space_images] I broke down again")
             await text_chan.send("https://tenor.com/view/serio-no-nop-robot-robot-down-gif-12270251")
-            # print(e)
+            
+            text_chan = self.bot.get_channel(548554244932894750)
+            await text_chan.send(e)
+            
             return
 
 
