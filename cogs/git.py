@@ -48,9 +48,8 @@ class git(commands.Cog):
         text_chan = self.bot.get_channel(548554244932894750)
 
         if platform.system() != "Windows":
-            subprocess.Popen(["source", "/home/pi/undeadko/GitProjects/DiscordListManagementBot/Disc/bin/activate"], shell = False)
-            subprocess.Popen(["python", "/home/pi/undeadko/GitProjects/DiscordListManagementBot/main.py &"], shell = False)
-
+            subprocess.call("./boot.bash")
+            
         await text_chan.send("Restarting...")
         sys.exit("Bye!")
 
