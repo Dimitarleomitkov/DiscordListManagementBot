@@ -4,6 +4,7 @@ import git as Git
 import pathlib
 import os
 import cogs.lrlul_cogs as Cogs
+import sys
 
 
 async def setup(bot):
@@ -35,7 +36,18 @@ class git(commands.Cog):
                 await self.bot.load_extension(f"cogs.{cog}")
 
         await self.git_pull_func(ctx)
+        await text_chan.send("Update successful.")
 
+
+    @commands.command(  name = 'server_restart',
+                        help = 'Restarts the bot.',
+                        brief = 'Restarts the bot.')
+    async def restart_server(self, ctx):
+        text_chan = self.bot.get_channel(548554244932894750)
+
+        os.system("main.py")
+        await text_chan.send("Restarting...")
+        sys.exit("Bye!")
 
 
     @commands.command(  name = 'git_pull',
