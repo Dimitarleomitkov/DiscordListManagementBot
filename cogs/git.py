@@ -3,8 +3,10 @@ from discord.ext import commands
 import git as Git
 import pathlib
 import os
-import sys
 import cogs.lrlul_cogs as Cogs
+import sys
+import subprocess
+import platform
 
 
 async def setup(bot):
@@ -45,9 +47,12 @@ class git(commands.Cog):
     async def restart_server(self, ctx):
         text_chan = self.bot.get_channel(548554244932894750)
 
-        await text_chan.send("Restarting...")
+        if platform.system() != "Windows":
+            subprocess.Popen(["source", "/home/pi/undeadko/GitProjects/DiscordListManagementBot/Disc/bin/activate"], shell = False)
+            subprocess.Popen(["python", "/home/pi/undeadko/GitProjects/DiscordListManagementBot/main.py &"], shell = False)
 
-        os.execv(sys.executable, ['python', 'main.py'])
+        await text_chan.send("Restarting...")
+        sys.exit("Bye!")
 
 
     @commands.command(  name = 'git_pull',
