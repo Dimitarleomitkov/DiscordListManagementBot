@@ -3,8 +3,8 @@ from discord.ext import commands
 import git as Git
 import pathlib
 import os
-import cogs.lrlul_cogs as Cogs
 import sys
+import cogs.lrlul_cogs as Cogs
 
 
 async def setup(bot):
@@ -45,9 +45,9 @@ class git(commands.Cog):
     async def restart_server(self, ctx):
         text_chan = self.bot.get_channel(548554244932894750)
 
-        os.system("main.py")
         await text_chan.send("Restarting...")
-        sys.exit("Bye!")
+
+        os.execv(sys.executable, ['python', 'main.py'])
 
 
     @commands.command(  name = 'git_pull',
