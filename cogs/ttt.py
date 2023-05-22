@@ -9,6 +9,13 @@ async def setup(bot):
 class ttt(commands.Cog):
     player1 = None
     player2 = None
+    game_str = f"\n\
+                |᲼᲼|᲼᲼|᲼᲼|᲼᲼᲼᲼᲼᲼᲼᲼|᲼1᲼|᲼2᲼|᲼3᲼|\n\
+                |᲼᲼|᲼᲼|᲼᲼|᲼᲼᲼᲼᲼᲼᲼᲼|᲼4᲼|᲼5᲼|᲼6᲼|\n\
+                |᲼᲼|᲼᲼|᲼᲼|᲼᲼᲼᲼᲼᲼᲼᲼|᲼7᲼|᲼8᲼|᲼9᲼|\n\
+                \n\n\
+                It is {self.player1.mention} turn.\nUse '>ttt <number>' to play.\
+            "
 
     def __init__(self, bot):
         self.bot = bot
@@ -42,24 +49,16 @@ class ttt(commands.Cog):
         try:
             self.player2 = ctx.author
             self.player1 = challenged
-
-            await ctx.send(str(self.player1.display_avatar))
-            await ctx.send(str(self.player2.display_avatar))
             
             await ctx.send(f"{self.player1.mention} has been challenged to a Tic-Tac-Toe game by {self.player2.mention}")
             await ctx.send(f"https://tenor.com/view/yu-gi-oh-duel-yugi-anime-gif-7357665")
-            embed = discord.Embed(title = f"Tic-Tac-Toe {self.player1.display_avatar}{self.player1.name}\
-                                             vs {self.player2.name}{self.player2.display_avatar}")
+            embed = discord.Embed(title = f"Tic-Tac-Toe {self.player1.name}\
+                                             vs {self.player2.name}")
             # embed.add_image(icon_url = self.player1.display_avatar)
             # embed.add_image(icon_url = self.player2.display_avatar)
+            embed.add_field(value = f"{self.player1.display_avatar} vs {self.player2.display_avatar}")
             embed.add_field(name = "Game:",
-                            value = f"\n\
-                                        |᲼᲼|᲼᲼|᲼᲼|᲼᲼᲼᲼᲼᲼᲼᲼|᲼1᲼|᲼2᲼|᲼3᲼|\n\
-                                        |᲼᲼|᲼᲼|᲼᲼|᲼᲼᲼᲼᲼᲼᲼᲼|᲼4᲼|᲼5᲼|᲼6᲼|\n\
-                                        |᲼᲼|᲼᲼|᲼᲼|᲼᲼᲼᲼᲼᲼᲼᲼|᲼7᲼|᲼8᲼|᲼9᲼|\n\
-                                        \n\n\
-                                        It is {self.player1.mention} turn.\nUse '>ttt <number>' to play.\
-                                    ",
+                            value = self.game_str,
                             inline = False
                             )
             embed.set_thumbnail(url = "https://www.emulatorpc.com/wp-content/uploads/2023/02/tic-tac-toe-on-pc.jpg.webp")
