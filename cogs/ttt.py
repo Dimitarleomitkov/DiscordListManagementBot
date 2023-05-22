@@ -43,7 +43,7 @@ class ttt(commands.Cog):
 
         except Exception as e:
             text_chan = self.bot.get_channel(548554244932894750)
-            await text_chan.send(["[Tic-Tac-Toe]"], e)
+            await text_chan.send(f"[Tic-Tac-Toe]\n{e}")
             
             return
 
