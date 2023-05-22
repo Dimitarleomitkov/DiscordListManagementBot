@@ -53,8 +53,8 @@ class ttt(commands.Cog):
             self.player1 = challenged
             
             await ctx.send(f"{self.player1.mention} has been challenged to a Tic-Tac-Toe game by {self.player2.mention}")
-            avatar_embed1 = discord.Embed(title = " ", url = 'https://google.com').set_image(self.player1.display_avatar)
-            avatar_embed2 = discord.Embed(title = " ", url = 'https://google.com').set_image(self.player2.display_avatar)
+            avatar_embed1 = discord.Embed(title = " ", url = 'https://google.com').set_image(url = f"{self.player1.display_avatar}")
+            avatar_embed2 = discord.Embed(title = " ", url = 'https://google.com').set_image(url = f"{self.player2.display_avatar}")
             avatar_embed3 = discord.Embed(title = " ", url = 'https://google.com')
             avatar_embed4 = discord.Embed(title = " ", url = 'https://google.com')
             await ctx.send(embed = [avatar_embed1, avatar_embed2, avatar_embed3, avatar_embed4])
