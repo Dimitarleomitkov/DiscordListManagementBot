@@ -43,9 +43,9 @@ class ttt(commands.Cog):
             embed = discord.Embed(title = f"Tic-Tac-Toe {self.player1} vs {self.player2}")
             embed.add_field(name = "Game:",
                             value = f"\n\
-                                        | | | |        |1|2|3|\n\
-                                        | | | |        |4|5|6|\n\
-                                        | | | |        |7|8|9|\n\
+                                        |᲼᲼|᲼᲼|᲼᲼|᲼᲼᲼᲼᲼᲼᲼᲼|1|2|3|\n\
+                                        |᲼᲼|᲼᲼|᲼᲼|᲼᲼᲼᲼᲼᲼᲼᲼|4|5|6|\n\
+                                        |᲼᲼|᲼᲼|᲼᲼|᲼᲼᲼᲼᲼᲼᲼᲼|7|8|9|\n\
                                         \n\n\
                                         It is {self.player1.mention} turn.\nUse '>ttt <number>' to play.\
                                     ",
