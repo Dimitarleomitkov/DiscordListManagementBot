@@ -37,12 +37,17 @@ class ttt(commands.Cog):
         try:
             self.player2 = ctx.author
             self.player1 = challenged
+
+            await ctx.send(f"{self.player1.display_avatar}")
+            await ctx.send(self.player1.display_avatar)
+            await ctx.send(f"{self.player2.display_avatar}")
+            await ctx.send(self.player2.display_avatar)
             
             await ctx.send(f"{self.player1.mention} has been challenged to a Tic-Tac-Toe game by {self.player2.mention}")
             await ctx.send(f"https://tenor.com/view/yu-gi-oh-duel-yugi-anime-gif-7357665")
             embed = discord.Embed(title = f"Tic-Tac-Toe {self.player1.name} vs {self.player2.name}")
-            embed.add_field(icon_url = self.player1.display_avatar)
-            embed.add_field(icon_url = self.player2.display_avatar)
+            # embed.add_image(icon_url = self.player1.display_avatar)
+            # embed.add_image(icon_url = self.player2.display_avatar)
             embed.add_field(name = "Game:",
                             value = f"\n\
                                         |᲼᲼|᲼᲼|᲼᲼|᲼᲼᲼᲼᲼᲼᲼᲼|᲼1᲼|᲼2᲼|᲼3᲼|\n\
