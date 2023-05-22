@@ -72,7 +72,7 @@ class TTTView(View):
                 await interaction.response.edit_message(content = f"Tic-Tac-Toe {self.player2.name} vs {self.player1.name}\n{self.player1.name}'s turn.", view = self)
             elif self.p_turn == 2:
                 await interaction.response.edit_message(content = f"Tic-Tac-Toe {self.player2.name} vs {self.player1.name}\n{self.player2.name}'s turn.", view = self)
-        else:
+        elif end == True:
             for button in self.children:
                 button.disabled = True
 
@@ -111,7 +111,7 @@ class TTTView(View):
                 await interaction.response.edit_message(content = f"Tic-Tac-Toe {self.player2.name} vs {self.player1.name}\n{self.player1.name}'s turn.", view = self)
             elif self.p_turn == 2:
                 await interaction.response.edit_message(content = f"Tic-Tac-Toe {self.player2.name} vs {self.player1.name}\n{self.player2.name}'s turn.", view = self)
-        else:
+        elif end == True:
             for button in self.children:
                 button.disabled = True
 
@@ -149,7 +149,7 @@ class TTTView(View):
                 await interaction.response.edit_message(content = f"Tic-Tac-Toe {self.player2.name} vs {self.player1.name}\n{self.player1.name}'s turn.", view = self)
             elif self.p_turn == 2:
                 await interaction.response.edit_message(content = f"Tic-Tac-Toe {self.player2.name} vs {self.player1.name}\n{self.player2.name}'s turn.", view = self)
-        else:
+        elif end == True:
             for button in self.children:
                 button.disabled = True
 
@@ -187,7 +187,7 @@ class TTTView(View):
                 await interaction.response.edit_message(content = f"Tic-Tac-Toe {self.player2.name} vs {self.player1.name}\n{self.player1.name}'s turn.", view = self)
             elif self.p_turn == 2:
                 await interaction.response.edit_message(content = f"Tic-Tac-Toe {self.player2.name} vs {self.player1.name}\n{self.player2.name}'s turn.", view = self)
-        else:
+        elif end == True:
             for button in self.children:
                 button.disabled = True
 
@@ -225,7 +225,7 @@ class TTTView(View):
                 await interaction.response.edit_message(content = f"Tic-Tac-Toe {self.player2.name} vs {self.player1.name}\n{self.player1.name}'s turn.", view = self)
             elif self.p_turn == 2:
                 await interaction.response.edit_message(content = f"Tic-Tac-Toe {self.player2.name} vs {self.player1.name}\n{self.player2.name}'s turn.", view = self)
-        else:
+        elif end == True:
             for button in self.children:
                 button.disabled = True
 
@@ -263,7 +263,7 @@ class TTTView(View):
                 await interaction.response.edit_message(content = f"Tic-Tac-Toe {self.player2.name} vs {self.player1.name}\n{self.player1.name}'s turn.", view = self)
             elif self.p_turn == 2:
                 await interaction.response.edit_message(content = f"Tic-Tac-Toe {self.player2.name} vs {self.player1.name}\n{self.player2.name}'s turn.", view = self)
-        else:
+        elif end == True:
             for button in self.children:
                 button.disabled = True
 
@@ -339,7 +339,7 @@ class TTTView(View):
                 await interaction.response.edit_message(content = f"Tic-Tac-Toe {self.player2.name} vs {self.player1.name}\n{self.player1.name}'s turn.", view = self)
             elif self.p_turn == 2:
                 await interaction.response.edit_message(content = f"Tic-Tac-Toe {self.player2.name} vs {self.player1.name}\n{self.player2.name}'s turn.", view = self)
-        else:
+        elif end == True:
             for button in self.children:
                 button.disabled = True
 
@@ -377,7 +377,7 @@ class TTTView(View):
                 await interaction.response.edit_message(content = f"Tic-Tac-Toe {self.player2.name} vs {self.player1.name}\n{self.player1.name}'s turn.", view = self)
             elif self.p_turn == 2:
                 await interaction.response.edit_message(content = f"Tic-Tac-Toe {self.player2.name} vs {self.player1.name}\n{self.player2.name}'s turn.", view = self)
-        else:
+        elif end == True:
             for button in self.children:
                 button.disabled = True
 
