@@ -55,12 +55,10 @@ class ttt(commands.Cog):
             embed1 = discord.Embed(title = f"{self.player1.mention} has been challenged to a Tic-Tac-Toe game by {self.player2.mention}",
                                     url = "https://google.com")
             embed2 = discord.Embed(url = "https://google.com")
-            embed3 = discord.Embed(url = "https://google.com")
-            embed4 = discord.Embed(url = "https://google.com")
 
             embed1.set_image(url = f'{self.player1.display_avatar}')
             embed2.set_image(url = f'{self.player1.display_avatar}')
-            await ctx.send(embeds = [embed1, embed2, embed3, embed4])
+            await ctx.send(embeds = [embed1, embed2])
 
             await ctx.send(f"https://tenor.com/view/yu-gi-oh-duel-yugi-anime-gif-7357665")
             embed = discord.Embed(title = f"Tic-Tac-Toe {self.player1.name} vs {self.player2.name}")
