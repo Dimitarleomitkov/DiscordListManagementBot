@@ -9,12 +9,11 @@ async def setup(bot):
 class ttt(commands.Cog):
     player1 = None
     player2 = None
-    game_str = f"\n\
+    game_str = f"\n\n\
                 |᲼᲼|᲼᲼|᲼᲼|᲼᲼᲼᲼᲼᲼᲼᲼|᲼1᲼|᲼2᲼|᲼3᲼|\n\
                 |᲼᲼|᲼᲼|᲼᲼|᲼᲼᲼᲼᲼᲼᲼᲼|᲼4᲼|᲼5᲼|᲼6᲼|\n\
                 |᲼᲼|᲼᲼|᲼᲼|᲼᲼᲼᲼᲼᲼᲼᲼|᲼7᲼|᲼8᲼|᲼9᲼|\n\
                 \n\n\
-                It is {player1.mention} turn.\nUse '>ttt <number>' to play.\
             "
 
     def __init__(self, bot):
@@ -58,7 +57,7 @@ class ttt(commands.Cog):
             # embed.add_image(icon_url = self.player2.display_avatar)
             embed.add_field(value = f"{self.player1.display_avatar} vs {self.player2.display_avatar}")
             embed.add_field(name = "Game:",
-                            value = self.game_str,
+                            value = self.game_str + f"It is {player1.mention} turn.\nUse '>ttt <number>' to play.",
                             inline = False
                             )
             embed.set_thumbnail(url = "https://www.emulatorpc.com/wp-content/uploads/2023/02/tic-tac-toe-on-pc.jpg.webp")
