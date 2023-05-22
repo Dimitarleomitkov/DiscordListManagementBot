@@ -79,7 +79,7 @@ class ttt(commands.Cog):
                        help = '>ttt <field_number>',
                        brief = '- Makes a play in the field.')
     async def ttt_place(self, ctx, field):
-        if ctx.author != self.player1 || ctx.author != self.player2:
+        if ctx.author != self.player1 or ctx.author != self.player2:
             ctx.send(f"Other people are playing. Stop being rude!")
             ctx.send(f"https://tenor.com/view/really-dog-pup-puppy-head-shaking-gif-17699585")
 
