@@ -40,14 +40,14 @@ class ttt(commands.Cog):
             
             await ctx.send(f"{self.player1.mention} has been challenged to a Tic-Tac-Toe game by {self.player2.mention}")
             await ctx.send(f"https://tenor.com/view/yu-gi-oh-duel-yugi-anime-gif-7357665")
-            embed = discord.Embed(title = f"Tic-Tac-Toe {self.player1.mention} vs {self.player2.mention}")
+            embed = discord.Embed(title = f"Tic-Tac-Toe {self.player1} vs {self.player2}")
             embed.add_field(name = "Game:",
-                            value = f"\
-                                        | | | |        |1|2|3|\
-                                        | | | |        |4|5|6|\
-                                        | | | |        |7|8|9|\
+                            value = f"\n\
+                                        | | | |        |1|2|3|\n\
+                                        | | | |        |4|5|6|\n\
+                                        | | | |        |7|8|9|\n\
                                         \n\n\
-                                        It is {self.player1.mention} turn. Use '>ttt <number>' to play.\
+                                        It is {self.player1.mention} turn.\nUse '>ttt <number>' to play.\
                                     ",
                             inline = False
                             )
