@@ -14,7 +14,7 @@ class ttt(commands.Cog):
                 |᲼᲼|᲼᲼|᲼᲼|᲼᲼᲼᲼᲼᲼᲼᲼|᲼4᲼|᲼5᲼|᲼6᲼|\n\
                 |᲼᲼|᲼᲼|᲼᲼|᲼᲼᲼᲼᲼᲼᲼᲼|᲼7᲼|᲼8᲼|᲼9᲼|\n\
                 \n\n\
-                It is {self.player1.mention} turn.\nUse '>ttt <number>' to play.\
+                It is {player1.mention} turn.\nUse '>ttt <number>' to play.\
             "
 
     def __init__(self, bot):
