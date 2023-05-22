@@ -57,7 +57,7 @@ class ttt(commands.Cog):
             avatar_embed2 = discord.Embed(title = " ", url = 'https://google.com').set_image(url = f"{self.player2.display_avatar}")
             avatar_embed3 = discord.Embed(title = " ", url = 'https://google.com')
             avatar_embed4 = discord.Embed(title = " ", url = 'https://google.com')
-            await ctx.send(embed = [avatar_embed1, avatar_embed2, avatar_embed3, avatar_embed4])
+            await ctx.send(embed = {1:avatar_embed1, 2:avatar_embed2, 3:avatar_embed3, 4:avatar_embed4})
 
             await ctx.send(f"https://tenor.com/view/yu-gi-oh-duel-yugi-anime-gif-7357665")
             embed = discord.Embed(title = f"Tic-Tac-Toe {self.player1.name} vs {self.player2.name}")
