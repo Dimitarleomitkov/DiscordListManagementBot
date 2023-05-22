@@ -57,7 +57,7 @@ class ttt(commands.Cog):
             # embed.add_image(icon_url = self.player2.display_avatar)
             embed.add_field(value = f"{self.player1.display_avatar} vs {self.player2.display_avatar}")
             embed.add_field(name = "Game:",
-                            value = self.game_str + f"It is {player1.mention} turn.\nUse '>ttt <number>' to play.",
+                            value = self.game_str + f"It is {self.player1.mention} turn.\nUse '>ttt <number>' to play.",
                             inline = False
                             )
             embed.set_thumbnail(url = "https://www.emulatorpc.com/wp-content/uploads/2023/02/tic-tac-toe-on-pc.jpg.webp")
