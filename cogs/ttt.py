@@ -20,6 +20,14 @@ class ttt(commands.Cog):
         self.good_morning_message.start()
 
 
+    async def place(self, player, field):
+        pass
+
+
+    async def check_win(self, player):
+        pass
+
+
     @commands.command(  name = 'ttt_new',
                         help = '>ttt_new @challenged',
                         brief = '- Start a new game of Tic-Tac-Toe with someone.')
@@ -29,18 +37,20 @@ class ttt(commands.Cog):
         try:
             self.player2 = ctx.author
             self.player1 = challenged
-            await ctx.send(f"{self.player1}, {self.player2}")
             
-            await ctx.send(f"{self.player2.mention} has been challenged to a Tic-Tac-Toe game by {self.player1.mention}")
+            await ctx.send(f"{self.player1.mention} has been challenged to a Tic-Tac-Toe game by {self.player2.mention}")
             await ctx.send(f"https://tenor.com/view/yu-gi-oh-duel-yugi-anime-gif-7357665")
             embed = discord.Embed(title = f"Tic-Tac-Toe {self.player1.mention} vs {self.player2.mention}")
-            embed = discord.add_field(f"\
+            embed.add_field(name = "Game:",
+                            value = f"\
                                         | | | |        |1|2|3|\
                                         | | | |        |4|5|6|\
                                         | | | |        |7|8|9|\
                                         \n\n\
                                         It is {self.player1.mention} turn. Use '>ttt <number>' to play.\
-                                    ")
+                                    ",
+                            inline = False
+                            )
             embed.set_thumbnail(url = "https://e7.pngegg.com/pngimages/923/206/png-clipart-tictactoe-tic-tac-toe-oxo-tac-tic-toe-computer-icons-games-buttons-game-logo-thumbnail.png")
 
             await ctx.send(embed = embed)
@@ -62,5 +72,5 @@ class ttt(commands.Cog):
 
         #     return
 
-        # place()
-        # check_win()
+        # await self.place(player, field)
+        # await self.check_win(player)
