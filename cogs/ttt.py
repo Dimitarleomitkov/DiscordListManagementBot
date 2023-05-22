@@ -55,7 +55,8 @@ class ttt(commands.Cog):
                                              vs {self.player2.name}")
             # embed.add_image(icon_url = self.player1.display_avatar)
             # embed.add_image(icon_url = self.player2.display_avatar)
-            embed.add_field(value = f"{self.player1.display_avatar} vs {self.player2.display_avatar}")
+            embed.add_field(name = "᲼᲼",
+                            value = f"{self.player1.display_avatar} vs {self.player2.display_avatar}")
             embed.add_field(name = "Game:",
                             value = self.game_str + f"It is {self.player1.mention} turn.\nUse '>ttt <number>' to play.",
                             inline = False
