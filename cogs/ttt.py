@@ -26,6 +26,7 @@ class ttt(commands.Cog):
     async def ttt_new_game(self, ctx, challenged):
         self.player2 = ctx.author
         self.player1 = challenged
+        ctx.send(self.player1, self.player2)
 
         try:
             ctx.send(f"{self.player2.mention} has been challenged to a Tic-Tac-Toe game by {self.player1.mention}")
