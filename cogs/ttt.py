@@ -413,6 +413,14 @@ class ttt(commands.Cog):
         try:
             view = TTTView(challenged, ctx.author)
 
+            embed1 = discord.Embed(title = f"{challenged.name} has been challenged to a Tic-Tac-Toe game by {ctx.author.name}",
+                                    url = "https://google.com")
+            embed2 = discord.Embed(url = "https://google.com")
+            embed1.set_image(url = f'{challenged.display_avatar}')
+            embed2.set_image(url = f'{ctx.author.display_avatar}')
+            await ctx.send(embeds = [embed1, embed2])
+            await ctx.send(f"https://tenor.com/view/yu-gi-oh-duel-yugi-anime-gif-7357665")
+
             await ctx.send(f"Tic-Tac-Toe {ctx.author.name} vs {challenged.name}\n{challenged.name}'s turn.", view = view)
         except Exception as e:
             text_chan = self.bot.get_channel(548554244932894750)
