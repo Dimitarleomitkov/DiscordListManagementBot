@@ -52,12 +52,12 @@ class ttt(commands.Cog):
             self.player2 = ctx.author
             self.player1 = challenged
 
-            embed1 = discord.Embed(title = f"{self.player1.mention} has been challenged to a Tic-Tac-Toe game by {self.player2.mention}",
+            embed1 = discord.Embed(title = f"{self.player1.name} has been challenged to a Tic-Tac-Toe game by {self.player2.name}",
                                     url = "https://google.com")
             embed2 = discord.Embed(url = "https://google.com")
 
             embed1.set_image(url = f'{self.player1.display_avatar}')
-            embed2.set_image(url = f'{self.player1.display_avatar}')
+            embed2.set_image(url = f'{self.player2.display_avatar}')
             await ctx.send(embeds = [embed1, embed2])
 
             await ctx.send(f"https://tenor.com/view/yu-gi-oh-duel-yugi-anime-gif-7357665")
