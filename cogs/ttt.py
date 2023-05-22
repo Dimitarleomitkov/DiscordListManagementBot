@@ -6,18 +6,18 @@ async def setup(bot):
     await bot.add_cog(ttt(bot))
 
 
+
+class TTTView(discord.ui.View): # Create a class called TTTView that subclasses discord.ui.View
+    @discord.ui.button(label = "Test", style = discord.ButtonStyle.primary, emoji="😎") # Create a button with the label "😎 Click me!" with color Blurple
+    async def button_callback(self, button, interaction):
+        await interaction.response.send_message("You clicked the button!") # Send a message when the button is clicked
+
+
+
 class ttt(commands.Cog):
     player1 = None
     player2 = None
-    game = ['᲼᲼', '᲼᲼', '᲼᲼', \
-            '᲼᲼', '᲼᲼', '᲼᲼', \
-            '᲼᲼', '᲼᲼', '᲼᲼', ]
-    game_str = f"\n\n\
-                |{game[0]}|{game[1]}|{game[2]}|᲼᲼᲼᲼᲼᲼᲼᲼|᲼1᲼|᲼2᲼|᲼3᲼|\n\
-                |{game[3]}|{game[4]}|{game[5]}|᲼᲼᲼᲼᲼᲼᲼᲼|᲼4᲼|᲼5᲼|᲼6᲼|\n\
-                |{game[6]}|{game[7]}|{game[8]}|᲼᲼᲼᲼᲼᲼᲼᲼|᲼7᲼|᲼8᲼|᲼9᲼|\n\
-                \n\n\
-            "
+
 
     def __init__(self, bot):
         self.bot = bot
@@ -55,20 +55,12 @@ class ttt(commands.Cog):
             embed1 = discord.Embed(title = f"{self.player1.name} has been challenged to a Tic-Tac-Toe game by {self.player2.name}",
                                     url = "https://google.com")
             embed2 = discord.Embed(url = "https://google.com")
-
             embed1.set_image(url = f'{self.player1.display_avatar}')
             embed2.set_image(url = f'{self.player2.display_avatar}')
             await ctx.send(embeds = [embed1, embed2])
 
             await ctx.send(f"https://tenor.com/view/yu-gi-oh-duel-yugi-anime-gif-7357665")
-            embed = discord.Embed(title = f"Tic-Tac-Toe {self.player1.name} vs {self.player2.name}")
-            embed.add_field(name = "Game:",
-                            value = self.game_str + f"It is {self.player1.mention} turn.\nUse '>ttt <number>' to play.",
-                            inline = False
-                            )
-            embed.set_thumbnail(url = "https://www.emulatorpc.com/wp-content/uploads/2023/02/tic-tac-toe-on-pc.jpg.webp")
-
-            await ctx.send(embed = embed)
+            await ctx.send(f"Tic-Tac-Toe {self.player1.name} vs {self.player2.name}", view = TTTView())
         except Exception as e:
             text_chan = self.bot.get_channel(548554244932894750)
             await text_chan.send(f"[Tic-Tac-Toe]\n{e}")
