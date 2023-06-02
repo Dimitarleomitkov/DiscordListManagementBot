@@ -1,14 +1,14 @@
 import discord
 import requests
 import datetime
-import dateutil.tz as dateutils
+import re
+import pytz
 from discord.ext import commands, tasks
 from bs4 import BeautifulSoup
-import re
 
 
 # If no tzinfo is given then UTC is assumed.
-BG_time_zone = dateutils.tzoffset('UTC', 60 * 60 * 2)
+BG_time_zone = pytz.timezone("Europe/Sofia")
 time = datetime.time(hour = 8,\
                      minute = 00,\
                      second = 15,\

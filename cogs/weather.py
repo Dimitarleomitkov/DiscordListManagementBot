@@ -2,7 +2,7 @@ import discord
 import requests
 import json
 import datetime
-import dateutil.tz as dateutils
+import pytz
 from discord.ext import commands
 from keys import weatherAPIKey
 
@@ -61,7 +61,7 @@ async def weather_func(ctx, weather_json):
     sys_info = weather_json["sys"]
     country = sys_info["country"]
 
-    BG_time_zone = dateutils.tzoffset('UTC', 60 * 60 * 2)
+    BG_time_zone = pytz.timezone("Europe/Sofia")
     sunrise_time = datetime.datetime.fromtimestamp(sys_info["sunrise"], tz = BG_time_zone).strftime('%Y-%m-%d %H:%M:%S')
     sunset_time = datetime.datetime.fromtimestamp(sys_info["sunset"], tz = BG_time_zone).strftime('%Y-%m-%d %H:%M:%S')
 

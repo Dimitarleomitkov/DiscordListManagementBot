@@ -2,12 +2,12 @@ import discord
 import requests
 import json
 import datetime
-import dateutil.tz as dateutils
+import pytz
 from discord.ext import commands, tasks
 
 
 # If no tzinfo is given then UTC is assumed.
-BG_time_zone = dateutils.tzoffset('UTC', 60 * 60 * 2)
+BG_time_zone = pytz.timezone("Europe/Sofia")
 time = datetime.time(hour = 8,\
                      minute = 00,\
                      second = 00,\
