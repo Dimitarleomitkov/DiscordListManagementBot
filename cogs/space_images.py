@@ -138,3 +138,11 @@ class space_images(commands.Cog):
         print("space_images module is loaded.")
         self.good_morning_message.start()
 
+
+    @commands.command(  name = 'tnext_si',
+                        help = 'The bot will print the time of the next space image.',
+                        brief = '- Prints the time of the next scheduled space image.')
+    async def get_next_iteration(self, ctx):
+        await ctx.send("I am scheduled to give you the next space image on " +\
+                        str(self.good_morning_message.next_iteration))
+

@@ -67,3 +67,11 @@ class jokes(commands.Cog):
             await ctx.send(f"{joke['joke']}")
         else:
             await ctx.send(f"{joke['setup']}\n{joke['delivery']}")
+
+
+    @commands.command(  name = 'tnext_joke',
+                        help = 'The bot will print the time of the next scheduled joke.',
+                        brief = '- Prints the time of the next scheduled joke.')
+    async def get_next_iteration(self, ctx):
+        await ctx.send("I am scheduled to give you the next joke on " +\
+                        str(self.good_morning_joke.next_iteration))

@@ -62,3 +62,11 @@ class quotes(commands.Cog):
     async def quotes(self, ctx):
         quote = self.get_quote()
         await ctx.send(quote)
+
+
+    @commands.command(  name = 'tnext_quote',
+                        help = 'The bot will print the time of the next scheduled quote.',
+                        brief = '- Prints the time of the next scheduled quote.')
+    async def get_next_iteration(self, ctx):
+        await ctx.send("I am scheduled to give you the next quote on " +\
+                        str(self.good_morning_message.next_iteration))
