@@ -42,6 +42,10 @@ class bot_replies(commands.Cog):
                 "https://tenor.com/view/hello-there-general-kenobi-star-wars-grevious-gif-17774326"
             )
 
+        if (str(message.author) != "undeadko#6973" and str(message.author) != "undeadkoBot#2623"):
+            if "spit" in msg:
+                await message.reply(f"https://tenor.com/view/the-rock-spit-gif-20218743")
+
         
     @commands.command(name = 'sex')
     async def sex_reply(self, ctx):

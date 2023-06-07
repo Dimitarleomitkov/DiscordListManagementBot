@@ -1,27 +1,35 @@
 import discord
 import requests
 import datetime
+import dateutil.tz as dateutils
+import time as tim
 import re
-import pytz
 from discord.ext import commands, tasks
 from bs4 import BeautifulSoup
-
-
-# If no tzinfo is given then UTC is assumed.
-BG_time_zone = pytz.timezone("Europe/Sofia")
-time = datetime.time(hour = 8,\
-                     minute = 00,\
-                     second = 15,\
-                     tzinfo = BG_time_zone)
 
 
 async def setup(bot):
     await bot.add_cog(space_images(bot))
 
 
+def get_the_time():
+    if tim.localtime().tm_isdst:
+        BG_tz = dateutils.tzoffset('UTC', 60 * 60 * 3)
+    else:
+        BG_tz = dateutils.tzoffset('UTC', 60 * 60 * 2)
+
+    return datetime.time(hour = 8,\
+                        minute = 0,\
+                        second = 15,\
+                        tzinfo = BG_tz)
+
+
 class space_images(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
+
+
+    the_time = get_the_time()
 
 
     async def get_space_img(self):
@@ -92,7 +100,7 @@ class space_images(commands.Cog):
             
             return
       
-    @tasks.loop(time = time)
+    @tasks.loop(time = the_time)
     async def good_morning_message(self):
         text_chan = self.bot.get_channel(337156974754136064)
         try:
@@ -118,8 +126,11 @@ class space_images(commands.Cog):
             
             text_chan = self.bot.get_channel(548554244932894750)
             await text_chan.send(e)
-            
-            return
+        
+        self.the_time = get_the_time()
+        self.good_morning_message.change_interval(time = self.the_time)
+
+        return
 
 
     @commands.Cog.listener()
