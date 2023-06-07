@@ -43,7 +43,7 @@ class bot_replies(commands.Cog):
             )
 
         if (str(message.author) != "undeadko#6973" and str(message.author) != "undeadkoBot#2623"):
-            if "spit" in msg:
+            if "spit" in msg and not msg.startswith(">spit"):
                 await message.reply(f"https://tenor.com/view/the-rock-spit-gif-20218743")
 
         
