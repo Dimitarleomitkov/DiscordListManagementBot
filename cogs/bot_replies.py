@@ -23,7 +23,7 @@ class bot_replies(commands.Cog):
             await message.channel.send("https://tenor.com/view/robotboy-smile-change-mood-cute-cartoon-gif-17785012")
         
         if msg.startswith("bad bot") or msg.startswith("stupid bot"):
-            if (str(message.author) == "undeadko#6973"):
+            if (str(message.author) == "undeadko"):
                 await message.channel.send(
                     "https://tenor.com/view/sorry-stitch-%E5%8F%B2%E8%BF%AA%E5%A5%87-sad-gif-10399341"
                 )
@@ -42,7 +42,7 @@ class bot_replies(commands.Cog):
                 "https://tenor.com/view/hello-there-general-kenobi-star-wars-grevious-gif-17774326"
             )
 
-        if (str(message.author) != "undeadko#6973" and str(message.author) != "undeadkoBot#2623"):
+        if (str(message.author) != "undeadko" and str(message.author) != "undeadkoBot#2623"):
             if "spit" in msg and not msg.startswith(">spit"):
                 await message.reply(f"https://tenor.com/view/the-rock-spit-gif-20218743")
 
