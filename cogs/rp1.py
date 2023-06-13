@@ -22,11 +22,14 @@ class role_play(commands.Cog):
     @commands.Cog.listener()
     async def on_message(self, message):
         if (str(message.author) != "undeadkoBot#2623" and\
-            str(message.author) != "undeadko"):
+            str(message.author) != "undeadko#0"):
             self.random_n_for_rp = random.randint(0, 5000)
 
+            # undeadko = self.bot.get_user(337156733774594048)
+            # await undeadko.send(self.random_n_for_rp)
+
         if (self.random_n_for_rp == 1 and\
-            str(message.author) != "undeadko"):
+            str(message.author) != "undeadko#0"):
             self.rp_flag_1 = True
             undeadko_mention = '<@337156733774594048>'
             await message.channel.send(f"{message.author.mention} Sh-h-h... {undeadko_mention} is sleeping. \
@@ -35,7 +38,7 @@ I can do whatever I want now... :smiling_imp:")
 
         msg = message.content.strip().lower()
 
-        if (str(message.author) == "undeadko" and\
+        if (str(message.author) == "undeadko#0" and\
             (msg.startswith("i am not") or\
             msg.startswith("i am here") or\
             msg.startswith("i am awake") or\
