@@ -53,7 +53,7 @@ class git(commands.Cog):
             await text_chan.send("Booting a new instance of me...")
             
             try:
-                subprocess.run("source", "./boot.bash")
+                subprocess.run(["source", "./boot.bash"])
             except Exception as e:
                 await text_chan.send(e)
 
