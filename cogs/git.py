@@ -7,6 +7,7 @@ import cogs.lrlul_cogs as Cogs
 import sys
 import subprocess
 import platform
+import time
 
 
 async def setup(bot):
@@ -28,6 +29,8 @@ class git(commands.Cog):
                         brief = 'Pulls the code from the repo and reloads all cogs.')
     async def update_server(self, ctx):
         text_chan = self.bot.get_channel(548554244932894750)
+        
+        await self.git_pull_func(ctx)
 
         for filename in os.listdir(pathlib.Path(__file__).parent):
             if filename.endswith(".py"):
@@ -37,7 +40,6 @@ class git(commands.Cog):
                 await self.bot.unload_extension(f"cogs.{cog}")
                 await self.bot.load_extension(f"cogs.{cog}")
 
-        await self.git_pull_func(ctx)
         await text_chan.send("Update successful.")
 
 
@@ -48,7 +50,10 @@ class git(commands.Cog):
         text_chan = self.bot.get_channel(548554244932894750)
 
         if platform.system() != "Windows":
+            await text_chan.send("Restarting...")
             subprocess.call("./boot.bash")
+            time.sleep(1)
+            await text_chan.send("Turning off...")
             
         await text_chan.send("Restarting...")
         sys.exit("Bye!")
