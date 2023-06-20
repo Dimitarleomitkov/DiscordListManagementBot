@@ -50,10 +50,10 @@ class git(commands.Cog):
         text_chan = self.bot.get_channel(548554244932894750)
 
         if platform.system() != "Windows":
-            await text_chan.send("Restarting...")
+            await text_chan.send("Booting a new instance of me...")
             
             try:
-                subprocess.run("./boot.bash")
+                subprocess.run("source", "./boot.bash")
             except Exception as e:
                 await text_chan.send(e)
 

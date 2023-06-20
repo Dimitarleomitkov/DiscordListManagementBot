@@ -15,8 +15,10 @@ bot = commands.Bot(command_prefix = '>', intents = INTENTS, case_insensitive = T
 
 @bot.event
 async def on_command_error(ctx, error):
-     print('Ignoring exception in command {}:'.format(ctx.command), file = sys.stderr)
-     traceback.print_exception(type(error), error, error.__traceback__, file = sys.stderr)
+    text_chan = self.bot.get_channel(548554244932894750)
+
+    await text_chan.send('Ignoring exception in command {}:'.format(ctx.command), file = sys.stderr)
+    traceback.print_exception(type(error), error, error.__traceback__, file = sys.stderr)
 
 async def load_extensions():
     for filename in os.listdir(COGS):
@@ -27,5 +29,8 @@ async def load_extensions():
 async def main():
     await load_extensions()
     await bot.start(TOKEN)
+
+    # text_chan = self.bot.get_channel(548554244932894750)
+    # await text_chan.send("I have powered up.")
 
 asyncio.run(main())
