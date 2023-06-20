@@ -55,7 +55,7 @@ class git(commands.Cog):
 
             
             try:
-                subprocess.run(f"{pathlib.Path(__file__)}../boot.bash")
+                subprocess.run(f"{pathlib.Path(__file__).parent.parent}/boot.bash")
             except Exception as e:
                 await text_chan.send(e)
 
