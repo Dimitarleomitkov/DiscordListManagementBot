@@ -52,9 +52,10 @@ class git(commands.Cog):
         if platform.system() != "Windows":
             await text_chan.send("Booting a new instance of me...")
             await text_chan.send(f"Current path {pathlib.Path(__file__)}")
+
             
             try:
-                subprocess.run("boot.bash")
+                subprocess.run(f"{pathlib.Path(__file__)}../boot.bash")
             except Exception as e:
                 await text_chan.send(e)
 
