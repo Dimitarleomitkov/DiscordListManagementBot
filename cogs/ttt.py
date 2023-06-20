@@ -411,7 +411,7 @@ class ttt(commands.Cog):
         await ctx.message.delete()
         
         try:
-            view = TTTView(challenged, ctx.author)
+            view = TTTView(challenged, ctx.author, timeout = 24 * 60 * 60)
 
             embed1 = discord.Embed(title = f"{challenged.name} has been challenged to a Tic-Tac-Toe game by {ctx.author.name}",
                                     url = "https://google.com")
@@ -442,7 +442,7 @@ class ttt(commands.Cog):
         await ctx.message.delete()
         
         try:
-            view = TTTView(challenged, ctx.author)
+            view = TTTView(challenged, ctx.author, timeout = 24 * 60 * 60)
 
             await ctx.send(f"Tic-Tac-Toe {ctx.author.name} vs {challenged.name}\n{challenged.name}'s turn.", view = view)
         except Exception as e:
