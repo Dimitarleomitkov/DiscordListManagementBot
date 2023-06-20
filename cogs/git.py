@@ -51,7 +51,7 @@ class git(commands.Cog):
 
         if platform.system() != "Windows":
             await text_chan.send("Restarting...")
-            subprocess.call("./boot.bash")
+            subprocess.call("~/undeadko/GitProjects/DiscordListManagementBot/boot.bash")
             time.sleep(1)
             await text_chan.send("Turning off...")
             
