@@ -51,7 +51,12 @@ class git(commands.Cog):
 
         if platform.system() != "Windows":
             await text_chan.send("Restarting...")
-            subprocess.run("./boot.bash")
+            
+            try:
+                subprocess.run("./boot.bash")
+            except Exception as e:
+                await text_chan.send(e)
+
             time.sleep(1)
             await text_chan.send("Turning off...")
             
