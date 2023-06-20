@@ -51,19 +51,18 @@ class git(commands.Cog):
 
         if platform.system() != "Windows":
             await text_chan.send("Booting a new instance of me...")
-            await text_chan.send(f"Current path {pathlib.Path(__file__)}")
 
             
             try:
                 subprocess.run(f"{pathlib.Path(__file__).parent.parent}/boot.bash")
+                await text_chan.send("I have prestiged myself.")
             except Exception as e:
                 await text_chan.send(e)
 
             time.sleep(1)
-            await text_chan.send("Turning off...")
             
-        await text_chan.send("Restarting...")
-        # sys.exit("Bye!")
+        await text_chan.send("Turning off... Goodbye cruel world!")    
+        sys.exit("Bye!")
 
 
     @commands.command(  name = 'git_pull',
