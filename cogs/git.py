@@ -61,7 +61,7 @@ class git(commands.Cog):
             await text_chan.send("Turning off...")
             
         await text_chan.send("Restarting...")
-        sys.exit("Bye!")
+        # sys.exit("Bye!")
 
 
     @commands.command(  name = 'git_pull',
