@@ -53,7 +53,7 @@ class git(commands.Cog):
             await text_chan.send("Booting a new instance of me...")
             
             try:
-                subprocess.run("./undeadko/GitProjects/DiscordListManagementBot/boot.bash")
+                subprocess.call("./boot.bash", shell = True)
             except Exception as e:
                 await text_chan.send(e)
 
