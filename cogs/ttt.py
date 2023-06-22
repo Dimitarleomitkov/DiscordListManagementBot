@@ -23,7 +23,6 @@ class TTTView(View):
     async def check_win(self, interaction):
         end = None
 
-        print("check_win start")
         if self.g_space[0] == self.g_space[1] == self.g_space[2] or\
         self.g_space[3] == self.g_space[4] == self.g_space[5] or\
         self.g_space[6] == self.g_space[7] == self.g_space[8]:
@@ -38,7 +37,6 @@ class TTTView(View):
         else:
             end = False
 
-        print(f"end = {end}, p_turn = {self.p_turn}")
         if end == False:
             if self.p_turn == 1:
                 await interaction.response.edit_message(content = f"Tic-Tac-Toe {self.player2.name} vs {self.player1.name}\n{self.player1.mention}'s turn.", view = self)
@@ -57,23 +55,19 @@ class TTTView(View):
 
 
     def p1_play(self, button, g_space):
-        print("p1_play start")
         button.label = 'X'
         self.g_space[g_space - 1] = 1   # 1 for X
         button.disabled = True
         button.style = discord.ButtonStyle.red
         self.p_turn = 2
-        print("p1_play end")
 
 
     def p2_play(self, button, g_space):
-        print("p2_play start")
         button.label = 'O'
         self.g_space[g_space - 1] = 2   # 2 for O
         button.disabled = True
         button.style = discord.ButtonStyle.green
         self.p_turn = 1
-        print("p2_play end")
 
 
     @discord.ui.button(label = '⠀', style = discord.ButtonStyle.grey, row = 0)
