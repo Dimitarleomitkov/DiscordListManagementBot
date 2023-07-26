@@ -23,7 +23,7 @@ class weather(commands.Cog):
 
     @commands.command(  name = 'weather',
                         help = 'The bot will display the weather at the given location.',
-                        brief = '- Displays at the weather at the given locationency.')
+                        brief = '- Displays the weather at the given location.')
     async def weather(self, ctx, *args):
         base_url = "http://api.openweathermap.org/data/2.5/weather?"
         language = "&lang=en"
@@ -41,6 +41,28 @@ class weather(commands.Cog):
             return
         else:
             await ctx.send("Can't find the city you are looking for.")
+            return
+
+
+    @commands.command(  name = 'weather_compare',
+                        help = 'The bot will display the weather comparison between Sofia, Plovdiv and Dimitrovgrad.',
+                        brief = '- Displays the weather comparison between Sofia, Plovdiv and Dimitrovgrad.')
+    async def weather_comp(self, ctx):
+        base_url = "http://api.openweathermap.org/data/2.5/weather?"
+        language = "&lang=en"
+        city_name = ["Dimitrovgrad,BG", "Plovdiv", "Sofia"]
+
+        api_jsons = []
+        for city in city_name:
+            complete_url = base_url + "appid=" + weatherAPIKey + "&q=" + city + language
+            response = requests.get(complete_url)
+            api_jsons.append(response.json())
+
+        if (api_jsons[0]["cod"] != "404" and api_jsons[1]["cod"] != "404" and api_jsons[2]["cod"] != "404"):
+            await weather_comp_func(ctx, api_jsons)
+            return
+        else:
+            await ctx.send("Something went wrong :(")
             return
 
 
@@ -121,6 +143,81 @@ async def weather_func(ctx, weather_json):
 
     embed.add_field(name = "Atmospheric Pressure(hPa)",
                     value = f"**{current_pressure}hPa**",
+                    inline = False)
+
+    embed.set_thumbnail(url = "https://i.ibb.co/CMrsxdX/weather.png")
+    embed.set_footer(text = f"Requested by {ctx.author.name}")
+
+    await ctx.send(embed = embed)
+
+async def weather_comp_func(ctx, weather_jsons):
+    temps = []
+    fl_temps = []
+    humidities = []
+    descriptions = []
+    icons = []
+    city_names = []
+    wind_speeds = []
+
+
+    for weather_json in weather_jsons:
+        main_info = weather_json["main"]
+
+        current_temperature = main_info["temp"]
+        temps.append(str(round(current_temperature - 273.15)))
+
+        feels_like_temp = main_info["feels_like"]
+        fl_temps.append((round(feels_like_temp - 273.15)))
+
+        humidities.append(main_info["humidity"])
+
+        weather_details = weather_json["weather"]
+
+        descriptions.append(weather_details[0]["description"])
+
+
+        city_names.append(weather_json["name"])
+
+        wind_speeds.append(weather_json["wind"]["speed"])
+
+        json_icon = weather_details[0]["icon"]
+
+        if (json_icon.startswith("01")):
+            icons.append(":sunny:")
+        elif (json_icon.startswith("02")):
+            icons.append(":white_sun_small_cloud:")
+        elif (json_icon.startswith("03")):
+            icons.append(":white_sun_cloud:")
+        elif (json_icon.startswith("04")):
+            icons.append(":cloud:")
+        elif (json_icon.startswith("09")):
+            icons.append(":cloud_rain:")
+        elif (json_icon.startswith("10")):
+            icons.append(":white_sun_rain_cloud:")
+        elif (json_icon.startswith("11")):
+            icons.append(":thunder_cloud_rain:")
+        elif (json_icon.startswith("13")):
+            icons.append(":snowflake:")
+        elif (json_icon.startswith("50")):
+            icons.append(":fog:")
+        else:
+            icons.append(":boom:")
+
+    
+    embed = discord.Embed(title = f"{city_names[0]} / {city_names[1]} / {city_names[2]}, BG",
+                          color = ctx.guild.me.top_role.color,
+                          timestamp = ctx.message.created_at)
+
+    embed.add_field(name = "Descripition",
+                    value = f"**{descriptions[0]}** {icons[0]} / **{descriptions[1]}** {icons[1]} / **{descriptions[2]}** {icons[2]}",
+                    inline = False)
+
+    embed.add_field(name = "Temperature (feels like)",
+                    value = f"**{temps[0]}({fl_temps[0]})°C / {temps[1]}({fl_temps[1]})°C / {temps[2]}({fl_temps[2]})°C**",
+                    inline = False)
+
+    embed.add_field(name = "Wind speeds",
+                    value = f"**{wind_speeds[0]}m/s / {wind_speeds[1]}m/s / {wind_speeds[2]}m/s**",
                     inline = False)
 
     embed.set_thumbnail(url = "https://i.ibb.co/CMrsxdX/weather.png")
