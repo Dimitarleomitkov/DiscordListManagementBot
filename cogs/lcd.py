@@ -46,7 +46,20 @@ else:
 
         @tasks.loop(seconds = 1)
         async def refresh_lcd(self):
+            # Change the time every minute
             if time.strftime("%H:%M") == self.time:
+                return
+
+            # Turn off the display at 23:30
+            if time.strftime("%H:%M") == "23:30":
+                self.display.backlight(turn_on = False)
+
+            # Turn on the display at 07:00
+            if time.strftime("%H:%M") == "07:00":
+                self.display.backlight(turn_on = True)
+
+            # Do not update the display if it is turned off
+            if display.backlight_status == False:
                 return
 
             self.time = str(time.strftime("%H:%M"))
@@ -92,6 +105,11 @@ else:
                             help = 'The bot will print your message in undeadko\'s home. You have 16 symbols.',
                             brief = '- Prints your 16 symbol message on an LCD screen.')
         async def display_message(self, ctx, *args):
+            # Do not update the display if it is turned off
+            if display.backlight_status == False:
+                await ctx.send(f"The Display is off.")
+                return
+
             for arg in args:
                 self.i_msg += arg + " "
 
