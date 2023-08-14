@@ -59,7 +59,7 @@ else:
                 self.display.backlight(turn_on = True)
 
             # Do not update the display if it is turned off
-            if display.backlight_status == False:
+            if self.display.backlight_status == False:
                 return
 
             self.time = str(time.strftime("%H:%M"))
@@ -106,7 +106,7 @@ else:
                             brief = '- Prints your 16 symbol message on an LCD screen.')
         async def display_message(self, ctx, *args):
             # Do not update the display if it is turned off
-            if display.backlight_status == False:
+            if self.display.backlight_status == False:
                 await ctx.send(f"The Display is off.")
                 return
 
