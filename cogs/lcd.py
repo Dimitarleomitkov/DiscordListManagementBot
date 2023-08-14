@@ -48,12 +48,12 @@ else:
         async def refresh_lcd(self):
             if time.strftime("%H:%M") == self.time:
                 return
-            
+
             self.time = str(time.strftime("%H:%M"))
 
             line1 = self.i_msg
             line2 = self.weather + ' ' + self.time
-            
+
             try:
                 self.display.text(f"{line1}", 1)
                 self.display.text(f"{line2}", 2)
@@ -94,24 +94,24 @@ else:
         async def display_message(self, ctx, *args):
             for arg in args:
                 self.i_msg += arg + " "
-            
+
             if len(self.i_msg) > 16:
                 await ctx.send(f"The message is longer than 16 symbols.")
                 self.i_msg = self.i_msg[0:16]
-            
+
             line1 = self.i_msg
             line2 = self.weather + ' ' self.time
-            
+
             try:
                 self.display.text(f"{line1}", 1)
                 self.display.text(f"{line2}", 2)
-                
+
                 await ctx.message.delete()
             except Exception as e:
                 print(e)
             finally:
                 pass
-                
+
 
         @commands.command(  name = 'lcd_off',
                             help = 'Turns the LCD display off.',
