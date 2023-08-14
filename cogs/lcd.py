@@ -45,10 +45,11 @@ else:
 
         @tasks.loop(seconds = 60.0)
         async def refresh_lcd(self):
+            print("refresh")
             time = time.strftime("%H:%M")
 
             line1 = self.i_msg[0:16]
-            line2 = weather + time
+            line2 = weather + ' ' + time
             
             try:
                 self.display.text(f"{line1}", 1)
@@ -115,8 +116,8 @@ else:
                             brief = 'Turns the LCD display off.')
         async def turn_off_lcd(self, ctx):
             try:
-                #Send command to turn off the display(0x08)
-                self.display.command(0x08)
+                #Send command to turn off the display
+                self.display.backlight = False
 
                 await ctx.reply("LDC screen is off.")
             except Exception as e:
@@ -128,8 +129,8 @@ else:
                             brief = 'Turns the LCD display on.')
         async def turn_on_lcd(self, ctx):
             try:
-                #Send command to turn on the display(0x0C)
-                self.display.command(0x0C)
+                #Send command to turn on the display
+                self.display.backlight = True
 
                 await ctx.reply("LDC screen is on.")
             except Exception as e:
