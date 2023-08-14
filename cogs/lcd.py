@@ -100,7 +100,7 @@ else:
                 self.i_msg = self.i_msg[0:16]
 
             line1 = self.i_msg
-            line2 = self.weather + ' ' self.time
+            line2 = self.weather + ' ' + self.time
 
             try:
                 self.display.text(f"{line1}", 1)
