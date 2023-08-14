@@ -1,4 +1,5 @@
 import discord
+import requests
 import random
 import time
 import platform
@@ -39,16 +40,19 @@ else:
         @commands.Cog.listener()
         async def on_ready(self):
             print("lcd module is loaded.")
-            self.refresh_lcd.start()
             self.get_the_weather.start()
+            self.refresh_lcd.start()
 
 
-        @tasks.loop(seconds = 60)
+        @tasks.loop(seconds = 1)
         async def refresh_lcd(self):
-            time = time.strftime("%H:%M")
+            if time.strftime("%H:%M") == self.time:
+                return
+            
+            self.time = str(time.strftime("%H:%M"))
 
-            line1 = self.i_msg[0:16]
-            line2 = weather + ' ' + time
+            line1 = self.i_msg
+            line2 = self.weather + ' ' + self.time
             
             try:
                 self.display.text(f"{line1}", 1)
@@ -74,11 +78,10 @@ else:
                 current_temperature_celsiuis = str(round(current_temperature - 273.15))
                 feels_like_temp = main_info["feels_like"]
                 feels_like_temp_celsius = str(round(feels_like_temp - 273.15))
-                weather_details = api_json["weather"]
-                weather_description = weather_details[0]["description"]
+               # weather_details = api_json["weather"]
+               # weather_description = weather_details[0]["description"]
 
-                self.weather = f'{weather_description} {current_temperature_celsiuis}({feels_like_temp_celsius})'
-
+                self.weather = f'{current_temperature_celsiuis}({feels_like_temp_celsius})C'
                 return
             else:
                 print("Can't find the city you are looking for.")
