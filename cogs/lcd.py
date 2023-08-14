@@ -121,3 +121,16 @@ else:
                 await ctx.reply("LDC screen is off.")
             except Exception as e:
                 print(e)
+
+
+        @commands.command(  name = 'lcd_on',
+                            help = 'Turns the LCD display on.',
+                            brief = 'Turns the LCD display on.')
+        async def turn_on_lcd(self, ctx):
+            try:
+                #Send command to turn on the display(0x0C)
+                self.display.command(0x0C)
+
+                await ctx.reply("LDC screen is on.")
+            except Exception as e:
+                print(e)
