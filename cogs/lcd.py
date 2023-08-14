@@ -43,9 +43,8 @@ else:
             self.get_the_weather.start()
 
 
-        @tasks.loop(seconds = 60.0)
+        @tasks.loop(seconds = 60)
         async def refresh_lcd(self):
-            print("refresh")
             time = time.strftime("%H:%M")
 
             line1 = self.i_msg[0:16]
@@ -60,7 +59,7 @@ else:
                 pass
 
 
-        @tasks.loop(minutes = 30.0)
+        @tasks.loop(minutes = 10)
         async def get_the_weather(self):
             base_url = "http://api.openweathermap.org/data/2.5/weather?"
             language = "&lang=en"
