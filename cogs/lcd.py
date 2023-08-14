@@ -99,8 +99,8 @@ else:
                 await ctx.send(f"The message is longer than 16 symbols.")
                 self.i_msg = self.i_msg[0:16]
             
-            line1 = self.i_msg[0:16]
-            line2 = weather + time
+            line1 = self.i_msg
+            line2 = self.weather + ' ' self.time
             
             try:
                 self.display.text(f"{line1}", 1)
