@@ -110,6 +110,7 @@ else:
                 await ctx.send(f"The Display is off.")
                 return
 
+            self.i_msg = ''
             for arg in args:
                 self.i_msg += arg + " "
 
