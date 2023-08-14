@@ -126,6 +126,7 @@ else:
                 self.display.text(f"{line2}", 2)
 
                 await ctx.message.delete()
+                await ctx.send(f"The display currently shows:\n{line1}\n{line2}")
             except Exception as e:
                 print(e)
             finally:
