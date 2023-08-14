@@ -2,7 +2,7 @@ import discord
 import random
 import time
 import platform
-from discord.ext import commands
+from discord.ext import commands, tasks
 
 if platform.system() == "Windows":
     async def setup(bot):
