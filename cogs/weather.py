@@ -175,7 +175,6 @@ async def weather_comp_func(ctx, weather_jsons):
 
         descriptions.append(weather_details[0]["description"])
 
-
         city_names.append(weather_json["name"])
 
         wind_speeds.append(weather_json["wind"]["speed"])
