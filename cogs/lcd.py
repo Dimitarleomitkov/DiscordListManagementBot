@@ -28,8 +28,6 @@ else:
     class lcd(commands.Cog):
         def __init__(self, bot):
             self.bot = bot
-            self.refresh_lcd.start()
-            self.get_the_weather.start()
         
         display = LCD()
 
@@ -41,6 +39,8 @@ else:
         @commands.Cog.listener()
         async def on_ready(self):
             print("lcd module is loaded.")
+            self.refresh_lcd.start()
+            self.get_the_weather.start()
 
 
         @tasks.loop(seconds = 60.0)
@@ -117,7 +117,7 @@ else:
         async def turn_off_lcd(self, ctx):
             try:
                 #Send command to turn off the display
-                self.display.backlight = False
+                self.display.backlight(turn_on = False)
 
                 await ctx.reply("LDC screen is off.")
             except Exception as e:
@@ -130,7 +130,7 @@ else:
         async def turn_on_lcd(self, ctx):
             try:
                 #Send command to turn on the display
-                self.display.backlight = True
+                self.display.backlight(turn_on = True)
 
                 await ctx.reply("LDC screen is on.")
             except Exception as e:
