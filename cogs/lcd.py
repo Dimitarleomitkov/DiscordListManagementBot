@@ -56,7 +56,7 @@ else:
                 self.i_msg = days_of_week[time.localtime().tmwday]
 
             # Turn off the display at 23:30
-            if time.strftime("%H:%M") == "00:30":
+            if time.strftime("%H:%M") == "23:30":
                 self.display.backlight(turn_on = False)
 
             # Turn on the display at 07:00
