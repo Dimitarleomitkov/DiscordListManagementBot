@@ -214,7 +214,6 @@ class ttt(commands.Cog):
     @commands.Cog.listener()
     async def on_ready(self):
         print("Tic-Tac-Toe module is loaded.")
-        self.good_morning_message.start()
 
 
     @commands.command(  name = 'ttt',
