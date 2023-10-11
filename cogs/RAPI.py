@@ -12,7 +12,7 @@ async def setup(bot):
 class rAPI(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
-        self.animals_URL = 'https://api.animality.xyz/img/'
+        self.URL = 'https://api.animality.xyz/all/'
         self.options_animals = ("cat",
                                 "dog",
                                 "bird",
@@ -23,45 +23,30 @@ class rAPI(commands.Cog):
                                 "whale",
                                 "dolphin",
                                 "kangaroo",
-                                "bunny",
+                                "rabbit",
                                 "lion",
                                 "bear",
                                 "frog",
                                 "duck",
                                 "penguin",
                                 "axolotl",
-                                "capybara")
-        self.animal_facts_URL = 'https://api.animality.xyz/fact/'
-        self.options_animal_facts = ("cat",
-                                        "dog",
-                                        "bird",
-                                        "panda",
-                                        "redpanda",
-                                        "koala",
-                                        "fox",
-                                        "whale",
-                                        "dolphin",
-                                        "kangaroo",
-                                        "bunny",
-                                        "lion",
-                                        "bear",
-                                        "frog",
-                                        "duck",
-                                        "penguin",
-                                        "axolotl",
-                                        "capybara")
+                                "capybara",
+                                "hedgehog",
+                                "turtle",
+                                "narwhal",
+                                "squirrel",
+                                "fish",
+                                "horse")
 
 
     def get_animal_img(self, animal_parameter):
-        animal_img_url = requests.get(self.animals_URL + animal_parameter).json()["link"]
+        animal_img_url = requests.get(self.URL + animal_parameter).json()["image"]
 
         return animal_img_url
 
 
     def get_animal_fact(self, animal_parameter):
-        URL = self.animal_facts_URL
-
-        animal_fact = requests.get(URL + animal_parameter).json()["fact"]
+        animal_fact = requests.get(self.URL + animal_parameter).json()["fact"]
 
         return animal_fact
 
@@ -74,14 +59,16 @@ class rAPI(commands.Cog):
     @commands.command(  name = 'ranimal',
                         help = 'The bot will get a random animal picture. Supports\
                                 "cat", "dog", "bird", "panda", "redpanda", "koala",\
-                                "fox", "whale", "dolphin", "kangaroo", "bunny",\
+                                "fox", "whale", "dolphin", "kangaroo", "rabbit",\
                                 "lion", "bear", "frog", "duck", "penguin", "axolotl",\
-                                "capybara"',
+                                "capybara", "hedgehog", "turtle", "narwhal",\
+                                "squirrel", "fish", "horse"',
                         brief = '- Gets a random animal picture. Supports\
                                 "cat", "dog", "bird", "panda", "redpanda", "koala",\
-                                "fox", "whale", "dolphin", "kangaroo", "bunny",\
+                                "fox", "whale", "dolphin", "kangaroo", "rabbit",\
                                 "lion", "bear", "frog", "duck", "penguin", "axolotl",\
-                                "capybara"')
+                                "capybara", "hedgehog", "turtle", "narwhal",\
+                                "squirrel", "fish", "horse"')
     async def animal_img(self, ctx, animal = None):
         if not animal in self.options_animals:
             await ctx.send(f"I can only give you pictures of {self.options_animals}")
@@ -111,14 +98,16 @@ class rAPI(commands.Cog):
     @commands.command(  name = 'animal_fact',
                         help = 'The bot will get a random animal fact. Supports\
                                 "cat", "dog", "bird", "panda", "redpanda", "koala",\
-                                "fox", "whale", "dolphin", "kangaroo", "bunny",\
+                                "fox", "whale", "dolphin", "kangaroo", "rabbit",\
                                 "lion", "bear", "frog", "duck", "penguin", "axolotl",\
-                                "capybara"',
+                                "capybara", "hedgehog", "turtle", "narwhal",\
+                                "squirrel", "fish", "horse"',
                         brief = '- Gets a random animal fact. Supports\
                                 "cat", "dog", "bird", "panda", "redpanda", "koala",\
-                                "fox", "whale", "dolphin", "kangaroo", "bunny",\
+                                "fox", "whale", "dolphin", "kangaroo", "rabbit",\
                                 "lion", "bear", "frog", "duck", "penguin", "axolotl",\
-                                "capybara"')
+                                "capybara", "hedgehog", "turtle", "narwhal",\
+                                "squirrel", "fish", "horse"')
     async def animal_fact(self, ctx, animal = None):
         if not animal in self.options_animal_facts:
             await ctx.send(f"I can only give you facts about {self.options_animal_facts}")
@@ -133,10 +122,10 @@ class rAPI(commands.Cog):
 
         if animal == "fox":
             bot_msg = await text_chan.send(f"{ctx.author.mention}, a fun fact about {animal}es:\n{animal_fact}")
-        elif animal == "bunny":
-            bot_msg = await text_chan.send(f"{ctx.author.mention}, a fun fact about bunnies:\n{animal_fact}")
         elif animal == "axolotl":
             bot_msg = await text_chan.send(f"{ctx.author.mention}, a fun fact about axolots:\n{animal_fact}")
+        elif animal == "fish":
+            bot_msg = await text_chan.send(f"{ctx.author.mention}, a fun fact about fish:\n{animal_fact}")
         else:
             bot_msg = await text_chan.send(f"{ctx.author.mention}, a fun fact about {animal}s:\n{animal_fact}")
 
