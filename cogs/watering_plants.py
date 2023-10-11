@@ -1,6 +1,7 @@
 import discord
 from discord.ext import commands
 import platform
+import asyncio
 
 if platform.system() != "Windows":
     import RPi.GPIO as GPIO
@@ -29,7 +30,7 @@ class watering_plants(commands.Cog):
                         help = 'Turns the water pump ON.',
                         brief = '- water pump ON!')
     async def pump_on_func (self, ctx):
-        if ctx.author != "undeadko#0":
+        if ctx.author.name != "undeadko":
             return
 
         # Pin Definitons:
