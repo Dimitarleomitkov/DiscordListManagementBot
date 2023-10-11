@@ -109,13 +109,13 @@ class rAPI(commands.Cog):
                                 "capybara", "hedgehog", "turtle", "narwhal",\
                                 "squirrel", "fish", "horse"')
     async def animal_fact(self, ctx, animal = None):
-        if not animal in self.options_animal_facts:
-            await ctx.send(f"I can only give you facts about {self.options_animal_facts}")
+        if not animal in self.options_animals:
+            await ctx.send(f"I can only give you facts about {self.options_animals}")
 
         await ctx.message.delete()
 
         if animal is None:
-            animal = random.choice(self.options_animal_facts)
+            animal = random.choice(self.options_animals)
 
         animal_fact = self.get_animal_fact(animal)
         text_chan = self.bot.get_channel(1066377134836285480)
