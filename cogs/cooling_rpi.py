@@ -37,7 +37,7 @@ class cooling_rpi(commands.Cog):
         GPIO.setup(fan_GPIO, GPIO.OUT) # pin 12 set as output
 
         # Pin control:
-        GPIO.output(18, GPIO.HIGH)
+        GPIO.output(fan_GPIO, GPIO.HIGH)
 
         await ctx.send("I am cool now <:aniguns:965289318585352212>")
 
@@ -51,10 +51,10 @@ class cooling_rpi(commands.Cog):
 
         # Pin Setup:
         GPIO.setmode(GPIO.BCM) # BCM for naming BOARD for pin number
-        GPIO.setup(fan_GPIO, GPIO.OUT) # PWM pin set as output
+        GPIO.setup(fan_GPIO, GPIO.OUT) # pin 12 set as output
 
         # Pin control:
-        GPIO.output(18, GPIO.LOW)
+        GPIO.output(fan_GPIO, GPIO.LOW)
 
         await ctx.message.add_reaction("<:loshoMiE:448905900279857153>")
 
