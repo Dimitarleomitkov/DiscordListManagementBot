@@ -29,6 +29,9 @@ class watering_plants(commands.Cog):
                         help = 'Turns the water pump ON.',
                         brief = '- water pump ON!')
     async def pump_on_func (self, ctx):
+        if ctx.author != "undeadko#0":
+            return
+
         # Pin Definitons:
         pump_GPIO = 23 # GPIO 23 PIN 16
 
@@ -39,8 +42,9 @@ class watering_plants(commands.Cog):
         # Pin control:
         GPIO.output(pump_GPIO, GPIO.HIGH)
 
-        await ctx.send("I am watering the basil <:shower:> <:potted_plant:>")
+        await ctx.send("I am watering the basil :potted_plant: :shower: ")
         await asyncio.sleep(2)
+        await self.pump_off_func(ctx)
 
 
 
