@@ -40,7 +40,7 @@ class quotes(commands.Cog):
 
     @tasks.loop(time = the_time)
     async def good_morning_message(self):
-        text_chan = self.bot.get_channel(337156974754136064)
+        text_chan = self.bot.get_channel(1066377134836285480)
         quote = self.get_quote()
  
         await text_chan.send(f"Good Morning Everyone!")
