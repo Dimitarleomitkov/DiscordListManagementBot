@@ -56,7 +56,7 @@ class watering_plants(commands.Cog):
         # Pin control:
         GPIO.output(pump_GPIO, GPIO.HIGH)
 
-        await asyncio.sleep(seconds)
+        await asyncio.sleep(int(seconds))
         await self.pump_off()
 
 
@@ -86,11 +86,17 @@ class watering_plants(commands.Cog):
             ctx.reply("https://tenor.com/view/baka-anime-gif-12908346")
             return
 
-        if not isinstance(seconds, int):
+        try:
+            int_seconds = int(seconds)
+        except Exception as e:
+            print(e)
+
+        if not isinstance(int_seconds, int):
             if seconds == None:
                 seconds = 3
             else:
-                ctx.reply("Give me an integer for seconds.")
+                await ctx.reply("Give me an integer for seconds.")
+                return
 
         await ctx.send("I am watering the basil :potted_plant: :shower: ")
         await self.water_plant(seconds)
