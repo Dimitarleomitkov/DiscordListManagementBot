@@ -38,11 +38,15 @@ class watering_plants(commands.Cog):
 
 
     the_time = get_the_time()
+    auto_time_ON_seconds = 15   # The amount of time the pump is on every morning
 
 
     @tasks.loop(time = the_time)
     async def auto_watering(self):
-        await self.water_plant(6)
+        await self.water_plant(15)
+
+        self.the_time = get_the_time()
+        self.auto_watering.change_interval(time = self.the_time)
 
 
     async def water_plant(self, seconds):
@@ -111,5 +115,27 @@ class watering_plants(commands.Cog):
 
         await ctx.send("The water pump is OFF.")
 
+
+    @commands.command(  name = 'auto_water_length',
+                        help = 'Change the amount of time the water pump is ON every morning.',
+                        brief = '- Change the amount of time the water pump is ON every morning.')
+    async def set_auto_water_duration_func(self, ctx, seconds):
+        if ctx.author.name != "undeadko":
+            ctx.reply("You do not have permission to do this.")
+            ctx.reply("https://tenor.com/view/baka-anime-gif-12908346")
+            return
+
+        try:
+            int_seconds = int(seconds)
+        except Exception as e:
+            print(e)
+
+        if not isinstance(int_seconds, int):        
+            await ctx.reply("Give me an integer for seconds.")
+            return
+
+        self.auto_time_ON_seconds = int_seconds
+
+        await ctx.send(f"The morning automatic watering time was set to {self.auto_time_ON_seconds} seconds.")
 
 
