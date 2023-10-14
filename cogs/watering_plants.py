@@ -43,7 +43,7 @@ class watering_plants(commands.Cog):
 
     @tasks.loop(time = the_time)
     async def auto_watering(self):
-        await self.water_plant(15)
+        await self.water_plant(self.auto_time_ON_seconds)
 
         self.the_time = get_the_time()
         self.auto_watering.change_interval(time = self.the_time)
@@ -79,6 +79,7 @@ class watering_plants(commands.Cog):
     @commands.Cog.listener()
     async def on_ready(self):
         print("watering_plants module is loaded.")
+        self.auto_watering.start()
 
 
     @commands.command(  name = 'wpump_on',
