@@ -27,8 +27,8 @@ def get_the_time():
         BG_tz = dateutils.tzoffset('UTC', 60 * 60 * 2)
 
     return datetime.time(hour = 8,\
-                        minute = 00,\
-                        second = 00,\
+                        minute = 2,\
+                        second = 30,\
                         tzinfo = BG_tz)
 
 
@@ -38,7 +38,7 @@ class watering_plants(commands.Cog):
 
 
     the_time = get_the_time()
-    auto_time_ON_seconds = 15   # The amount of time the pump is on every morning
+    auto_time_ON_seconds = 9   # The amount of time the pump is on every morning
 
 
     @tasks.loop(time = the_time)
