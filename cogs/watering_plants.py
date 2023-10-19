@@ -133,6 +133,7 @@ class watering_plants(commands.Cog):
                         brief = '- messages OFF!')
     async def messages_off_func(self, ctx):
         self.messages = False
+        await ctx.send("The messages are OFF.")
 
 
     @commands.command(  name = 'wpump_messages_on',
@@ -140,6 +141,7 @@ class watering_plants(commands.Cog):
                         brief = '- messages ON!')
     async def messages_off_func(self, ctx):
         self.messages = True
+        await ctx.send("The messages are ON.")
 
 
     @commands.command(  name = 'auto_water_length',
