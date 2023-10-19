@@ -45,7 +45,7 @@ class watering_plants(commands.Cog):
     @tasks.loop(time = the_time)
     async def auto_watering(self):
         # Get my user ID
-        user = bot.get_user(337156733774594048)
+        user = self.bot.get_user(337156733774594048)
 
         try:
             await self.water_plant(self.auto_time_ON_seconds)
@@ -58,7 +58,8 @@ class watering_plants(commands.Cog):
         if self.messages == False:
             return
 
-        await user.send(f"I watered the basil :potted_plant: :shower: ({tim.localtime()})")
+        current_time = tim.localtime()
+        await user.send(f"I watered the basil :potted_plant: :shower: ({time.strftime('%H:%M:%S %d-%m-%Y %A', current_time)})")
 
 
     async def water_plant(self, seconds):
