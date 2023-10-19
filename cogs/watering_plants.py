@@ -38,15 +38,27 @@ class watering_plants(commands.Cog):
 
 
     the_time = get_the_time()
-    auto_time_ON_seconds = 9   # The amount of time the pump is on every morning
+    auto_time_ON_seconds = 7   # The amount of time the pump is on every morning
+    messages = True
 
 
     @tasks.loop(time = the_time)
     async def auto_watering(self):
-        await self.water_plant(self.auto_time_ON_seconds)
+        # Get my user ID
+        user = bot.get_user(337156733774594048)
+
+        try:
+            await self.water_plant(self.auto_time_ON_seconds)
+        except Exception as e:
+            await user.send("[watering_plants]", e)
 
         self.the_time = get_the_time()
         self.auto_watering.change_interval(time = self.the_time)
+
+        if self.messages == False:
+            return
+
+        await user.send(f"I watered the basil :potted_plant: :shower: ({tim.localtime()})")
 
 
     async def water_plant(self, seconds):
@@ -107,7 +119,6 @@ class watering_plants(commands.Cog):
         await self.water_plant(seconds)
 
 
-
     @commands.command(  name = 'wpump_off',
                         help = 'Turns the water pump OFF.',
                         brief = '- water pump OFF!')
@@ -115,6 +126,20 @@ class watering_plants(commands.Cog):
         await self.pump_off()
 
         await ctx.send("The water pump is OFF.")
+
+
+    @commands.command(  name = 'wpump_messages_off',
+                        help = 'Turns the messages OFF.',
+                        brief = '- messages OFF!')
+    async def messages_off_func(self, ctx):
+        self.messages = False
+
+
+    @commands.command(  name = 'wpump_messages_on',
+                        help = 'Turns the messages ON.',
+                        brief = '- messages ON!')
+    async def messages_off_func(self, ctx):
+        self.messages = True
 
 
     @commands.command(  name = 'auto_water_length',
