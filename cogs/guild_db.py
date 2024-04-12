@@ -2,7 +2,7 @@ import discord
 from datetime import datetime
 from discord.ext import commands
 import sqlalchemy as db
-from sqlalchemy import (create_engine, MetaData, Table, Column, Integer, String, DateTime, Boolean, select, text, delete, update)
+from sqlalchemy import (desc, create_engine, MetaData, Table, Column, Integer, String, DateTime, Boolean, select, text, delete, update)
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.ext.asyncio import AsyncSession, create_async_engine
 from sqlalchemy.orm import sessionmaker
@@ -79,7 +79,7 @@ class gdb(commands.Cog):
                 async with async_session() as session:
                     async with session.begin():
                         # Get the the players
-                        players = await session.execute(select(Player).order_by(Player.rank, Player.name))
+                        players = await session.execute(select(Player).order_by(desc(Player.rank), Player.name))
 
                 players_list = []
                 for player in players:
@@ -136,7 +136,7 @@ class gdb(commands.Cog):
             async with async_session() as session:
                 async with session.begin():
                     # Get the the players
-                    players = await session.execute(select(Player).order_by(Player.rank, Player.name))
+                    players = await session.execute(select(Player).order_by(desc(Player.rank), Player.name))
 
             i = 0
             for player in players:
