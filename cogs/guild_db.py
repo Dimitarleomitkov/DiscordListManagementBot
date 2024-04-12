@@ -79,7 +79,7 @@ class gdb(commands.Cog):
                 async with async_session() as session:
                     async with session.begin():
                         # Get the the players
-                        players = await session.execute(select(Player).order_by(Player.name))
+                        players = await session.execute(select(Player).order_by(Player.rank, Player.name))
 
                 players_list = []
                 for player in players:
@@ -183,7 +183,7 @@ class gdb(commands.Cog):
 
         # try:
         #     async_session = sessionmaker(self.engine, expire_on_commit = False, class_ = AsyncSession)
-            
+
         #     async with async_session() as session:
         #         async with session.begin():
         #             # Query all players
