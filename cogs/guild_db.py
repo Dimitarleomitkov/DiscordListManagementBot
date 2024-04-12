@@ -136,7 +136,7 @@ class gdb(commands.Cog):
             async with async_session() as session:
                 async with session.begin():
                     # Get the the players
-                    players = await session.execute(select(Player).order_by(Player.name))
+                    players = await session.execute(select(Player).order_by(Player.rank, Player.name))
 
             i = 0
             for player in players:
