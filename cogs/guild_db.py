@@ -1,5 +1,5 @@
 import discord
-from datetime import datetime
+import datetime
 from discord.ext import commands
 import sqlalchemy as db
 from sqlalchemy import (desc, create_engine, MetaData, Table, Column, Integer, String, DateTime, Boolean, select, text, delete, update)
