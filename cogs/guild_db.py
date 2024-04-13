@@ -10,6 +10,8 @@ from sqlalchemy.orm import selectinload
 from itertools import islice
 import re
 import greenlet
+import git as Git
+import pathlib
 
 
 Base = declarative_base()
@@ -342,51 +344,64 @@ class gdb(commands.Cog):
             await ctx.send(f"[DELETE_PLAYER] {e}")
 
 
-    # async def file_backup_of_list(self, ctx):
-    #     try:
-    #         async_session = sessionmaker(self.engine, expire_on_commit = False, class_ = AsyncSession)
-    #         async with async_session() as session:
-    #             async with session.begin():
-    #                 # Get the the players
-    #                 players = await session.execute(select(Player).order_by(desc(Player.rank), Player.name))
+    async def git_push_backup(self, ctx):
+        try:
+            git_dir = pathlib.Path(__file__).parent.parent.resolve()
+            git_dir.git.add(update = True)
 
-    #         i = 0
-    #         for player in players:
-    #             if i >= 10:
-    #                 break
+            commit_msg = f"Guild Database backup {datetime.datetime.now(datetime.timezone.utc)}"
 
-    #             rank = int(re.search(r'\d+', player[0].rank).group())
-    #             embed.add_field(name = f"{i + 1}. {player[0].name}",
-    #                             value = f"Rank: {rank} (Points: {player[0].points})",
-    #                             inline = False)
-    #             i += 1
+            git_dir.index.commit(commit_msg)
+            origin = git_dir.remote(name = 'origin')
+            msg = origin.push()
 
-    #         self.embed_list_message = await ctx.send(embed = embed)
-    #         self.start_of_list = 0
-    #         self.end_of_list = 10
+            await text_chan.send(str(msg))
 
-    #         emojis = ['⬅️', '➡️'];
-    #         for my_emoji in emojis:
-    #             await self.embed_list_message.add_reaction(my_emoji)
-
-    #     except Exception as e:
-    #         await ctx.send(f"[RAIDERS_BACKUP] {e}")
+        except Exception as e:
+            await ctx.send(f"[GDB_GIT_BU] {e}")
 
 
-    # @commands.command(  name = 'gdb_backup',
-    #                     help = 'The bot will create a copy of the gdb list.',
-    #                     brief = '- Creates a copy of the gdb list.')
-    # @commands.has_any_role("Guild Master", "Officer")
-    # async def backup(self, ctx):
-    #     try:
-    #         channel = ctx.channel
-    #         channel_id = ctx.channel.id
+    async def file_backup_of_list(self, ctx):
+        try:
+            async_session = sessionmaker(self.engine, expire_on_commit = False, class_ = AsyncSession)
+            async with async_session() as session:
+                async with session.begin():
+                    # Get the the players
+                    players = await session.execute(select(Player).order_by(desc(Player.rank), Player.name))
 
-    #         if channel_id != 1217479171811315712 and channel_id != 1197166207200153641:
-    #             proper_channel = self.bot.get_channel(1217479171811315712)
-    #             await channel.send(f"This command can only be executed in {proper_channel.mention}")
-    #             return
+            buffer_str = ""
 
-    #         await self.file_backup_of_list(ctx)
-    #     except Exception as e:
-    #         await ctx.send(f"[BACKUP_GDB] {e}")
+            i = 0
+            for player in players:
+                rank = int(re.search(r'\d+', player[0].rank).group())
+                buffer_str += f"{i + 1}. {player[0].name}\nRank: {rank} (Points: {player[0].points})\n\n"
+
+                i += 1
+
+            bu_file = open(f"gdb_bu-{datetime.datetime.now(datetime.timezone.utc)}.txt", "w")
+            bu_file.write(buffer_str)
+            bu_file.close()
+
+            await self.git_push_backup(ctx)
+
+        except Exception as e:
+            await ctx.send(f"[RAIDERS_BACKUP] {e}")
+
+
+    @commands.command(  name = 'gdb_backup',
+                        help = 'The bot will create a copy of the gdb list.',
+                        brief = '- Creates a copy of the gdb list.')
+    @commands.has_any_role("Guild Master", "Officer")
+    async def backup(self, ctx):
+        try:
+            channel = ctx.channel
+            channel_id = ctx.channel.id
+
+            if channel_id != 1217479171811315712 and channel_id != 1197166207200153641:
+                proper_channel = self.bot.get_channel(1217479171811315712)
+                await channel.send(f"This command can only be executed in {proper_channel.mention}")
+                return
+
+            await self.file_backup_of_list(ctx)
+        except Exception as e:
+            await ctx.send(f"[BACKUP_GDB] {e}")
