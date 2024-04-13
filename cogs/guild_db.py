@@ -75,7 +75,7 @@ class gdb(commands.Cog):
                 payload.user_id != 842664616676687912 and\
                 (payload.emoji.name == '⬅️' or payload.emoji.name == '➡️'):
 
-                async_session = sessionmaker(self.engine, expire_on_commit = False, class_ = AsyncSession)
+                async_session = sessionmaker(self.engine, expire_on_commit = True, class_ = AsyncSession)
                 async with async_session() as session:
                     async with session.begin():
                         # Get the the players
@@ -132,7 +132,7 @@ class gdb(commands.Cog):
                                 color = discord.Colour(0xe67e22))
             embed.set_thumbnail(url = "https://cdn.wowclassicdb.com/npcs/6491.png")
 
-            async_session = sessionmaker(self.engine, expire_on_commit = False, class_ = AsyncSession)
+            async_session = sessionmaker(self.engine, expire_on_commit = True, class_ = AsyncSession)
             async with async_session() as session:
                 async with session.begin():
                     # Get the the players
@@ -182,7 +182,7 @@ class gdb(commands.Cog):
 
 
         # try:
-        #     async_session = sessionmaker(self.engine, expire_on_commit = False, class_ = AsyncSession)
+        #     async_session = sessionmaker(self.engine, expire_on_commit = True, class_ = AsyncSession)
 
         #     async with async_session() as session:
         #         async with session.begin():
@@ -206,7 +206,7 @@ class gdb(commands.Cog):
                 await ctx.send("Please enter a name. Example:\n >gdb_add_new_player undeadkoBot")
                 return
 
-            async_session = sessionmaker(self.engine, expire_on_commit = False, class_ = AsyncSession)
+            async_session = sessionmaker(self.engine, expire_on_commit = True, class_ = AsyncSession)
             async with async_session() as session:
                 async with session.begin():
                     session.add(Player(name = player_name))
@@ -233,7 +233,7 @@ class gdb(commands.Cog):
             player_name = args[0]
             awarded_points = args[1]
 
-            async_session = sessionmaker(self.engine, expire_on_commit = False, class_ = AsyncSession)
+            async_session = sessionmaker(self.engine, expire_on_commit = True, class_ = AsyncSession)
             async with async_session() as session:
                 async with session.begin():
                     # Get the points of the player
@@ -285,7 +285,7 @@ class gdb(commands.Cog):
             players_names = args[:-1]
             awarded_points = args[-1]
 
-            async_session = sessionmaker(self.engine, expire_on_commit = False, class_ = AsyncSession)
+            async_session = sessionmaker(self.engine, expire_on_commit = True, class_ = AsyncSession)
 
             for player_name in players_names:
                 async with async_session() as session:
@@ -329,7 +329,7 @@ class gdb(commands.Cog):
                 await ctx.send(f"Invalid name {player_name}. Example:\n >gdb_delete_player undeadkoBot")
                 return
 
-            async_session = sessionmaker(self.engine, expire_on_commit = False, class_ = AsyncSession)
+            async_session = sessionmaker(self.engine, expire_on_commit = True, class_ = AsyncSession)
             async with async_session() as session:
                 async with session.begin():
                     # Delete the player
@@ -340,3 +340,53 @@ class gdb(commands.Cog):
                     await ctx.send(f"{player_name} deleted from the data base.")
         except Exception as e:
             await ctx.send(f"[DELETE_PLAYER] {e}")
+
+
+    # async def file_backup_of_list(self, ctx):
+    #     try:
+    #         async_session = sessionmaker(self.engine, expire_on_commit = True, class_ = AsyncSession)
+    #         async with async_session() as session:
+    #             async with session.begin():
+    #                 # Get the the players
+    #                 players = await session.execute(select(Player).order_by(desc(Player.rank), Player.name))
+
+    #         i = 0
+    #         for player in players:
+    #             if i >= 10:
+    #                 break
+
+    #             rank = int(re.search(r'\d+', player[0].rank).group())
+    #             embed.add_field(name = f"{i + 1}. {player[0].name}",
+    #                             value = f"Rank: {rank} (Points: {player[0].points})",
+    #                             inline = False)
+    #             i += 1
+
+    #         self.embed_list_message = await ctx.send(embed = embed)
+    #         self.start_of_list = 0
+    #         self.end_of_list = 10
+
+    #         emojis = ['⬅️', '➡️'];
+    #         for my_emoji in emojis:
+    #             await self.embed_list_message.add_reaction(my_emoji)
+
+    #     except Exception as e:
+    #         await ctx.send(f"[RAIDERS_BACKUP] {e}")
+
+
+    # @commands.command(  name = 'gdb_backup',
+    #                     help = 'The bot will create a copy of the gdb list.',
+    #                     brief = '- Creates a copy of the gdb list.')
+    # @commands.has_any_role("Guild Master", "Officer")
+    # async def backup(self, ctx):
+    #     try:
+    #         channel = ctx.channel
+    #         channel_id = ctx.channel.id
+
+    #         if channel_id != 1217479171811315712 and channel_id != 1197166207200153641:
+    #             proper_channel = self.bot.get_channel(1217479171811315712)
+    #             await channel.send(f"This command can only be executed in {proper_channel.mention}")
+    #             return
+
+    #         await self.file_backup_of_list(ctx)
+    #     except Exception as e:
+    #         await ctx.send(f"[BACKUP_GDB] {e}")
