@@ -382,7 +382,8 @@ class gdb(commands.Cog):
             bu_file.write(buffer_str)
             bu_file.close()
 
-            await self.git_push_backup(ctx)
+            # await self.git_push_backup(ctx)
+            await ctx.send(f"Backup complete!")
 
         except Exception as e:
             await ctx.send(f"[RAIDERS_BACKUP] {e}")
