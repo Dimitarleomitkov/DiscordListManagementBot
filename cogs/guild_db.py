@@ -38,7 +38,7 @@ async def setup(bot):
 class gdb(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
-        self.engine = create_async_engine(f"sqlite+aiosqlite:///WipeMeBabyOneMoreTime.db", echo = True)
+        self.engine = create_async_engine(f"sqlite+aiosqlite:///home/pi/undeadko/GitProjects/DiscordListManagementBot/WipeMeBabyOneMoreTime.db", echo = True)
         self.embed_list_message = None
         self.start_of_list = 0
         self.end_of_list = 0
@@ -181,20 +181,6 @@ class gdb(commands.Cog):
             await self.raiders_list(ctx)
         except Exception as e:
             await ctx.send(f"[LIST] {e}")
-
-
-        # try:
-        #     async_session = sessionmaker(self.engine, expire_on_commit = False, class_ = AsyncSession)
-
-        #     async with async_session() as session:
-        #         async with session.begin():
-        #             # Query all players
-        #             players = await session.execute(select(Player).order_by(Player.name))
-
-        #             for player in players:
-        #                 await ctx.send(f"{player[0].name:<12} | {player[0].points:<5} | {player[0].rank:<5}")
-        # except Exception as e:
-        #     await ctx.send(f"[LIST] {e}")
 
 
     @commands.command(  name = 'gdb_add_new_player',
@@ -363,7 +349,7 @@ class gdb(commands.Cog):
 
     def file_backup_of_list(self, players):
         try:
-            bu_file = open(f"gdb_bu-{datetime.datetime.now(datetime.timezone.utc)}.txt", "w")
+            bu_file = open(f"/home/pi/undeadko/GitProjects/DiscordListManagementBot/gdb_bu-{datetime.datetime.now(datetime.timezone.utc)}.txt", "w")
             bu_file.write(players)
             bu_file.close()
 
