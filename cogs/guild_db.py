@@ -364,7 +364,7 @@ class gdb(commands.Cog):
     def file_backup_of_list(self, players):
         try:
             bu_file = open(f"gdb_bu-{datetime.datetime.now(datetime.timezone.utc)}.txt", "w")
-            bu_file.write(buffer_str)
+            bu_file.write(players)
             bu_file.close()
 
             # await self.git_push_backup(ctx)
