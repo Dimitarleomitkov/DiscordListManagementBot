@@ -361,32 +361,16 @@ class gdb(commands.Cog):
             await ctx.send(f"[GDB_GIT_BU] {e}")
 
 
-    async def file_backup_of_list(self, ctx):
+    def file_backup_of_list(self, players):
         try:
-            async_session = sessionmaker(self.engine, expire_on_commit = False, class_ = AsyncSession)
-            async with async_session() as session:
-                async with session.begin():
-                    # Get the the players
-                    players = await session.execute(select(Player).order_by(desc(Player.rank), Player.name))
-
-            buffer_str = ""
-
-            i = 0
-            for player in players:
-                rank = int(re.search(r'\d+', player[0].rank).group())
-                buffer_str += f"{i + 1}. {player[0].name}\nRank: {rank} (Points: {player[0].points})\n\n"
-
-                i += 1
-
             bu_file = open(f"gdb_bu-{datetime.datetime.now(datetime.timezone.utc)}.txt", "w")
             bu_file.write(buffer_str)
             bu_file.close()
 
             # await self.git_push_backup(ctx)
-            await ctx.send(f"Backup complete!")
 
         except Exception as e:
-            await ctx.send(f"[RAIDERS_BACKUP] {e}")
+            print(f"[RAIDERS_BACKUP] {e}")
 
 
     @commands.command(  name = 'gdb_backup',
@@ -403,6 +387,24 @@ class gdb(commands.Cog):
                 await channel.send(f"This command can only be executed in {proper_channel.mention}")
                 return
 
-            await self.file_backup_of_list(ctx)
+
+            async_session = sessionmaker(self.engine, expire_on_commit = False, class_ = AsyncSession)
+            async with async_session() as session:
+                async with session.begin():
+                    # Get the the players
+                    players = await session.execute(select(Player).order_by(desc(Player.rank), Player.name))
+
+            buffer_str = ""
+
+            i = 0
+            for player in players:
+                rank = int(re.search(r'\d+', player[0].rank).group())
+                buffer_str += f"{i + 1}. {player[0].name}\nRank: {rank} (Points: {player[0].points})\n\n"
+
+                i += 1
+
+            self.file_backup_of_list(buffer_str)
+
+            await ctx.send(f"Backup complete!")
         except Exception as e:
             await ctx.send(f"[BACKUP_GDB] {e}")
