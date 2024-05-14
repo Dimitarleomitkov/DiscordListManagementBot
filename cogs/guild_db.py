@@ -12,6 +12,7 @@ import re
 import greenlet
 import git as Git
 import pathlib
+import asyncio
 
 
 Base = declarative_base()
@@ -190,7 +191,8 @@ class gdb(commands.Cog):
     @commands.has_any_role("Guild Master", "Officer")
     async def add_player(self, ctx, player_name = None):
         try:
-            self.bot.get_command("gdb_backup").callback(self = self, ctx = ctx)
+            bu_cmd = self.bot.get_command("gdb_backup").callback(self = self, ctx = ctx)
+            asyncio.run(bu_cmd)
 
             if player_name == None:
                 await ctx.send("Please enter a name. Example:\n >gdb_add_new_player undeadkoBot")
@@ -212,7 +214,8 @@ class gdb(commands.Cog):
     @commands.has_any_role("Guild Master", "Officer")
     async def add_points(self, ctx, *args):
         try:
-            self.bot.get_command("gdb_backup").callback(self = self, ctx = ctx)
+            bu_cmd = self.bot.get_command("gdb_backup").callback(self = self, ctx = ctx)
+            asyncio.run(bu_cmd)
 
             if len(args) != 2 or any(chr.isdigit() for chr in args[1]) == False:
                 await ctx.send(f"Please enter a full command with <name> <points>. Example:\n >gdb_award_points undeadkoBot 1")
@@ -265,7 +268,8 @@ class gdb(commands.Cog):
     @commands.has_any_role("Guild Master", "Officer")
     async def add_points_to_players(self, ctx, *args):
         try:
-            self.bot.get_command("gdb_backup").callback(self = self, ctx = ctx)
+            bu_cmd = self.bot.get_command("gdb_backup").callback(self = self, ctx = ctx)
+            asyncio.run(bu_cmd)
 
             if len(args) < 3 or any(chr.isdigit() for chr in args[-1]) == False:
                 await ctx.send(f"Please enter a full command with <name> <name2> ... <points>. Example:\n >gdb_award_points undeadkoBot Undeadko 1")
@@ -315,7 +319,8 @@ class gdb(commands.Cog):
     @commands.has_any_role("Guild Master", "Officer")
     async def delete_player(self, ctx, player_name = None):
         try:
-            self.bot.get_command("gdb_backup").callback(self = self, ctx = ctx)
+            bu_cmd = self.bot.get_command("gdb_backup").callback(self = self, ctx = ctx)
+            asyncio.run(bu_cmd)
 
             if player_name == None:
                 await ctx.send("Please enter a name. Example:\n >gdb_delete_player undeadkoBot")
