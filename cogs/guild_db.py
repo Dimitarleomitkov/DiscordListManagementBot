@@ -190,8 +190,6 @@ class gdb(commands.Cog):
     @commands.has_any_role("Guild Master", "Officer")
     async def add_player(self, ctx, player_name = None):
         try:
-            self.backup(ctx)
-
             if player_name == None:
                 await ctx.send("Please enter a name. Example:\n >gdb_add_new_player undeadkoBot")
                 return
@@ -212,8 +210,6 @@ class gdb(commands.Cog):
     @commands.has_any_role("Guild Master", "Officer")
     async def add_points(self, ctx, *args):
         try:
-            self.backup(ctx)
-
             if len(args) != 2 or any(chr.isdigit() for chr in args[1]) == False:
                 await ctx.send(f"Please enter a full command with <name> <points>. Example:\n >gdb_award_points undeadkoBot 1")
                 return
@@ -265,8 +261,6 @@ class gdb(commands.Cog):
     @commands.has_any_role("Guild Master", "Officer")
     async def add_points_to_players(self, ctx, *args):
         try:
-            self.backup(ctx)
-
             if len(args) < 3 or any(chr.isdigit() for chr in args[-1]) == False:
                 await ctx.send(f"Please enter a full command with <name> <name2> ... <points>. Example:\n >gdb_award_points undeadkoBot Undeadko 1")
                 return
@@ -315,8 +309,6 @@ class gdb(commands.Cog):
     @commands.has_any_role("Guild Master", "Officer")
     async def delete_player(self, ctx, player_name = None):
         try:
-            self.backup(ctx)
-
             if player_name == None:
                 await ctx.send("Please enter a name. Example:\n >gdb_delete_player undeadkoBot")
                 return
@@ -338,17 +330,6 @@ class gdb(commands.Cog):
             await ctx.send(f"[DELETE_PLAYER] {e}")
 
 
-    def file_backup_of_list(self, players):
-        try:
-            bu_file = open(f"/home/pi/undeadko/GitProjects/DiscordListManagementBot/gdb_bu-{datetime.datetime.now(datetime.timezone.utc)}.txt", "w")
-            bu_file.write(players)
-            bu_file.close()
-
-            # await self.git_push_backup(ctx)
-
-        except Exception as e:
-            print(f"[RAIDERS_BACKUP] {e}")
-
     async def git_push_backup(self, ctx):
         try:
             git_dir = pathlib.Path(__file__).parent.parent.resolve()
@@ -364,6 +345,18 @@ class gdb(commands.Cog):
 
         except Exception as e:
             await ctx.send(f"[GDB_GIT_BU] {e}")
+
+
+    def file_backup_of_list(self, players):
+        try:
+            bu_file = open(f"/home/pi/undeadko/GitProjects/DiscordListManagementBot/gdb_bu-{datetime.datetime.now(datetime.timezone.utc)}.txt", "w")
+            bu_file.write(players)
+            bu_file.close()
+
+            # await self.git_push_backup(ctx)
+
+        except Exception as e:
+            print(f"[RAIDERS_BACKUP] {e}")
 
 
     @commands.command(  name = 'gdb_backup',
@@ -397,7 +390,6 @@ class gdb(commands.Cog):
                 i += 1
 
             self.file_backup_of_list(buffer_str)
-            # self.file_backup_of_list(ctx)
 
             await ctx.send(f"Backup complete!")
         except Exception as e:
