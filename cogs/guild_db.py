@@ -391,8 +391,10 @@ class gdb(commands.Cog):
                     # Get the the players
                     players = await session.execute(select(Player).order_by(desc(Player.rank), Player.name))
 
-            # Include the command name at the beginning of buffer_str
-            buffer_str = f"Command: {ctx.message.content}\n\n"
+            # Include the command name, author, and timestamp in buffer_str
+            author = ctx.author.name
+            timestamp = ctx.message.created_at.strftime("%Y-%m-%d %H:%M:%S")
+            buffer_str = f"Command: {ctx.message.content}\nAuthor: {author}\nTimestamp: {timestamp}\n\n"
 
             i = 0
             for player in players:
