@@ -10,8 +10,8 @@ from sqlalchemy.orm import selectinload
 from itertools import islice
 from github import Github
 import re
-import greenlet
 import pathlib
+from keys import GITHUB_TOKEN
 
 
 Base = declarative_base()
@@ -348,35 +348,33 @@ class gdb(commands.Cog):
             bu_file.write(players)
             bu_file.close()
 
-            # await self.git_push_backup(ctx)
-
         except Exception as e:
             print(f"[RAIDERS_BACKUP] {e}")
 
     async def git_push_backup(self, ctx, players):
-    try:
-        # Replace these values with your GitHub username, repository name, and access token
-        github_username = 'undeadko'
-        repo_name = 'DiscordListManagementBot'
-        access_token = GITHUB_TOKEN
+        try:
+            # Replace these values with your GitHub username, repository name, and access token
+            github_username = 'undeadko'
+            repo_name = 'DiscordListManagementBot'
+            access_token = GITHUB_TOKEN
 
-        git_dir = pathlib.Path(__file__).parent.parent.resolve()
-        commit_msg = f"Guild Database backup {datetime.datetime.now(datetime.timezone.utc)}"
+            git_dir = pathlib.Path(__file__).parent.parent.resolve()
+            commit_msg = f"Guild Database backup {datetime.datetime.now(datetime.timezone.utc)}"
 
-        # Authenticate with GitHub using access token
-        g = Github(access_token)
-        user = g.get_user(github_username)
-        repo = user.get_repo(repo_name)
+            # Authenticate with GitHub using access token
+            g = Github(access_token)
+            user = g.get_user(github_username)
+            repo = user.get_repo(repo_name)
 
-        # Create a new file in the repository
-        file_path = f"backups/gdb_backup.txt"
-        content = players
-        repo.create_file(file_path, commit_msg, content)
+            # Create a new file in the repository
+            file_path = f"backups/gdb_backup.txt"
+            content = players
+            repo.create_file(file_path, commit_msg, content)
 
-        await ctx.send("Backup uploaded to GitHub successfully!")
+            await ctx.send("Backup uploaded to GitHub successfully!")
 
-    except Exception as e:
-        await ctx.send(f"Error uploading backup to GitHub: {e}")
+        except Exception as e:
+            await ctx.send(f"Error uploading backup to GitHub: {e}")
 
 
     @commands.command(  name = 'gdb_backup',
@@ -413,7 +411,7 @@ class gdb(commands.Cog):
                 i += 1
 
             self.file_backup_of_list(buffer_str)
-            self.file_backup_of_list(ctx, buffer_str)
+            self.git_push_backup(ctx, buffer_str)
 
             await ctx.send(f"Backup complete!")
         except Exception as e:
