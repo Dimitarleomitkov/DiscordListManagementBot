@@ -8,9 +8,9 @@ from sqlalchemy.ext.asyncio import AsyncSession, create_async_engine
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.orm import selectinload
 from itertools import islice
+from github import Github
 import re
 import greenlet
-import git as Git
 import pathlib
 
 
@@ -353,21 +353,30 @@ class gdb(commands.Cog):
         except Exception as e:
             print(f"[RAIDERS_BACKUP] {e}")
 
-    async def git_push_backup(self, ctx):
-        try:
-            git_dir = pathlib.Path(__file__).parent.parent.resolve()
-            git_dir.git.add(update = True)
+    async def git_push_backup(self, ctx, players):
+    try:
+        # Replace these values with your GitHub username, repository name, and access token
+        github_username = 'undeadko'
+        repo_name = 'DiscordListManagementBot'
+        access_token = GITHUB_TOKEN
 
-            commit_msg = f"Guild Database backup {datetime.datetime.now(datetime.timezone.utc)}"
+        git_dir = pathlib.Path(__file__).parent.parent.resolve()
+        commit_msg = f"Guild Database backup {datetime.datetime.now(datetime.timezone.utc)}"
 
-            git_dir.index.commit(commit_msg)
-            origin = git_dir.remote(name = 'origin')
-            msg = origin.push()
+        # Authenticate with GitHub using access token
+        g = Github(access_token)
+        user = g.get_user(github_username)
+        repo = user.get_repo(repo_name)
 
-            await text_chan.send(str(msg))
+        # Create a new file in the repository
+        file_path = f"backups/gdb_backup.txt"
+        content = players
+        repo.create_file(file_path, commit_msg, content)
 
-        except Exception as e:
-            await ctx.send(f"[GDB_GIT_BU] {e}")
+        await ctx.send("Backup uploaded to GitHub successfully!")
+
+    except Exception as e:
+        await ctx.send(f"Error uploading backup to GitHub: {e}")
 
 
     @commands.command(  name = 'gdb_backup',
@@ -404,7 +413,7 @@ class gdb(commands.Cog):
                 i += 1
 
             self.file_backup_of_list(buffer_str)
-            # self.file_backup_of_list(ctx)
+            self.file_backup_of_list(ctx, buffer_str)
 
             await ctx.send(f"Backup complete!")
         except Exception as e:
