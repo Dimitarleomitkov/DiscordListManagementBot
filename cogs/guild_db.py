@@ -354,7 +354,7 @@ class gdb(commands.Cog):
     async def git_push_backup(self, ctx, players):
         try:
             # Replace these values with your GitHub username, repository name, and access token
-            github_username = 'undeadko'
+            github_username = 'Dimitarleomitkov'
             repo_name = 'DiscordListManagementBot'
             access_token = GITHUB_TOKEN
 
