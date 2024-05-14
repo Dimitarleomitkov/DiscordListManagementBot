@@ -1,0 +1,193 @@
+Command: >gdb_backup
+Author: undeadko
+Timestamp: 2024-05-14 12:09:25
+
+1. Brittlebones
+Rank: 2 (Points: 21)
+
+2. Crispycow
+Rank: 2 (Points: 17)
+
+3. Deathhowler
+Rank: 2 (Points: 16)
+
+4. Drexfehla
+Rank: 2 (Points: 12)
+
+5. Harybolseq
+Rank: 2 (Points: 19)
+
+6. Lildanny
+Rank: 2 (Points: 21)
+
+7. Llsa
+Rank: 2 (Points: 11)
+
+8. Marygold
+Rank: 2 (Points: 21)
+
+9. Ninym
+Rank: 2 (Points: 18)
+
+10. Pelo
+Rank: 2 (Points: 12)
+
+11. Plaguethrill
+Rank: 2 (Points: 21)
+
+12. Savkay
+Rank: 2 (Points: 18)
+
+13. Shurikan
+Rank: 2 (Points: 15)
+
+14. Snacky
+Rank: 2 (Points: 18)
+
+15. Syphon
+Rank: 2 (Points: 22)
+
+16. Trashlord
+Rank: 2 (Points: 17)
+
+17. Undeadko
+Rank: 2 (Points: 24)
+
+18. Zanarkand
+Rank: 2 (Points: 23)
+
+19. Anrii
+Rank: 1 (Points: 5)
+
+20. Dakhar
+Rank: 1 (Points: 9)
+
+21. Efras
+Rank: 1 (Points: 6)
+
+22. Fatalny
+Rank: 1 (Points: 9)
+
+23. Golge
+Rank: 1 (Points: 5)
+
+24. Layzel
+Rank: 1 (Points: 8)
+
+25. Ozbourne
+Rank: 1 (Points: 9)
+
+26. Redactedhunt
+Rank: 1 (Points: 5)
+
+27. Shakir
+Rank: 1 (Points: 7)
+
+28. Squanchmagix
+Rank: 1 (Points: 8)
+
+29. Uzivalacgasa
+Rank: 1 (Points: 6)
+
+30. Aight
+Rank: 0 (Points: 2)
+
+31. Asgardicus
+Rank: 0 (Points: 2)
+
+32. Chinafarmer
+Rank: 0 (Points: 2)
+
+33. Croupier
+Rank: 0 (Points: 1)
+
+34. Dantexx
+Rank: 0 (Points: 3)
+
+35. Darthvaderr
+Rank: 0 (Points: 2)
+
+36. Delnar
+Rank: 0 (Points: 1)
+
+37. Drainyou
+Rank: 0 (Points: 4)
+
+38. Dzidzafidza
+Rank: 0 (Points: 4)
+
+39. Fanicos
+Rank: 0 (Points: 1)
+
+40. Getthestones
+Rank: 0 (Points: 1)
+
+41. Groomer
+Rank: 0 (Points: 1)
+
+42. Halfblood
+Rank: 0 (Points: 1)
+
+43. Korco
+Rank: 0 (Points: 1)
+
+44. Kurdal
+Rank: 0 (Points: 3)
+
+45. Lockomotip
+Rank: 0 (Points: 1)
+
+46. Lucy
+Rank: 0 (Points: 1)
+
+47. Luxii
+Rank: 0 (Points: 3)
+
+48. Miazga
+Rank: 0 (Points: 1)
+
+49. Mikoyan
+Rank: 0 (Points: 1)
+
+50. Moir
+Rank: 0 (Points: 1)
+
+51. Naturabeef
+Rank: 0 (Points: 1)
+
+52. Nextplease
+Rank: 0 (Points: 1)
+
+53. Otot
+Rank: 0 (Points: 1)
+
+54. Pachammama
+Rank: 0 (Points: 3)
+
+55. Qwerti
+Rank: 0 (Points: 1)
+
+56. Scrubby
+Rank: 0 (Points: 3)
+
+57. Seted
+Rank: 0 (Points: 4)
+
+58. Spella
+Rank: 0 (Points: 2)
+
+59. Trafficjam
+Rank: 0 (Points: 1)
+
+60. Vaalslam
+Rank: 0 (Points: 4)
+
+61. Volkor
+Rank: 0 (Points: 4)
+
+62. Wardunk
+Rank: 0 (Points: 1)
+
+63. Zangra
+Rank: 0 (Points: 1)
+
