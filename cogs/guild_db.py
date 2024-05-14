@@ -411,7 +411,7 @@ class gdb(commands.Cog):
                 i += 1
 
             self.file_backup_of_list(buffer_str)
-            self.git_push_backup(ctx, buffer_str)
+            await self.git_push_backup(ctx, buffer_str)
 
             await ctx.send(f"Backup complete!")
         except Exception as e:
