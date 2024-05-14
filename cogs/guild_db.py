@@ -391,7 +391,8 @@ class gdb(commands.Cog):
                     # Get the the players
                     players = await session.execute(select(Player).order_by(desc(Player.rank), Player.name))
 
-            buffer_str = ""
+            # Include the command name at the beginning of buffer_str
+            buffer_str = f"Command: {ctx.message.content}\n\n"
 
             i = 0
             for player in players:
