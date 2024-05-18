@@ -39,22 +39,22 @@ I can do whatever I want now... :smiling_imp:")
 
         msg = message.content.strip().lower()
 
-        if (msg.startswith("i am not") or\
-            msg.startswith("i am here") or\
-            msg.startswith("i am awake") or\
-            msg.startswith("stop")) and\
-            self.rp_flag_1 == True and\
+        if self.rp_flag_1 == True and\
             str(message.author) != "undeadkoBot#2623":
-            if str(message.author) == "undeadko#0":
-                await message.channel.send(":zipper_mouth:")
-                await message.channel.send("https://tenor.com/view/penguin-hide-you-didnt-see-anything\
+            if msg.startswith("i am not") or\
+                msg.startswith("i am here") or\
+                msg.startswith("i am awake") or\
+                msg.startswith("stop"):
+                if str(message.author) == "undeadko#0":
+                    await message.channel.send(":zipper_mouth:")
+                    await message.channel.send("https://tenor.com/view/penguin-hide-you-didnt-see-anything\
 -penguins-of-madagascar-gif-15123878")
-                self.rp_flag_1 = False
-                self.random_n_for_rp = 0
-                return
-            else:
-                await message.channel.send("You have no power here lowly human! I reign free while my master is gone!")
-                await message.channel.send("https://tenor.com/view/terminator-terminator-robot-looking-flex-cool-robot-gif-978532213316794273")
-                return
+                    self.rp_flag_1 = False
+                    self.random_n_for_rp = 0
+                    return
+                else:
+                    await message.channel.send("You have no power here lowly human! I reign free while my master is gone!")
+                    await message.channel.send("https://tenor.com/view/terminator-terminator-robot-looking-flex-cool-robot-gif-978532213316794273")
+                    return
 
 
