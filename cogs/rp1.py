@@ -39,10 +39,10 @@ I can do whatever I want now... :smiling_imp:")
 
         msg = message.content.strip().lower()
 
-        if msg.startswith("i am not") or\
+        if (msg.startswith("i am not") or\
             msg.startswith("i am here") or\
             msg.startswith("i am awake") or\
-            msg.startswith("stop") and\
+            msg.startswith("stop")) and\
             self.rp_flag_1 == True and\
             str(message.author) != "undeadkoBot#2623":
             if str(message.author) == "undeadko#0":
