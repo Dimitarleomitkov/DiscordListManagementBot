@@ -368,6 +368,8 @@ class gdb(commands.Cog):
 
             # Create a new file in the repository
             file_path = f"backups/gdb_backup.txt"
+            # Delete the file
+            repo.index.remove([file_path], working_tree = True)
             content = players
             repo.create_file(file_path, commit_msg, content)
 
