@@ -363,13 +363,19 @@ class gdb(commands.Cog):
 
             # Authenticate with GitHub using access token
             g = Github(access_token)
-            user = g.get_user(github_username)
-            repo = user.get_repo(repo_name)
+            repo = g.get_user(github_username).get_repo(repo_name)
+
+             # Define the file path in the repository
+            file_path = f"backups/gdb_backup.txt"
+            # Get the file's current content and SHA to delete it
+            try:
+                contents = repo.get_contents(file_path)
+                repo.delete_file(contents.path, f"Deleting old backup: {commit_msg}", contents.sha)
+            except:
+                # If the file does not exist, continue
+                pass
 
             # Create a new file in the repository
-            file_path = f"backups/gdb_backup.txt"
-            # Delete the file
-            repo.index.remove([file_path], working_tree = True)
             content = players
             repo.create_file(file_path, commit_msg, content)
 
