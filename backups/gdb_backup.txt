@@ -1,0 +1,241 @@
+Command: >gdb_award_points_to_players Undeadko Gloduk Sarbek Hunteraz Shurikan Shakir Aight Pelo Ozbourne Gramp Drexfehla Layzel Topskiypavel Marygold Savkay Kasselakhs Yarlo Lunastre Harybolseq Ninym Firedom Plaguethrill Doughnutt Llsa 2
+Author: undeadko
+Timestamp: 2024-06-22 22:46:37
+
+1. Undeadko
+Rank: 3 (Points: 44)
+
+2. Plaguethrill
+Rank: 3 (Points: 40)
+
+3. Marygold
+Rank: 3 (Points: 38)
+
+4. Lildanny
+Rank: 3 (Points: 37)
+
+5. Savkay
+Rank: 3 (Points: 37)
+
+6. Zanarkand
+Rank: 3 (Points: 36)
+
+7. Harybolseq
+Rank: 3 (Points: 35)
+
+8. Brittlebones
+Rank: 3 (Points: 34)
+
+9. Shurikan
+Rank: 3 (Points: 31)
+
+10. Crispycow
+Rank: 3 (Points: 28)
+
+11. Ninym
+Rank: 3 (Points: 28)
+
+12. Pelo
+Rank: 3 (Points: 28)
+
+13. Snacky
+Rank: 3 (Points: 28)
+
+14. Llsa
+Rank: 3 (Points: 25)
+
+15. Golge
+Rank: 2 (Points: 21)
+
+16. Deathhowler
+Rank: 2 (Points: 19)
+
+17. Drexfehla
+Rank: 2 (Points: 19)
+
+18. Shakir
+Rank: 2 (Points: 19)
+
+19. Gloduk
+Rank: 2 (Points: 17)
+
+20. Trashlord
+Rank: 2 (Points: 17)
+
+21. Efras
+Rank: 2 (Points: 14)
+
+22. Ozbourne
+Rank: 2 (Points: 14)
+
+23. Sarbek
+Rank: 2 (Points: 14)
+
+24. Squanchmagix
+Rank: 2 (Points: 14)
+
+25. Layzel
+Rank: 2 (Points: 12)
+
+26. Luxii
+Rank: 2 (Points: 12)
+
+27. Anrii
+Rank: 2 (Points: 11)
+
+28. Fehladrex
+Rank: 2 (Points: 11)
+
+29. Hao
+Rank: 2 (Points: 11)
+
+30. Korco
+Rank: 1 (Points: 9)
+
+31. Drainyou
+Rank: 1 (Points: 7)
+
+32. Seted
+Rank: 1 (Points: 7)
+
+33. Topskiypavel
+Rank: 1 (Points: 7)
+
+34. Bosca
+Rank: 1 (Points: 6)
+
+35. Kasselakhs
+Rank: 1 (Points: 6)
+
+36. Lunastre
+Rank: 1 (Points: 6)
+
+37. Shtrix
+Rank: 1 (Points: 6)
+
+38. Uzivalacgasa
+Rank: 1 (Points: 6)
+
+39. Aight
+Rank: 1 (Points: 5)
+
+40. Dzidzafidza
+Rank: 1 (Points: 5)
+
+41. Lucy
+Rank: 1 (Points: 5)
+
+42. Redactedhunt
+Rank: 1 (Points: 5)
+
+43. Gramp
+Rank: 0 (Points: 4)
+
+44. Kurdal
+Rank: 0 (Points: 4)
+
+45. Popaz
+Rank: 0 (Points: 4)
+
+46. Tigotura
+Rank: 0 (Points: 4)
+
+47. Vaalslam
+Rank: 0 (Points: 4)
+
+48. Dantexx
+Rank: 0 (Points: 3)
+
+49. Delnar
+Rank: 0 (Points: 3)
+
+50. Kneesauce
+Rank: 0 (Points: 3)
+
+51. Pachammama
+Rank: 0 (Points: 3)
+
+52. Slepko
+Rank: 0 (Points: 3)
+
+53. Cuthorn
+Rank: 0 (Points: 2)
+
+54. Darthvaderr
+Rank: 0 (Points: 2)
+
+55. Getthestones
+Rank: 0 (Points: 2)
+
+56. Hisamoo
+Rank: 0 (Points: 2)
+
+57. Khumsock
+Rank: 0 (Points: 2)
+
+58. Naturabeef
+Rank: 0 (Points: 2)
+
+59. Nextplease
+Rank: 0 (Points: 2)
+
+60. Piekaboo
+Rank: 0 (Points: 2)
+
+61. Shammynator
+Rank: 0 (Points: 2)
+
+62. Spella
+Rank: 0 (Points: 2)
+
+63. Yarlo
+Rank: 0 (Points: 2)
+
+64. Atomicfire
+Rank: 0 (Points: 1)
+
+65. Doughnutt
+Rank: 0 (Points: 1)
+
+66. Fanicos
+Rank: 0 (Points: 1)
+
+67. Greceisfake
+Rank: 0 (Points: 1)
+
+68. Groomer
+Rank: 0 (Points: 1)
+
+69. Halfblood
+Rank: 0 (Points: 1)
+
+70. Jesabel
+Rank: 0 (Points: 1)
+
+71. Lockomotip
+Rank: 0 (Points: 1)
+
+72. Makilije
+Rank: 0 (Points: 1)
+
+73. Mikoyan
+Rank: 0 (Points: 1)
+
+74. Moir
+Rank: 0 (Points: 1)
+
+75. Otot
+Rank: 0 (Points: 1)
+
+76. Qwerti
+Rank: 0 (Points: 1)
+
+77. Trafficjam
+Rank: 0 (Points: 1)
+
+78. Valence
+Rank: 0 (Points: 1)
+
+79. Wardunk
+Rank: 0 (Points: 1)
+
