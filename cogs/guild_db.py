@@ -8,10 +8,13 @@ from sqlalchemy.ext.asyncio import AsyncSession, create_async_engine
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.orm import selectinload
 from itertools import islice
-from github import Github
 import re
 import pathlib
 from keys import GITHUB_TOKEN
+
+import platform
+if platform.system() != "Windows":
+    from github import Github
 
 
 Base = declarative_base()
