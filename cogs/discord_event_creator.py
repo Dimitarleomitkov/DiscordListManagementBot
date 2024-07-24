@@ -68,9 +68,9 @@ class event_create(commands.Cog):
     async def on_message(self, message):
         # print(message.author.id)
         # print(message.content)
-
-        if message.author.id == 579155972115660803 and message.content.startswith("<@&1221852616812793968>"):
-        # if message.author.id == 579155972115660803:
+        
+        # if message.author.id == 579155972115660803 and message.content.startswith("<@&1221852616812793968>"):
+        if message.author.id == 579155972115660803:
             await self.create_and_update_event(message)
 
 
