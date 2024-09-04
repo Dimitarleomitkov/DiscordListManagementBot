@@ -25,7 +25,6 @@ class event_create(commands.Cog):
         try:
             if message.embeds[0].fields[0].name != 'Loading...':
                 # Construct the message URL
-                message_url = f"https://discord.com/channels/{message.guild.id}/{message.channel.id}/{message.id}"
 
                 embed = message.embeds[0].to_dict()
 
@@ -34,15 +33,20 @@ class event_create(commands.Cog):
                 leader = re.search(r"<:LeaderX:\d+> (\w+)", embed["fields"][0]["value"]).group(1)
 
                 # Extract description
-                description = re.search(r"\*\*\n\n(.*)", embed.get("description", "No description provided"), re.DOTALL).group(1)
+                # description = re.search(r"\*\*\n\n(.*)", embed.get("description", "No description provided"), re.DOTALL).group(1)
+                description = embed["description"]
 
                 # Extract timestamps using regex
                 start_time_match = re.search(r'__<t:(\d+):t>', embed["fields"][1]["value"])
                 end_time_match = re.search(r'- <t:(\d+):t>', embed["fields"][1]["value"])
+                
+                message_url = embed["url"]
 
                 if start_time_match and end_time_match:
                     start_time_unix = int(start_time_match.group(1))
                     end_time_unix = int(end_time_match.group(1))
+                    print(start_time_unix)
+                    print(end_time_unix)
 
                     # Convert Unix timestamps to datetime objects
                     start_time = datetime.utcfromtimestamp(start_time_unix).strftime('%Y-%m-%dT%H:%M:%S')
@@ -112,7 +116,8 @@ class event_create(commands.Cog):
             "entity_type": 3,  # EXTERNAL
             "entity_metadata": {
                 "location": location
-            }
+            },
+            "cover_image": "https://media.discordapp.net/attachments/798988571649638401/1265603925017362433/jorge-jacinto-c-thun.png?ex=66a21d01&is=66a0cb81&hm=e8a5b525b3e810e4ff6f32dbfdd926ec5f9b0f8597aa044e1dbdb0a1fb132d18&=&format=webp&quality=lossless&width=1168&height=701"
         }
         async with aiohttp.ClientSession() as session:
             async with session.post(url, headers=headers, data=json.dumps(payload)) as response:
