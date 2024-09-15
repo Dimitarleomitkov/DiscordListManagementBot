@@ -27,26 +27,33 @@ class event_create(commands.Cog):
                 # Construct the message URL
 
                 embed = message.embeds[0].to_dict()
+                print(embed)
 
                 # Extract leader
                 leader_emoji = "🏳️"
                 leader = re.search(r"<:LeaderX:\d+> (\w+)", embed["fields"][0]["value"]).group(1)
+                # print(leader)
 
                 # Extract description
                 # description = re.search(r"\*\*\n\n(.*)", embed.get("description", "No description provided"), re.DOTALL).group(1)
-                description = embed["description"]
+                if embed["description"].startswith("**"):
+                    description = re.search(r'(🎰 Raid Composition[\s\S]*)', embed["description"], re.DOTALL).group(1)
+                else:
+                    description = embed["description"]
+                # print(description)
 
                 # Extract timestamps using regex
                 start_time_match = re.search(r'__<t:(\d+):t>', embed["fields"][1]["value"])
                 end_time_match = re.search(r'- <t:(\d+):t>', embed["fields"][1]["value"])
                 
-                message_url = embed["url"]
+                message_url = f"https://discord.com/channels/{message.guild.id}/{message.channel.id}/{message.id}"
+                # print(message_url)
 
                 if start_time_match and end_time_match:
                     start_time_unix = int(start_time_match.group(1))
                     end_time_unix = int(end_time_match.group(1))
-                    print(start_time_unix)
-                    print(end_time_unix)
+                    # print(start_time_unix)
+                    # print(end_time_unix)
 
                     # Convert Unix timestamps to datetime objects
                     start_time = datetime.utcfromtimestamp(start_time_unix).strftime('%Y-%m-%dT%H:%M:%S')
