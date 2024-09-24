@@ -1,0 +1,331 @@
+Command: >gdb_delete_player Seted
+Author: undeadko
+Timestamp: 2024-09-24 15:24:40
+
+1. Harybolseq
+Rank: 4 (Points: 63)
+
+2. Undeadko
+Rank: 4 (Points: 58)
+
+3. Marygold
+Rank: 4 (Points: 55)
+
+4. Plaguethrill
+Rank: 3 (Points: 49)
+
+5. Savkay
+Rank: 3 (Points: 49)
+
+6. Llsa
+Rank: 3 (Points: 41)
+
+7. Shakir
+Rank: 3 (Points: 37)
+
+8. Zanarkand
+Rank: 3 (Points: 36)
+
+9. Pelo
+Rank: 3 (Points: 35)
+
+10. Golge
+Rank: 3 (Points: 32)
+
+11. Hao
+Rank: 3 (Points: 28)
+
+12. Sarbek
+Rank: 3 (Points: 28)
+
+13. Gloduk
+Rank: 3 (Points: 27)
+
+14. Thepain
+Rank: 3 (Points: 26)
+
+15. Ozbourne
+Rank: 2 (Points: 21)
+
+16. Efras
+Rank: 2 (Points: 17)
+
+17. Trashlord
+Rank: 2 (Points: 17)
+
+18. Dnl
+Rank: 2 (Points: 15)
+
+19. Corporis
+Rank: 2 (Points: 14)
+
+20. Broenor
+Rank: 2 (Points: 13)
+
+21. Firedom
+Rank: 2 (Points: 13)
+
+22. Tigotura
+Rank: 2 (Points: 13)
+
+23. Ironlung
+Rank: 2 (Points: 12)
+
+24. Luxii
+Rank: 2 (Points: 12)
+
+25. Peanutman
+Rank: 2 (Points: 12)
+
+26. Aligatora
+Rank: 2 (Points: 11)
+
+27. Anrii
+Rank: 2 (Points: 11)
+
+28. Mxii
+Rank: 2 (Points: 11)
+
+29. Zhiva
+Rank: 2 (Points: 11)
+
+30. Gnevni
+Rank: 2 (Points: 10)
+
+31. Krupis
+Rank: 2 (Points: 10)
+
+32. Nikita
+Rank: 2 (Points: 10)
+
+33. Shtrix
+Rank: 2 (Points: 10)
+
+34. Vinland
+Rank: 2 (Points: 10)
+
+35. Vojkan
+Rank: 2 (Points: 10)
+
+36. Leko
+Rank: 1 (Points: 9)
+
+37. Savkelinjo
+Rank: 1 (Points: 9)
+
+38. Bende
+Rank: 1 (Points: 8)
+
+39. Engemeet
+Rank: 1 (Points: 8)
+
+40. Grimdorc
+Rank: 1 (Points: 8)
+
+41. Drainyou
+Rank: 1 (Points: 7)
+
+42. Redband
+Rank: 1 (Points: 7)
+
+43. Seted
+Rank: 1 (Points: 7)
+
+44. Yarlo
+Rank: 1 (Points: 7)
+
+45. Tankjoo
+Rank: 1 (Points: 6)
+
+46. Unheilig
+Rank: 1 (Points: 6)
+
+47. Hekim
+Rank: 1 (Points: 5)
+
+48. Mikecoxlong
+Rank: 1 (Points: 5)
+
+49. Redactedhunt
+Rank: 1 (Points: 5)
+
+50. Surthur
+Rank: 1 (Points: 5)
+
+51. Booster
+Rank: 0 (Points: 4)
+
+52. Coldworld
+Rank: 0 (Points: 4)
+
+53. Drexile
+Rank: 0 (Points: 4)
+
+54. Khumsock
+Rank: 0 (Points: 4)
+
+55. Kurdal
+Rank: 0 (Points: 4)
+
+56. Makilije
+Rank: 0 (Points: 4)
+
+57. Pupkos
+Rank: 0 (Points: 4)
+
+58. Sardaukar
+Rank: 0 (Points: 4)
+
+59. Carfy
+Rank: 0 (Points: 3)
+
+60. Dantexx
+Rank: 0 (Points: 3)
+
+61. Delnar
+Rank: 0 (Points: 3)
+
+62. Djinstonik
+Rank: 0 (Points: 3)
+
+63. Greceisfake
+Rank: 0 (Points: 3)
+
+64. Pachammama
+Rank: 0 (Points: 3)
+
+65. Pwnx
+Rank: 0 (Points: 3)
+
+66. Schamany
+Rank: 0 (Points: 3)
+
+67. Bakljava
+Rank: 0 (Points: 2)
+
+68. Boosteer
+Rank: 0 (Points: 2)
+
+69. Bridgette
+Rank: 0 (Points: 2)
+
+70. Cuthorn
+Rank: 0 (Points: 2)
+
+71. Darthvaderr
+Rank: 0 (Points: 2)
+
+72. Drexfeathers
+Rank: 0 (Points: 2)
+
+73. Exemplaris
+Rank: 0 (Points: 2)
+
+74. Frostbeam
+Rank: 0 (Points: 2)
+
+75. Frostpoison
+Rank: 0 (Points: 2)
+
+76. Getthestones
+Rank: 0 (Points: 2)
+
+77. Gravekeeper
+Rank: 0 (Points: 2)
+
+78. Hisamoo
+Rank: 0 (Points: 2)
+
+79. Hunteraz
+Rank: 0 (Points: 2)
+
+80. Itaxi
+Rank: 0 (Points: 2)
+
+81. Kittkatt
+Rank: 0 (Points: 2)
+
+82. Labor
+Rank: 0 (Points: 2)
+
+83. Moowl
+Rank: 0 (Points: 2)
+
+84. Nextplease
+Rank: 0 (Points: 2)
+
+85. Piekaboo
+Rank: 0 (Points: 2)
+
+86. Predatur
+Rank: 0 (Points: 2)
+
+87. Shammynator
+Rank: 0 (Points: 2)
+
+88. Sofkica
+Rank: 0 (Points: 2)
+
+89. Somefatguy
+Rank: 0 (Points: 2)
+
+90. Spilfer
+Rank: 0 (Points: 2)
+
+91. Aiksjrs
+Rank: 0 (Points: 1)
+
+92. Biskhalifa
+Rank: 0 (Points: 1)
+
+93. Deadspike
+Rank: 0 (Points: 1)
+
+94. Dugless
+Rank: 0 (Points: 1)
+
+95. Elementboss
+Rank: 0 (Points: 1)
+
+96. Fanicos
+Rank: 0 (Points: 1)
+
+97. Groomer
+Rank: 0 (Points: 1)
+
+98. Gusy
+Rank: 0 (Points: 1)
+
+99. Hardines
+Rank: 0 (Points: 1)
+
+100. Jesabel
+Rank: 0 (Points: 1)
+
+101. Kydral
+Rank: 0 (Points: 1)
+
+102. Mikoyan
+Rank: 0 (Points: 1)
+
+103. Orai
+Rank: 0 (Points: 1)
+
+104. Otot
+Rank: 0 (Points: 1)
+
+105. Radheart
+Rank: 0 (Points: 1)
+
+106. Shamanisa
+Rank: 0 (Points: 1)
+
+107. Slothunt
+Rank: 0 (Points: 1)
+
+108. Valence
+Rank: 0 (Points: 1)
+
+109. Waack
+Rank: 0 (Points: 1)
+
