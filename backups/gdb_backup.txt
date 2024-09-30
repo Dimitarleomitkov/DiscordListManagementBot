@@ -1,0 +1,268 @@
+Command: >gdb_delete_player Booster
+Author: undeadko
+Timestamp: 2024-09-30 07:23:26
+
+1. Harybolseq
+Rank: 4 (Points: 65)
+
+2. Undeadko
+Rank: 4 (Points: 60)
+
+3. Marygold
+Rank: 4 (Points: 55)
+
+4. Plaguethrill
+Rank: 3 (Points: 49)
+
+5. Savkay
+Rank: 3 (Points: 49)
+
+6. Llsa
+Rank: 3 (Points: 41)
+
+7. Shakir
+Rank: 3 (Points: 39)
+
+8. Zanarkand
+Rank: 3 (Points: 36)
+
+9. Pelo
+Rank: 3 (Points: 35)
+
+10. Golge
+Rank: 3 (Points: 32)
+
+11. Sarbek
+Rank: 3 (Points: 31)
+
+12. Hao
+Rank: 3 (Points: 29)
+
+13. Thepain
+Rank: 3 (Points: 29)
+
+14. Gloduk
+Rank: 3 (Points: 27)
+
+15. Ozbourne
+Rank: 3 (Points: 26)
+
+16. Dnl
+Rank: 2 (Points: 20)
+
+17. Efras
+Rank: 2 (Points: 19)
+
+18. Trashlord
+Rank: 2 (Points: 17)
+
+19. Aligatora
+Rank: 2 (Points: 16)
+
+20. Mxii
+Rank: 2 (Points: 16)
+
+21. Zhiva
+Rank: 2 (Points: 16)
+
+22. Ironlung
+Rank: 2 (Points: 15)
+
+23. Peanutman
+Rank: 2 (Points: 15)
+
+24. Tigotura
+Rank: 2 (Points: 15)
+
+25. Corporis
+Rank: 2 (Points: 14)
+
+26. Bende
+Rank: 2 (Points: 13)
+
+27. Broenor
+Rank: 2 (Points: 13)
+
+28. Firedom
+Rank: 2 (Points: 13)
+
+29. Krupis
+Rank: 2 (Points: 13)
+
+30. Vinland
+Rank: 2 (Points: 13)
+
+31. Gnevni
+Rank: 2 (Points: 12)
+
+32. Luxii
+Rank: 2 (Points: 12)
+
+33. Anrii
+Rank: 2 (Points: 11)
+
+34. Grimdorc
+Rank: 2 (Points: 11)
+
+35. Leko
+Rank: 2 (Points: 11)
+
+36. Nikita
+Rank: 2 (Points: 11)
+
+37. Hekim
+Rank: 2 (Points: 10)
+
+38. Shtrix
+Rank: 2 (Points: 10)
+
+39. Vojkan
+Rank: 2 (Points: 10)
+
+40. Savkelinjo
+Rank: 1 (Points: 9)
+
+41. Boosteer
+Rank: 1 (Points: 8)
+
+42. Engemeet
+Rank: 1 (Points: 8)
+
+43. Drainyou
+Rank: 1 (Points: 7)
+
+44. Itaxi
+Rank: 1 (Points: 7)
+
+45. Redband
+Rank: 1 (Points: 7)
+
+46. Sardaukar
+Rank: 1 (Points: 7)
+
+47. Yarlo
+Rank: 1 (Points: 7)
+
+48. Tankjoo
+Rank: 1 (Points: 6)
+
+49. Unheilig
+Rank: 1 (Points: 6)
+
+50. Frostpoison
+Rank: 1 (Points: 5)
+
+51. Surthur
+Rank: 1 (Points: 5)
+
+52. Gusy
+Rank: 0 (Points: 4)
+
+53. Kurdal
+Rank: 0 (Points: 4)
+
+54. Makilije
+Rank: 0 (Points: 4)
+
+55. Pupkos
+Rank: 0 (Points: 4)
+
+56. Gotchaa
+Rank: 0 (Points: 3)
+
+57. Alminzz
+Rank: 0 (Points: 2)
+
+58. Bakljava
+Rank: 0 (Points: 2)
+
+59. Booster
+Rank: 0 (Points: 2)
+
+60. Bridgette
+Rank: 0 (Points: 2)
+
+61. Cuthorn
+Rank: 0 (Points: 2)
+
+62. Exemplaris
+Rank: 0 (Points: 2)
+
+63. Frostbeam
+Rank: 0 (Points: 2)
+
+64. Getthestones
+Rank: 0 (Points: 2)
+
+65. Gravekeeper
+Rank: 0 (Points: 2)
+
+66. Kittkatt
+Rank: 0 (Points: 2)
+
+67. Labor
+Rank: 0 (Points: 2)
+
+68. Maguso
+Rank: 0 (Points: 2)
+
+69. Moowl
+Rank: 0 (Points: 2)
+
+70. Nextplease
+Rank: 0 (Points: 2)
+
+71. Pokoloco
+Rank: 0 (Points: 2)
+
+72. Resplandor
+Rank: 0 (Points: 2)
+
+73. Ristory
+Rank: 0 (Points: 2)
+
+74. Shammynator
+Rank: 0 (Points: 2)
+
+75. Spilfer
+Rank: 0 (Points: 2)
+
+76. Aiksjrs
+Rank: 0 (Points: 1)
+
+77. Deadspike
+Rank: 0 (Points: 1)
+
+78. Elementboss
+Rank: 0 (Points: 1)
+
+79. Fanicos
+Rank: 0 (Points: 1)
+
+80. Groomer
+Rank: 0 (Points: 1)
+
+81. Hardines
+Rank: 0 (Points: 1)
+
+82. Kittkat
+Rank: 0 (Points: 1)
+
+83. Kydral
+Rank: 0 (Points: 1)
+
+84. Orai
+Rank: 0 (Points: 1)
+
+85. Otot
+Rank: 0 (Points: 1)
+
+86. Shamanisa
+Rank: 0 (Points: 1)
+
+87. Slothunt
+Rank: 0 (Points: 1)
+
+88. Waack
+Rank: 0 (Points: 1)
+
