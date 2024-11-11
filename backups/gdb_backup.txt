@@ -1,4 +1,0 @@
-Command: >gdb_award_points_to_players Redband Tankjoo Engemeet Itaxi Sardaukar Drainyou Yarlo Unheilig Frostpoison Gusy Kurdal Surthur 1
-Author: undeadko
-Timestamp: 2024-11-11 23:29:48
-
