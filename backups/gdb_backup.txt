@@ -1,0 +1,7 @@
+Command: >gdb_delete_player Wnz
+Author: undeadko
+Timestamp: 2024-11-11 23:27:40
+
+1. Wnz
+Rank: 0 (Points: 1)
+
