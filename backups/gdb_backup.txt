@@ -1,0 +1,136 @@
+Command: >gdb_award_points_to_players Llsa Shakir Pelo Zanarkand Sarbek Golge Hao Thepain Gloduk Ozbourne 3
+Author: undeadko
+Timestamp: 2024-11-11 23:33:42
+
+1. Golge
+Rank: 0 (Points: 3)
+
+2. Llsa
+Rank: 0 (Points: 3)
+
+3. Pelo
+Rank: 0 (Points: 3)
+
+4. Sarbek
+Rank: 0 (Points: 3)
+
+5. Shakir
+Rank: 0 (Points: 3)
+
+6. Zanarkand
+Rank: 0 (Points: 3)
+
+7. Aligatora
+Rank: 0 (Points: 2)
+
+8. Anrii
+Rank: 0 (Points: 2)
+
+9. Bende
+Rank: 0 (Points: 2)
+
+10. Boosteer
+Rank: 0 (Points: 2)
+
+11. Broenor
+Rank: 0 (Points: 2)
+
+12. Corporis
+Rank: 0 (Points: 2)
+
+13. Dnl
+Rank: 0 (Points: 2)
+
+14. Efras
+Rank: 0 (Points: 2)
+
+15. Firedom
+Rank: 0 (Points: 2)
+
+16. Gnevni
+Rank: 0 (Points: 2)
+
+17. Grimdorc
+Rank: 0 (Points: 2)
+
+18. Hekim
+Rank: 0 (Points: 2)
+
+19. Ironlung
+Rank: 0 (Points: 2)
+
+20. Krupis
+Rank: 0 (Points: 2)
+
+21. Leko
+Rank: 0 (Points: 2)
+
+22. Luxii
+Rank: 0 (Points: 2)
+
+23. Mxii
+Rank: 0 (Points: 2)
+
+24. Nikita
+Rank: 0 (Points: 2)
+
+25. Peanutman
+Rank: 0 (Points: 2)
+
+26. Savkelinjo
+Rank: 0 (Points: 2)
+
+27. Shtrix
+Rank: 0 (Points: 2)
+
+28. Tigotura
+Rank: 0 (Points: 2)
+
+29. Trashlord
+Rank: 0 (Points: 2)
+
+30. Vinland
+Rank: 0 (Points: 2)
+
+31. Vojkan
+Rank: 0 (Points: 2)
+
+32. Zhiva
+Rank: 0 (Points: 2)
+
+33. Drainyou
+Rank: 0 (Points: 1)
+
+34. Engemeet
+Rank: 0 (Points: 1)
+
+35. Frostpoison
+Rank: 0 (Points: 1)
+
+36. Gusy
+Rank: 0 (Points: 1)
+
+37. Itaxi
+Rank: 0 (Points: 1)
+
+38. Kurdal
+Rank: 0 (Points: 1)
+
+39. Redband
+Rank: 0 (Points: 1)
+
+40. Sardaukar
+Rank: 0 (Points: 1)
+
+41. Surthur
+Rank: 0 (Points: 1)
+
+42. Tankjoo
+Rank: 0 (Points: 1)
+
+43. Unheilig
+Rank: 0 (Points: 1)
+
+44. Yarlo
+Rank: 0 (Points: 1)
+
