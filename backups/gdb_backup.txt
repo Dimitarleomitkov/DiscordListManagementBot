@@ -1,0 +1,73 @@
+Command: >gdb_award_points_to_players Dnl Aligatora Efras Mxii Zhiva Bende Ironlung Krupis Trashlord Gnevni Peanutman Tigotura Vinland Corporis Firedom Grimdorc Boosteer Broenor Leko Luxii Anrii Hekim Nikita Savkelinjo Shtrix Vojkan 2
+Author: undeadko
+Timestamp: 2024-11-11 23:31:16
+
+1. Aligatora
+Rank: 0 (Points: 2)
+
+2. Bende
+Rank: 0 (Points: 2)
+
+3. Dnl
+Rank: 0 (Points: 2)
+
+4. Efras
+Rank: 0 (Points: 2)
+
+5. Gnevni
+Rank: 0 (Points: 2)
+
+6. Ironlung
+Rank: 0 (Points: 2)
+
+7. Krupis
+Rank: 0 (Points: 2)
+
+8. Mxii
+Rank: 0 (Points: 2)
+
+9. Peanutman
+Rank: 0 (Points: 2)
+
+10. Trashlord
+Rank: 0 (Points: 2)
+
+11. Zhiva
+Rank: 0 (Points: 2)
+
+12. Drainyou
+Rank: 0 (Points: 1)
+
+13. Engemeet
+Rank: 0 (Points: 1)
+
+14. Frostpoison
+Rank: 0 (Points: 1)
+
+15. Gusy
+Rank: 0 (Points: 1)
+
+16. Itaxi
+Rank: 0 (Points: 1)
+
+17. Kurdal
+Rank: 0 (Points: 1)
+
+18. Redband
+Rank: 0 (Points: 1)
+
+19. Sardaukar
+Rank: 0 (Points: 1)
+
+20. Surthur
+Rank: 0 (Points: 1)
+
+21. Tankjoo
+Rank: 0 (Points: 1)
+
+22. Unheilig
+Rank: 0 (Points: 1)
+
+23. Yarlo
+Rank: 0 (Points: 1)
+
