@@ -363,7 +363,7 @@ class gdb(commands.Cog):
                     await ctx.send(f"Invalid name {name}. Example:\n >gdb_delete_players undeadkoBot Undeadko")
                     return
 
-            players_names = args[:-1]
+            players_names = args
 
             async_session = sessionmaker(self.engine, expire_on_commit = False, class_ = AsyncSession)
 
