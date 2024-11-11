@@ -354,7 +354,7 @@ class gdb(commands.Cog):
             bu_cmd = self.bot.get_command("gdb_backup")
             await bu_cmd.invoke(ctx)
 
-            if len(args) < 2 or any(chr.isdigit() for chr in args[-1]) == False:
+            if len(args) < 2:
                 await ctx.send(f"Please enter a full command with <name> <name2> Example:\n >gdb_delete_players undeadkoBot Undeadko")
                 return
 
