@@ -1,0 +1,31 @@
+Command: >gdb_award_points_to_players Redband Tankjoo Engemeet Itaxi Sardaukar Drainyou Yarlo Unheilig Frostpoison Gusy Kurdal Surthur 1
+Author: undeadko
+Timestamp: 2024-11-11 23:29:48
+
+1. Drainyou
+Rank: 0 (Points: 1)
+
+2. Engemeet
+Rank: 0 (Points: 1)
+
+3. Frostpoison
+Rank: 0 (Points: 1)
+
+4. Itaxi
+Rank: 0 (Points: 1)
+
+5. Redband
+Rank: 0 (Points: 1)
+
+6. Sardaukar
+Rank: 0 (Points: 1)
+
+7. Tankjoo
+Rank: 0 (Points: 1)
+
+8. Unheilig
+Rank: 0 (Points: 1)
+
+9. Yarlo
+Rank: 0 (Points: 1)
+
