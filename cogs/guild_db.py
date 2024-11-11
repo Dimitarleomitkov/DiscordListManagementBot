@@ -319,7 +319,7 @@ class gdb(commands.Cog):
                         help = 'The bot will print the entire list of guild members and their ranks and points.',
                         brief = '- Prints the entire list of guild members and their ranks and points.')
     @commands.has_any_role("Guild Master", "Officer")
-    async def delete_player(self, ctx, player_name = None):
+    async def delete_player(self, ctx, *args):
         try:
             bu_cmd = self.bot.get_command("gdb_backup")
             await bu_cmd.invoke(ctx)
@@ -343,6 +343,41 @@ class gdb(commands.Cog):
                     await ctx.send(f"{player_name} deleted from the data base.")
         except Exception as e:
             await ctx.send(f"[DELETE_PLAYER] {e}")
+
+
+    @commands.command(  name = 'gdb_delete_players',
+                        help = 'The bot will print the entire list of guild members and their ranks and points.',
+                        brief = '- Prints the entire list of guild members and their ranks and points.')
+    @commands.has_any_role("Guild Master", "Officer")
+    async def delete_players(self, ctx, player_name = None):
+        try:
+            bu_cmd = self.bot.get_command("gdb_backup")
+            await bu_cmd.invoke(ctx)
+
+            if len(args) < 2 or any(chr.isdigit() for chr in args[-1]) == False:
+                await ctx.send(f"Please enter a full command with <name> <name2> Example:\n >gdb_delete_players undeadkoBot Undeadko")
+                return
+
+            for name in args[:-1]: 
+                if any(chr.isdigit() for chr in name) == True:
+                    await ctx.send(f"Invalid name {name}. Example:\n >gdb_delete_players undeadkoBot Undeadko")
+                    return
+
+            players_names = args[:-1]
+
+            async_session = sessionmaker(self.engine, expire_on_commit = False, class_ = AsyncSession)
+
+            for player_name in players_names:
+                async with async_session() as session:
+                    async with session.begin():
+                        # Get the points of the player
+                        player = await session.execute(delete(Player)
+                                                    .where(Player.name == player_name)
+                                                    .execution_options(synchronize_session = "fetch"))
+
+            await ctx.send(f"Deleted {players_names}")
+        except Exception as e:
+            await ctx.send(f"[DELETE_PLAYERS] {e}")
 
 
     def file_backup_of_list(self, players):
