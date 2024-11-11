@@ -349,7 +349,7 @@ class gdb(commands.Cog):
                         help = 'The bot will print the entire list of guild members and their ranks and points.',
                         brief = '- Prints the entire list of guild members and their ranks and points.')
     @commands.has_any_role("Guild Master", "Officer")
-    async def delete_players(self, ctx, player_name = None):
+    async def delete_players(self, ctx, *args):
         try:
             bu_cmd = self.bot.get_command("gdb_backup")
             await bu_cmd.invoke(ctx)
