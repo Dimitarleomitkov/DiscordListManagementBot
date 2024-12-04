@@ -1,0 +1,304 @@
+Command: >gdb_award_points_to_players Zalty Thepain Weedbloom Gusy Aligatora Bastilia Fireborn Daavavawda Kvervandi Maaddyy Lipdudu Devx Oldbovine Gravekeeper Bahtiyar Luxii Depumper Plaguethrill Oporc Shatterhorn Ufz Labor Bakingmorph Bestgirlsarb Bende Witrim Grimdorc Trashlord Gladna Nothreat Saldejums Undeadko Harybolseq Vinceclortho Tamamlayamad Dadoxd Dreadpaw Attuma Gnevni Duckichan Savkay Chaoticlock Jaronimo Pelo Zanarkand Josifa Molekyla 1
+Author: undeadko
+Timestamp: 2024-12-04 23:40:37
+
+1. Harybolseq
+Rank: 2 (Points: 11)
+
+2. Plaguethrill
+Rank: 2 (Points: 11)
+
+3. Undeadko
+Rank: 2 (Points: 11)
+
+4. Thepain
+Rank: 2 (Points: 10)
+
+5. Aligatora
+Rank: 1 (Points: 9)
+
+6. Bende
+Rank: 1 (Points: 9)
+
+7. Luxii
+Rank: 1 (Points: 9)
+
+8. Llsa
+Rank: 1 (Points: 8)
+
+9. Pelo
+Rank: 1 (Points: 8)
+
+10. Savkay
+Rank: 1 (Points: 8)
+
+11. Bahtiyar
+Rank: 1 (Points: 7)
+
+12. Depumper
+Rank: 1 (Points: 7)
+
+13. Gravekeeper
+Rank: 1 (Points: 7)
+
+14. Oporc
+Rank: 1 (Points: 7)
+
+15. Bastilia
+Rank: 1 (Points: 6)
+
+16. Efras
+Rank: 1 (Points: 6)
+
+17. Gnevni
+Rank: 1 (Points: 6)
+
+18. Labor
+Rank: 1 (Points: 6)
+
+19. Oldbovine
+Rank: 1 (Points: 6)
+
+20. Shatterhorn
+Rank: 1 (Points: 6)
+
+21. Smeggo
+Rank: 1 (Points: 6)
+
+22. Trashlord
+Rank: 1 (Points: 6)
+
+23. Weedbloom
+Rank: 1 (Points: 6)
+
+24. Attuma
+Rank: 1 (Points: 5)
+
+25. Gladna
+Rank: 1 (Points: 5)
+
+26. Grimdorc
+Rank: 1 (Points: 5)
+
+27. Leko
+Rank: 1 (Points: 5)
+
+28. Shakir
+Rank: 1 (Points: 5)
+
+29. Tamamlayamad
+Rank: 1 (Points: 5)
+
+30. Askila
+Rank: 0 (Points: 4)
+
+31. Bestgirlsarb
+Rank: 0 (Points: 4)
+
+32. Gusy
+Rank: 0 (Points: 4)
+
+33. Marygold
+Rank: 0 (Points: 4)
+
+34. Anamelia
+Rank: 0 (Points: 3)
+
+35. Daavavawda
+Rank: 0 (Points: 3)
+
+36. Dreadpaw
+Rank: 0 (Points: 3)
+
+37. Fireborn
+Rank: 0 (Points: 3)
+
+38. Galaadriel
+Rank: 0 (Points: 3)
+
+39. Gloduk
+Rank: 0 (Points: 3)
+
+40. Golge
+Rank: 0 (Points: 3)
+
+41. Hao
+Rank: 0 (Points: 3)
+
+42. Kamarya
+Rank: 0 (Points: 3)
+
+43. Ozbourne
+Rank: 0 (Points: 3)
+
+44. Sarbek
+Rank: 0 (Points: 3)
+
+45. Strategos
+Rank: 0 (Points: 3)
+
+46. Tidepods
+Rank: 0 (Points: 3)
+
+47. Zalty
+Rank: 0 (Points: 3)
+
+48. Zanarkand
+Rank: 0 (Points: 3)
+
+49. Aimedarrow
+Rank: 0 (Points: 2)
+
+50. Bakingmorph
+Rank: 0 (Points: 2)
+
+51. Boosteer
+Rank: 0 (Points: 2)
+
+52. Broenor
+Rank: 0 (Points: 2)
+
+53. Corporis
+Rank: 0 (Points: 2)
+
+54. Devx
+Rank: 0 (Points: 2)
+
+55. Dnl
+Rank: 0 (Points: 2)
+
+56. Ebeneezer
+Rank: 0 (Points: 2)
+
+57. Firedom
+Rank: 0 (Points: 2)
+
+58. Hekim
+Rank: 0 (Points: 2)
+
+59. Ironlung
+Rank: 0 (Points: 2)
+
+60. Jaronimo
+Rank: 0 (Points: 2)
+
+61. Jhuna
+Rank: 0 (Points: 2)
+
+62. Katsuragi
+Rank: 0 (Points: 2)
+
+63. Krupis
+Rank: 0 (Points: 2)
+
+64. Mxii
+Rank: 0 (Points: 2)
+
+65. Nikita
+Rank: 0 (Points: 2)
+
+66. Peanutman
+Rank: 0 (Points: 2)
+
+67. Savkelinjo
+Rank: 0 (Points: 2)
+
+68. Shinohara
+Rank: 0 (Points: 2)
+
+69. Shtrix
+Rank: 0 (Points: 2)
+
+70. Tigotura
+Rank: 0 (Points: 2)
+
+71. Ufz
+Rank: 0 (Points: 2)
+
+72. Vinland
+Rank: 0 (Points: 2)
+
+73. Vojkan
+Rank: 0 (Points: 2)
+
+74. Witrim
+Rank: 0 (Points: 2)
+
+75. Zhiva
+Rank: 0 (Points: 2)
+
+76. Accendo
+Rank: 0 (Points: 1)
+
+77. Batuo
+Rank: 0 (Points: 1)
+
+78. Dadoxd
+Rank: 0 (Points: 1)
+
+79. Drainyou
+Rank: 0 (Points: 1)
+
+80. Engemeet
+Rank: 0 (Points: 1)
+
+81. Frostpoison
+Rank: 0 (Points: 1)
+
+82. Hyunikel
+Rank: 0 (Points: 1)
+
+83. Impure
+Rank: 0 (Points: 1)
+
+84. Itaxi
+Rank: 0 (Points: 1)
+
+85. Josifa
+Rank: 0 (Points: 1)
+
+86. Kurdal
+Rank: 0 (Points: 1)
+
+87. Kvervandi
+Rank: 0 (Points: 1)
+
+88. Lipdudu
+Rank: 0 (Points: 1)
+
+89. Maaddyy
+Rank: 0 (Points: 1)
+
+90. Martinaz
+Rank: 0 (Points: 1)
+
+91. Nothreat
+Rank: 0 (Points: 1)
+
+92. Phukface
+Rank: 0 (Points: 1)
+
+93. Priory
+Rank: 0 (Points: 1)
+
+94. Redband
+Rank: 0 (Points: 1)
+
+95. Rhazgulz
+Rank: 0 (Points: 1)
+
+96. Saldejums
+Rank: 0 (Points: 1)
+
+97. Sardaukar
+Rank: 0 (Points: 1)
+
+98. Tankjoo
+Rank: 0 (Points: 1)
+
+99. Unheilig
+Rank: 0 (Points: 1)
+
+100. Vinceclortho
+Rank: 0 (Points: 1)
+
