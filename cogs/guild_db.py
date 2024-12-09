@@ -483,7 +483,7 @@ class gdb(commands.Cog):
             async with async_session() as session:
                 async with session.begin():
                     # Get the the players
-                    players = await session.execute(select(Player).order_by(desc(Player.rank), Player.name))
+                    players = await session.execute(select(Player).order_by(desc(Player.points), Player.name))
 
             # Include the command name, author, and timestamp in buffer_str
             # author = ctx.author.name
