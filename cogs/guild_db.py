@@ -11,6 +11,7 @@ from itertools import islice
 import re
 import pathlib
 from keys import GITHUB_TOKEN
+import os
 
 import platform
 if platform.system() != "Windows":
@@ -84,7 +85,7 @@ class gdb(commands.Cog):
                 async with async_session() as session:
                     async with session.begin():
                         # Get the the players
-                        players = await session.execute(select(Player).order_by(desc(Player.points), Player.name))
+                        players = await session.execute(select(Player).order_by(desc(Player.rank), Player.name))
 
                 players_list = []
                 for player in players:
@@ -141,7 +142,7 @@ class gdb(commands.Cog):
             async with async_session() as session:
                 async with session.begin():
                     # Get the the players
-                    players = await session.execute(select(Player).order_by(desc(Player.points), Player.name))
+                    players = await session.execute(select(Player).order_by(desc(Player.rank), Player.name))
 
             i = 0
             for player in players:
@@ -442,7 +443,7 @@ class gdb(commands.Cog):
             async with async_session() as session:
                 async with session.begin():
                     # Get the the players
-                    players = await session.execute(select(Player).order_by(desc(Player.points), Player.name))
+                    players = await session.execute(select(Player).order_by(desc(Player.rank), Player.name))
 
             # Include the command name, author, and timestamp in buffer_str
             author = ctx.author.name
@@ -460,5 +461,53 @@ class gdb(commands.Cog):
             await self.git_push_backup(ctx, buffer_str)
 
             await ctx.send(f"Backup complete!")
+        except Exception as e:
+            await ctx.send(f"[BACKUP_GDB] {e}")
+
+
+    @commands.command(  name = 'gdb_export',
+                        help = 'The bot will create a copy of the gdb list and send it to you.',
+                        brief = '- Creates a copy of the gdb list and sends it to you.')
+    async def export(self, ctx):
+        try:
+            channel = ctx.channel
+            channel_id = ctx.channel.id
+
+            if channel_id != 1217479171811315712 and channel_id != 1197166207200153641:
+                proper_channel = self.bot.get_channel(1217479171811315712)
+                await channel.send(f"This command can only be executed in {proper_channel.mention}")
+                return
+
+
+            async_session = sessionmaker(self.engine, expire_on_commit = False, class_ = AsyncSession)
+            async with async_session() as session:
+                async with session.begin():
+                    # Get the the players
+                    players = await session.execute(select(Player).order_by(desc(Player.rank), Player.name))
+
+            # Include the command name, author, and timestamp in buffer_str
+            # author = ctx.author.name
+            # timestamp = ctx.message.created_at.strftime("%Y-%m-%d %H:%M:%S")
+            # buffer_str = f"Command: {ctx.message.content}\nAuthor: {author}\nTimestamp: {timestamp}\n\n"
+
+            i = 0
+            for player in players:
+                rank = int(re.search(r'\d+', player[0].rank).group())
+                buffer_str += f"{i + 1}. {player[0].name}\nRank: {rank} (Points: {player[0].points})\n\n"
+
+                i += 1
+
+            try:
+                temp_file = open(f"/home/pi/undeadko/GitProjects/DiscordListManagementBot/temp_db_list.txt", "w")
+                temp_file.write(players)
+                temp_file.close()
+
+                await ctx.author.send(file=discord.File(f'/home/pi/undeadko/GitProjects/DiscordListManagementBot/temp_db_list.txt'))
+
+                os.remove("/home/pi/undeadko/GitProjects/DiscordListManagementBot/temp_db_list.txt")
+
+            except Exception as e:
+                print(f"[RAIDERS_TEMP_FILE] {e}")
+
         except Exception as e:
             await ctx.send(f"[BACKUP_GDB] {e}")
