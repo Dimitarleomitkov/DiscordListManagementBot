@@ -499,7 +499,7 @@ class gdb(commands.Cog):
 
             try:
                 temp_file = open(f"/home/pi/undeadko/GitProjects/DiscordListManagementBot/temp_db_list.txt", "w")
-                temp_file.write(players)
+                temp_file.write(buffer_str)
                 temp_file.close()
 
                 await ctx.author.send(file=discord.File(f'/home/pi/undeadko/GitProjects/DiscordListManagementBot/temp_db_list.txt'))
