@@ -488,7 +488,7 @@ class gdb(commands.Cog):
             # Include the command name, author, and timestamp in buffer_str
             # author = ctx.author.name
             # timestamp = ctx.message.created_at.strftime("%Y-%m-%d %H:%M:%S")
-            # buffer_str = f"Command: {ctx.message.content}\nAuthor: {author}\nTimestamp: {timestamp}\n\n"
+            buffer_str = f""
 
             i = 0
             for player in players:
