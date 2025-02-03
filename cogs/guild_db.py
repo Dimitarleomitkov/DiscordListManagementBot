@@ -302,11 +302,11 @@ class gdb(commands.Cog):
                         # Get the points of the player
                         player = await session.execute(select(Player).where(Player.name == player_name))
 
-                        print(player)
+                        # print(player)
 
-                        # rank_before = player.first()[0].rank
-
-                        player_points = int(player.first()[0].points) + int(awarded_points)
+                        player_points = int(player.first()[0].points)
+                        rank_before = self.update_rank(player_points)
+                        player_points += int(awarded_points)
                         player_rank = self.update_rank(player_points)
 
                         # Update player
