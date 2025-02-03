@@ -302,6 +302,10 @@ class gdb(commands.Cog):
                         # Get the points of the player
                         player = await session.execute(select(Player).where(Player.name == player_name))
 
+                        print(player.first()[0].rank)
+
+                        rank_before = player.first()[0].rank
+
                         player_points = int(player.first()[0].points) + int(awarded_points)
                         player_rank = self.update_rank(player_points)
 
@@ -310,6 +314,9 @@ class gdb(commands.Cog):
                                                         .where(Player.name == player_name)
                                                         .values(points = player_points, rank = player_rank)
                                                         .execution_options(synchronize_session = "fetch"))
+
+                        if player_rank != rank_before:
+                            await ctx.send(f":tada: Congratulations {player_name}! Your rank is now {player_rank}! Thank you for raiding with us! :tada:")
 
             await ctx.send(f"Awarded {awarded_points} to {players_names}")
         except Exception as e:
@@ -478,7 +485,6 @@ class gdb(commands.Cog):
                 await channel.send(f"This command can only be executed in {proper_channel.mention}")
                 return
 
-
             async_session = sessionmaker(self.engine, expire_on_commit = False, class_ = AsyncSession)
             async with async_session() as session:
                 async with session.begin():
@@ -505,7 +511,8 @@ class gdb(commands.Cog):
                 await ctx.author.send(file=discord.File(f'/home/pi/undeadko/GitProjects/DiscordListManagementBot/temp_db_list.txt'))
 
                 os.remove("/home/pi/undeadko/GitProjects/DiscordListManagementBot/temp_db_list.txt")
-
+                
+                await ctx.message.delete()
             except Exception as e:
                 print(f"[RAIDERS_TEMP_FILE] {e}")
 
