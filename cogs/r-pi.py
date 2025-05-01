@@ -42,7 +42,7 @@ class rebooter(commands.Cog):
     print("rebooter module is loaded.")
     self.weekly_reboot.start()
 
-  @command.command(name = 'tnext_reboot',
+  @commands.command(name = 'tnext_reboot',
                    help = 'Displays the time of the next scheduled reboot.',
                    brief = '- Prints the time of the next scheduled reboot.')
   async def get_next_reboot(self, ctx):
