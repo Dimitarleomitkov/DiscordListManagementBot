@@ -1,11 +1,11 @@
-# import discord
-# import requests
-# import datetime
-# import dateutil.tz as dateutils
-# import time as tim
-# import re
-# from discord.ext import commands, tasks
-# from bs4 import BeautifulSoup
+import discord
+import requests
+import datetime
+import dateutil.tz as dateutils
+import time as tim
+import re
+from discord.ext import commands, tasks
+from bs4 import BeautifulSoup
 
 
 async def setup(bot):
