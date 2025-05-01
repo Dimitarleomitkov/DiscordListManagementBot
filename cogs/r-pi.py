@@ -17,7 +17,7 @@ def get_reboot_time():
     BG_tz = dateutils.tzoffset('UTC', 60 * 60 * 2)
 
   # Set to 05:00 every Tuesday
-  return datetime.time(hour = 5, minute = 0, second = 0, tzinfo = BG_tz)
+  return datetime.time(hour = 0, minute = 2, second = 0, tzinfo = BG_tz)
 
 class rebooter(commands.Cog):
   def __init__(self, bot):
@@ -28,7 +28,7 @@ class rebooter(commands.Cog):
   @task.loop(time = reboot_time)
   async def weekly_reboot(self):
     # Only run on Tuesday (Python: Monday is 0, Tuesday is 1, ..., Sunday is 6)
-    if datetime.datetime.now().weekday() == 1:
+    if datetime.datetime.now().weekday() == 4:
       text_chan = self.bot.get_channel(548554244932894750)
       await text_chan.send("Rebooting system...")
       os.system('sudo reboot')
