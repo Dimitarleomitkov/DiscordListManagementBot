@@ -25,7 +25,7 @@ class rebooter(commands.Cog):
 
   reboot_time = get_reboot_time()
 
-  @task.loop(time = reboot_time)
+  @tasks.loop(time = reboot_time)
   async def weekly_reboot(self):
     # Only run on Tuesday (Python: Monday is 0, Tuesday is 1, ..., Sunday is 6)
     if datetime.datetime.now().weekday() == 4:
