@@ -17,7 +17,7 @@ def get_reboot_time():
     BG_tz = dateutils.tzoffset('UTC', 60 * 60 * 2)
 
   # Set to 05:00 every Tuesday
-  return datetime.time(hour = 0, minute = 2, second = 0, tzinfo = BG_tz)
+  return datetime.time(hour = 0, minute = 9, second = 0, tzinfo = BG_tz)
 
 class rebooter(commands.Cog):
   def __init__(self, bot):
