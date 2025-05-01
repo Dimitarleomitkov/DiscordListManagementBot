@@ -8,7 +8,8 @@
 # from bs4 import BeautifulSoup
 
 
-# async def setup(bot):
+async def setup(bot):
+            pass
 #     await bot.add_cog(space_images(bot))
 
 
