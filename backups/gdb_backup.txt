@@ -1,0 +1,847 @@
+Command: >gdb_award_points_to_players Warrtist Diacoro Grimdorc Qfte Tanknspanky Chiften Undeadko Lovefist Rofldmg 2
+Author: undeadko
+Timestamp: 2025-05-28 15:36:08
+
+1. Aligatora
+Rank: 5 (Points: 111)
+
+2. Bahtiyar
+Rank: 5 (Points: 106)
+
+3. Bende
+Rank: 5 (Points: 106)
+
+4. Gravekeeper
+Rank: 5 (Points: 128)
+
+5. Harybolseq
+Rank: 5 (Points: 123)
+
+6. Holian
+Rank: 5 (Points: 118)
+
+7. Jojou
+Rank: 5 (Points: 107)
+
+8. Otot
+Rank: 5 (Points: 106)
+
+9. Plaguethrill
+Rank: 5 (Points: 117)
+
+10. Thepain
+Rank: 5 (Points: 136)
+
+11. Undeadko
+Rank: 5 (Points: 120)
+
+12. Anamelia
+Rank: 4 (Points: 84)
+
+13. Attuma
+Rank: 4 (Points: 85)
+
+14. Barometara
+Rank: 4 (Points: 55)
+
+15. Bestgirlsarb
+Rank: 4 (Points: 87)
+
+16. Cema
+Rank: 4 (Points: 63)
+
+17. Crazoo
+Rank: 4 (Points: 51)
+
+18. Devx
+Rank: 4 (Points: 89)
+
+19. Ditzulake
+Rank: 4 (Points: 54)
+
+20. Doughnutt
+Rank: 4 (Points: 67)
+
+21. Dreadpaw
+Rank: 4 (Points: 91)
+
+22. Fenring
+Rank: 4 (Points: 96)
+
+23. Fierysoul
+Rank: 4 (Points: 68)
+
+24. Furyoku
+Rank: 4 (Points: 51)
+
+25. Gelanriel
+Rank: 4 (Points: 86)
+
+26. Glokthar
+Rank: 4 (Points: 50)
+
+27. Gnevni
+Rank: 4 (Points: 95)
+
+28. Graku
+Rank: 4 (Points: 83)
+
+29. Grimdorc
+Rank: 4 (Points: 92)
+
+30. Hao
+Rank: 4 (Points: 55)
+
+31. Imothepp
+Rank: 4 (Points: 54)
+
+32. Ironlung
+Rank: 4 (Points: 55)
+
+33. Jaronimo
+Rank: 4 (Points: 81)
+
+34. Jinxter
+Rank: 4 (Points: 67)
+
+35. Kabs
+Rank: 4 (Points: 61)
+
+36. Labor
+Rank: 4 (Points: 59)
+
+37. Lipdudu
+Rank: 4 (Points: 61)
+
+38. Llsa
+Rank: 4 (Points: 84)
+
+39. Lubock
+Rank: 4 (Points: 67)
+
+40. Luxii
+Rank: 4 (Points: 66)
+
+41. Maaddyy
+Rank: 4 (Points: 58)
+
+42. Manapause
+Rank: 4 (Points: 90)
+
+43. Moleculeq
+Rank: 4 (Points: 84)
+
+44. Muadhib
+Rank: 4 (Points: 67)
+
+45. Mugenn
+Rank: 4 (Points: 63)
+
+46. Pelo
+Rank: 4 (Points: 96)
+
+47. Riehea
+Rank: 4 (Points: 69)
+
+48. Sandram
+Rank: 4 (Points: 97)
+
+49. Sariannas
+Rank: 4 (Points: 73)
+
+50. Shatterhorn
+Rank: 4 (Points: 75)
+
+51. Shinohara
+Rank: 4 (Points: 58)
+
+52. Strategos
+Rank: 4 (Points: 93)
+
+53. Tamamlayamad
+Rank: 4 (Points: 93)
+
+54. Vinceclortho
+Rank: 4 (Points: 56)
+
+55. Weedbloom
+Rank: 4 (Points: 51)
+
+56. Zalty
+Rank: 4 (Points: 61)
+
+57. Zombik
+Rank: 4 (Points: 97)
+
+58. Allani
+Rank: 3 (Points: 27)
+
+59. Aretaal
+Rank: 3 (Points: 36)
+
+60. Bakingmorph
+Rank: 3 (Points: 44)
+
+61. Bastilia
+Rank: 3 (Points: 34)
+
+62. Bengu
+Rank: 3 (Points: 26)
+
+63. Boneshock
+Rank: 3 (Points: 39)
+
+64. Cahala
+Rank: 3 (Points: 32)
+
+65. Cemaa
+Rank: 3 (Points: 25)
+
+66. Chazm
+Rank: 3 (Points: 34)
+
+67. Chigg
+Rank: 3 (Points: 34)
+
+68. Diacoro
+Rank: 3 (Points: 35)
+
+69. Dreave
+Rank: 3 (Points: 30)
+
+70. Duckichan
+Rank: 3 (Points: 34)
+
+71. Feili
+Rank: 3 (Points: 46)
+
+72. Fengzhao
+Rank: 3 (Points: 27)
+
+73. Gharmoule
+Rank: 3 (Points: 28)
+
+74. Gusy
+Rank: 3 (Points: 46)
+
+75. Ikorose
+Rank: 3 (Points: 36)
+
+76. Invouker
+Rank: 3 (Points: 43)
+
+77. Jatagan
+Rank: 3 (Points: 35)
+
+78. Kurvatabate
+Rank: 3 (Points: 31)
+
+79. Laxi
+Rank: 3 (Points: 41)
+
+80. Lightaddict
+Rank: 3 (Points: 29)
+
+81. Maang
+Rank: 3 (Points: 28)
+
+82. Missteak
+Rank: 3 (Points: 28)
+
+83. Mortanius
+Rank: 3 (Points: 31)
+
+84. Pepenzikvato
+Rank: 3 (Points: 30)
+
+85. Plumpykid
+Rank: 3 (Points: 36)
+
+86. Quipu
+Rank: 3 (Points: 34)
+
+87. Razorballs
+Rank: 3 (Points: 34)
+
+88. Redband
+Rank: 3 (Points: 32)
+
+89. Rofldmg
+Rank: 3 (Points: 30)
+
+90. Shakir
+Rank: 3 (Points: 35)
+
+91. Shamanize
+Rank: 3 (Points: 25)
+
+92. Tidochotid
+Rank: 3 (Points: 27)
+
+93. Trashlord
+Rank: 3 (Points: 32)
+
+94. Wazaw
+Rank: 3 (Points: 37)
+
+95. Zanarkand
+Rank: 3 (Points: 26)
+
+96. Zhiva
+Rank: 3 (Points: 27)
+
+97. Ziguimi
+Rank: 3 (Points: 39)
+
+98. Azais
+Rank: 2 (Points: 12)
+
+99. Bauble
+Rank: 2 (Points: 17)
+
+100. Bobsapp
+Rank: 2 (Points: 23)
+
+101. Bowjobcow
+Rank: 2 (Points: 12)
+
+102. Britneybaby
+Rank: 2 (Points: 16)
+
+103. Burebistos
+Rank: 2 (Points: 14)
+
+104. Cerenio
+Rank: 2 (Points: 16)
+
+105. Chaoticlock
+Rank: 2 (Points: 19)
+
+106. Civatareis
+Rank: 2 (Points: 10)
+
+107. Deathhowler
+Rank: 2 (Points: 12)
+
+108. Deathmager
+Rank: 2 (Points: 18)
+
+109. Demonias
+Rank: 2 (Points: 12)
+
+110. Djeja
+Rank: 2 (Points: 12)
+
+111. Egesham
+Rank: 2 (Points: 16)
+
+112. Fireborn
+Rank: 2 (Points: 14)
+
+113. Gissan
+Rank: 2 (Points: 23)
+
+114. Infidelic
+Rank: 2 (Points: 17)
+
+115. Kapenai
+Rank: 2 (Points: 21)
+
+116. Ksickoliara
+Rank: 2 (Points: 24)
+
+117. Lifeguardx
+Rank: 2 (Points: 20)
+
+118. Luqq
+Rank: 2 (Points: 14)
+
+119. Mugi
+Rank: 2 (Points: 16)
+
+120. Ozbourne
+Rank: 2 (Points: 14)
+
+121. Peeperkorn
+Rank: 2 (Points: 20)
+
+122. Phukface
+Rank: 2 (Points: 12)
+
+123. Pixelfreak
+Rank: 2 (Points: 17)
+
+124. Pouchy
+Rank: 2 (Points: 11)
+
+125. Qfte
+Rank: 2 (Points: 23)
+
+126. Redmoore
+Rank: 2 (Points: 13)
+
+127. Rektstina
+Rank: 2 (Points: 10)
+
+128. Retu
+Rank: 2 (Points: 18)
+
+129. Ribby
+Rank: 2 (Points: 19)
+
+130. Ricklessness
+Rank: 2 (Points: 10)
+
+131. Rothzar
+Rank: 2 (Points: 11)
+
+132. Ruhemici
+Rank: 2 (Points: 13)
+
+133. Sakumo
+Rank: 2 (Points: 13)
+
+134. Sammymeow
+Rank: 2 (Points: 14)
+
+135. Savkay
+Rank: 2 (Points: 24)
+
+136. Shaarky
+Rank: 2 (Points: 24)
+
+137. Sinonsan
+Rank: 2 (Points: 19)
+
+138. Sliekas
+Rank: 2 (Points: 10)
+
+139. Sosaky
+Rank: 2 (Points: 12)
+
+140. Surume
+Rank: 2 (Points: 17)
+
+141. Susita
+Rank: 2 (Points: 16)
+
+142. Tankingmage
+Rank: 2 (Points: 10)
+
+143. Tanknspanky
+Rank: 2 (Points: 10)
+
+144. Thecurse
+Rank: 2 (Points: 14)
+
+145. Threesixty
+Rank: 2 (Points: 10)
+
+146. Ufz
+Rank: 2 (Points: 16)
+
+147. Vabole
+Rank: 2 (Points: 19)
+
+148. Zemene
+Rank: 2 (Points: 15)
+
+149. Aggralan
+Rank: 1 (Points: 9)
+
+150. Belerophon
+Rank: 1 (Points: 6)
+
+151. Cheatonn
+Rank: 1 (Points: 7)
+
+152. Chiften
+Rank: 1 (Points: 5)
+
+153. Chillinbro
+Rank: 1 (Points: 5)
+
+154. Chuki
+Rank: 1 (Points: 6)
+
+155. Cughara
+Rank: 1 (Points: 6)
+
+156. Diegodebug
+Rank: 1 (Points: 7)
+
+157. Emokthr
+Rank: 1 (Points: 6)
+
+158. Furyaca
+Rank: 1 (Points: 6)
+
+159. Ghostwoman
+Rank: 1 (Points: 6)
+
+160. Jetrr
+Rank: 1 (Points: 6)
+
+161. Kazemov
+Rank: 1 (Points: 6)
+
+162. Kurdal
+Rank: 1 (Points: 8)
+
+163. Lifebloomz
+Rank: 1 (Points: 7)
+
+164. Lovefist
+Rank: 1 (Points: 8)
+
+165. Mcwhopper
+Rank: 1 (Points: 5)
+
+166. Meininki
+Rank: 1 (Points: 5)
+
+167. Momentrum
+Rank: 1 (Points: 8)
+
+168. Moracinan
+Rank: 1 (Points: 5)
+
+169. Mothaduka
+Rank: 1 (Points: 7)
+
+170. Nagan
+Rank: 1 (Points: 7)
+
+171. Natree
+Rank: 1 (Points: 8)
+
+172. Nerfas
+Rank: 1 (Points: 6)
+
+173. Osmanian
+Rank: 1 (Points: 5)
+
+174. Purian
+Rank: 1 (Points: 8)
+
+175. Pyrise
+Rank: 1 (Points: 8)
+
+176. Rottenwing
+Rank: 1 (Points: 8)
+
+177. Saillan
+Rank: 1 (Points: 7)
+
+178. Serakkana
+Rank: 1 (Points: 5)
+
+179. Shadap
+Rank: 1 (Points: 9)
+
+180. Soulwarp
+Rank: 1 (Points: 5)
+
+181. Sqzme
+Rank: 1 (Points: 7)
+
+182. Tyliu
+Rank: 1 (Points: 6)
+
+183. Wariacie
+Rank: 1 (Points: 5)
+
+184. Xdroga
+Rank: 1 (Points: 6)
+
+185. Yolen
+Rank: 1 (Points: 7)
+
+186. Youareit
+Rank: 1 (Points: 7)
+
+187. Abacuss
+Rank: 0 (Points: 2)
+
+188. Accendo
+Rank: 0 (Points: 1)
+
+189. Aligatorayo
+Rank: 0 (Points: 1)
+
+190. Alterboy
+Rank: 0 (Points: 2)
+
+191. Bacona
+Rank: 0 (Points: 3)
+
+192. Badarum
+Rank: 0 (Points: 2)
+
+193. Blastro
+Rank: 0 (Points: 1)
+
+194. Boriszrazor
+Rank: 0 (Points: 3)
+
+195. Broenor
+Rank: 0 (Points: 2)
+
+196. Bruenor
+Rank: 0 (Points: 2)
+
+197. Chaosweaver
+Rank: 0 (Points: 2)
+
+198. Chaotictotem
+Rank: 0 (Points: 4)
+
+199. Corporis
+Rank: 0 (Points: 2)
+
+200. Cream
+Rank: 0 (Points: 1)
+
+201. Creeves
+Rank: 0 (Points: 1)
+
+202. Crystalpower
+Rank: 0 (Points: 4)
+
+203. Cuxy
+Rank: 0 (Points: 2)
+
+204. Djusvotka
+Rank: 0 (Points: 2)
+
+205. Dmitry
+Rank: 0 (Points: 2)
+
+206. Drainyou
+Rank: 0 (Points: 1)
+
+207. Dubbledor
+Rank: 0 (Points: 1)
+
+208. Exdeo
+Rank: 0 (Points: 4)
+
+209. Farmlingg
+Rank: 0 (Points: 2)
+
+210. Feardotcoom
+Rank: 0 (Points: 1)
+
+211. Fenring,
+Rank: 0 (Points: 2)
+
+212. Ferociousnes
+Rank: 0 (Points: 2)
+
+213. Getlife
+Rank: 0 (Points: 3)
+
+214. Gloduk
+Rank: 0 (Points: 3)
+
+215. Grimzz
+Rank: 0 (Points: 2)
+
+216. Guna
+Rank: 0 (Points: 2)
+
+217. Hashunt
+Rank: 0 (Points: 2)
+
+218. Hezul
+Rank: 0 (Points: 3)
+
+219. Holylolly
+Rank: 0 (Points: 2)
+
+220. Huntem
+Rank: 0 (Points: 1)
+
+221. Impure
+Rank: 0 (Points: 4)
+
+222. Irekw
+Rank: 0 (Points: 2)
+
+223. Jbgd
+Rank: 0 (Points: 1)
+
+224. Josifa
+Rank: 0 (Points: 2)
+
+225. Kaarth
+Rank: 0 (Points: 1)
+
+226. Keepmeup
+Rank: 0 (Points: 1)
+
+227. Kittkatt
+Rank: 0 (Points: 1)
+
+228. Krenata
+Rank: 0 (Points: 1)
+
+229. Krisna
+Rank: 0 (Points: 2)
+
+230. Kvervandi
+Rank: 0 (Points: 1)
+
+231. Ledeslock
+Rank: 0 (Points: 2)
+
+232. Leytrimm
+Rank: 0 (Points: 1)
+
+233. Liplock
+Rank: 0 (Points: 1)
+
+234. Lynox
+Rank: 0 (Points: 3)
+
+235. Manydots
+Rank: 0 (Points: 4)
+
+236. Marygold
+Rank: 0 (Points: 4)
+
+237. Medrael
+Rank: 0 (Points: 3)
+
+238. Mlatimud
+Rank: 0 (Points: 1)
+
+239. Nakomoto
+Rank: 0 (Points: 1)
+
+240. Nesumaz
+Rank: 0 (Points: 2)
+
+241. Nilfy
+Rank: 0 (Points: 3)
+
+242. Ninasophia
+Rank: 0 (Points: 2)
+
+243. Noraj
+Rank: 0 (Points: 3)
+
+244. Pompera
+Rank: 0 (Points: 1)
+
+245. Popz
+Rank: 0 (Points: 4)
+
+246. Portis
+Rank: 0 (Points: 1)
+
+247. Priestmane
+Rank: 0 (Points: 2)
+
+248. Qxe
+Rank: 0 (Points: 2)
+
+249. Reestina
+Rank: 0 (Points: 4)
+
+250. Rituximab
+Rank: 0 (Points: 2)
+
+251. Rockababy
+Rank: 0 (Points: 4)
+
+252. Romira
+Rank: 0 (Points: 1)
+
+253. Safinaz
+Rank: 0 (Points: 1)
+
+254. Samarq
+Rank: 0 (Points: 2)
+
+255. Sarbek
+Rank: 0 (Points: 4)
+
+256. Shamanisa
+Rank: 0 (Points: 2)
+
+257. Silicachan
+Rank: 0 (Points: 4)
+
+258. Sininico
+Rank: 0 (Points: 4)
+
+259. Sonyablade
+Rank: 0 (Points: 1)
+
+260. Spectrex
+Rank: 0 (Points: 1)
+
+261. Spirittuah
+Rank: 0 (Points: 2)
+
+262. Starwalker
+Rank: 0 (Points: 2)
+
+263. Sungjinwoosh
+Rank: 0 (Points: 2)
+
+264. Tankjoo
+Rank: 0 (Points: 1)
+
+265. Thev
+Rank: 0 (Points: 2)
+
+266. Tidepods
+Rank: 0 (Points: 3)
+
+267. Tigotura
+Rank: 0 (Points: 2)
+
+268. Ultraviolet
+Rank: 0 (Points: 1)
+
+269. Undeadko,
+Rank: 0 (Points: 2)
+
+270. Unheilig
+Rank: 0 (Points: 1)
+
+271. Unzip
+Rank: 0 (Points: 2)
+
+272. Vinland
+Rank: 0 (Points: 2)
+
+273. Vuklash
+Rank: 0 (Points: 2)
+
+274. Warrtist
+Rank: 0 (Points: 3)
+
+275. Waterboyone
+Rank: 0 (Points: 4)
+
+276. Zapps
+Rank: 0 (Points: 2)
+
+277. Zephira
+Rank: 0 (Points: 2)
+
+278. Zhali
+Rank: 0 (Points: 1)
+
+279. Zipfile
+Rank: 0 (Points: 4)
+
+280. Zorrocustafu
+Rank: 0 (Points: 2)
+
+281. Zriguibaw
+Rank: 0 (Points: 1)
+
