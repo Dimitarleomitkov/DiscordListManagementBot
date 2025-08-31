@@ -103,7 +103,7 @@ async def setup(bot):
       
 #     @tasks.loop(time = the_time)
 #     async def good_morning_message(self):
-#         text_chan = self.bot.get_channel(1066377134836285480)
+#         text_chan = self.bot.get_channel(1411602053167321138)
 #         try:
 #             space_img_info = await self.get_space_img()
 #             explanation = ""

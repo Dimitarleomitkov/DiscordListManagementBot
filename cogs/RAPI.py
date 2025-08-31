@@ -84,7 +84,7 @@ class rAPI(commands.Cog):
             msg = f"{ctx.author.mention} requested a picture of {animal}:"
 
         animal_img = self.get_animal_img(animal)
-        text_chan = self.bot.get_channel(1066377134836285480)
+        text_chan = self.bot.get_channel(1411602053167321138)
 
         embed = discord.Embed()
         embed.set_image(url = animal_img)
@@ -118,7 +118,7 @@ class rAPI(commands.Cog):
             animal = random.choice(self.options_animals)
 
         animal_fact = self.get_animal_fact(animal)
-        text_chan = self.bot.get_channel(1066377134836285480)
+        text_chan = self.bot.get_channel(1411602053167321138)
 
         if animal == "fox":
             bot_msg = await text_chan.send(f"{ctx.author.mention}, a fun fact about {animal}es:\n{animal_fact}")

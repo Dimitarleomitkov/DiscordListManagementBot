@@ -39,7 +39,7 @@ class jokes(commands.Cog):
 
     @tasks.loop(time = the_time)
     async def good_morning_joke(self):
-        text_chan = self.bot.get_channel(1066377134836285480)
+        text_chan = self.bot.get_channel(1411602053167321138)
         joke = await self.get_jokes()
         
         await text_chan.send(f"Daily joke:\n")
