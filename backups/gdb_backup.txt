@@ -1,0 +1,91 @@
+Command: >gdb_award_points_to_players Glokthar Ditzulake Qtoyou Crazoo Attuma Bobsapp Bengu Pyrise Sunpriestess Manapause Hao Moleculeq Otot Ironlung Egomorph Rofldmg Aligatora Rentalpala Plumpykid Nemrtvicek Barometara Jaronimo Susita Jaggerjack Sandram Lonebeast Tyliu Furyoku 5
+Author: undeadko
+Timestamp: 2026-01-09 16:28:23
+
+1. Acheron
+Rank: 1 (Points: 6)
+
+2. Aligatora
+Rank: 1 (Points: 5)
+
+3. Attuma
+Rank: 1 (Points: 5)
+
+4. Bende
+Rank: 1 (Points: 6)
+
+5. Bengu
+Rank: 1 (Points: 5)
+
+6. Bobsapp
+Rank: 1 (Points: 5)
+
+7. Crazoo
+Rank: 1 (Points: 5)
+
+8. Ditzulake
+Rank: 1 (Points: 5)
+
+9. Dreadpaw
+Rank: 1 (Points: 6)
+
+10. Egomorph
+Rank: 1 (Points: 5)
+
+11. Glokthar
+Rank: 1 (Points: 5)
+
+12. Hao
+Rank: 1 (Points: 5)
+
+13. Harybolseq
+Rank: 1 (Points: 6)
+
+14. Holian
+Rank: 1 (Points: 6)
+
+15. Ironlung
+Rank: 1 (Points: 5)
+
+16. Manapause
+Rank: 1 (Points: 5)
+
+17. Moleculeq
+Rank: 1 (Points: 5)
+
+18. Morzak
+Rank: 1 (Points: 6)
+
+19. Otot
+Rank: 1 (Points: 5)
+
+20. Pelolo
+Rank: 1 (Points: 6)
+
+21. Plaguethrill
+Rank: 1 (Points: 6)
+
+22. Pyrise
+Rank: 1 (Points: 5)
+
+23. Qtoyou
+Rank: 1 (Points: 5)
+
+24. Rentalpala
+Rank: 1 (Points: 5)
+
+25. Rofldmg
+Rank: 1 (Points: 5)
+
+26. Sunpriestess
+Rank: 1 (Points: 5)
+
+27. Thepain
+Rank: 1 (Points: 6)
+
+28. Undeadko
+Rank: 1 (Points: 6)
+
+29. Zombik
+Rank: 1 (Points: 6)
+
