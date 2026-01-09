@@ -1,0 +1,4 @@
+Command: >gdb_award_points_to_players Undeadko Holian Plaguethrill Harybolseq Zombik Thepain Morzak Dreadpaw Bende Acheron Pelolo 6
+Author: undeadko
+Timestamp: 2026-01-09 16:27:02
+
