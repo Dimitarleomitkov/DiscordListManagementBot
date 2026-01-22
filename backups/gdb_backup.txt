@@ -1,0 +1,352 @@
+Command: >gdb_award_points_to_players Nemrtvicek Acheron Rentalpala Qtoyou Dreadpaw Attuma Morzak Thepain Pelolo Acachampion Zombik Barometara Innerlight Tiger Vinland Plaguethrill Otot Harybolseq Babyge Rentalhibi Berilim Druidky Pyrise Beefymilf Bende 1
+Author: undeadko
+Timestamp: 2026-01-22 08:56:01
+
+1. Acheron
+Rank: 2 (Points: 10)
+
+2. Morzak
+Rank: 2 (Points: 10)
+
+3. Pelolo
+Rank: 2 (Points: 10)
+
+4. Thepain
+Rank: 2 (Points: 10)
+
+5. Aligatora
+Rank: 1 (Points: 5)
+
+6. Attuma
+Rank: 1 (Points: 9)
+
+7. Barometara
+Rank: 1 (Points: 7)
+
+8. Bende
+Rank: 1 (Points: 9)
+
+9. Bengu
+Rank: 1 (Points: 5)
+
+10. Bobsapp
+Rank: 1 (Points: 6)
+
+11. Crazoo
+Rank: 1 (Points: 5)
+
+12. Ditzulake
+Rank: 1 (Points: 5)
+
+13. Dreadpaw
+Rank: 1 (Points: 8)
+
+14. Egomorph
+Rank: 1 (Points: 8)
+
+15. Furyoku
+Rank: 1 (Points: 5)
+
+16. Glokthar
+Rank: 1 (Points: 8)
+
+17. Hao
+Rank: 1 (Points: 5)
+
+18. Harybolseq
+Rank: 1 (Points: 8)
+
+19. Holian
+Rank: 1 (Points: 9)
+
+20. Innerlight
+Rank: 1 (Points: 5)
+
+21. Ironlung
+Rank: 1 (Points: 5)
+
+22. Jaggerjack
+Rank: 1 (Points: 8)
+
+23. Jaronimo
+Rank: 1 (Points: 5)
+
+24. Lonebeast
+Rank: 1 (Points: 8)
+
+25. Manapause
+Rank: 1 (Points: 5)
+
+26. Moleculeq
+Rank: 1 (Points: 8)
+
+27. Nemrtvicek
+Rank: 1 (Points: 9)
+
+28. Otot
+Rank: 1 (Points: 8)
+
+29. Plaguethrill
+Rank: 1 (Points: 9)
+
+30. Plumpykid
+Rank: 1 (Points: 5)
+
+31. Pyrise
+Rank: 1 (Points: 6)
+
+32. Qtoyou
+Rank: 1 (Points: 9)
+
+33. Rentalpala
+Rank: 1 (Points: 9)
+
+34. Rofldmg
+Rank: 1 (Points: 5)
+
+35. Sandram
+Rank: 1 (Points: 5)
+
+36. Sunpriestess
+Rank: 1 (Points: 5)
+
+37. Susita
+Rank: 1 (Points: 5)
+
+38. Tyliu
+Rank: 1 (Points: 5)
+
+39. Undeadko
+Rank: 1 (Points: 6)
+
+40. Zombik
+Rank: 1 (Points: 9)
+
+41. Allani
+Rank: 0 (Points: 3)
+
+42. Altadata
+Rank: 0 (Points: 2)
+
+43. Anamelia
+Rank: 0 (Points: 2)
+
+44. Bbqhunter
+Rank: 0 (Points: 2)
+
+45. Beefymilf
+Rank: 0 (Points: 4)
+
+46. Berilim
+Rank: 0 (Points: 3)
+
+47. Biancaneve
+Rank: 0 (Points: 1)
+
+48. Cerenio
+Rank: 0 (Points: 2)
+
+49. Cgbrat
+Rank: 0 (Points: 2)
+
+50. Choppaa
+Rank: 0 (Points: 4)
+
+51. Cibbony
+Rank: 0 (Points: 1)
+
+52. Demonize
+Rank: 0 (Points: 2)
+
+53. Diyno
+Rank: 0 (Points: 2)
+
+54. Druidky
+Rank: 0 (Points: 3)
+
+55. Eeudoraa
+Rank: 0 (Points: 1)
+
+56. Feili
+Rank: 0 (Points: 4)
+
+57. Flameshaper
+Rank: 0 (Points: 2)
+
+58. Foxianna
+Rank: 0 (Points: 3)
+
+59. Gelanriel
+Rank: 0 (Points: 4)
+
+60. Grimzz
+Rank: 0 (Points: 2)
+
+61. Gusy
+Rank: 0 (Points: 4)
+
+62. Hoggak
+Rank: 0 (Points: 1)
+
+63. Huntem
+Rank: 0 (Points: 1)
+
+64. Ikorose
+Rank: 0 (Points: 3)
+
+65. Infidelic
+Rank: 0 (Points: 4)
+
+66. Juneketz
+Rank: 0 (Points: 4)
+
+67. Kakain
+Rank: 0 (Points: 2)
+
+68. Krenata
+Rank: 0 (Points: 1)
+
+69. Kurdal
+Rank: 0 (Points: 2)
+
+70. Lifebloomz
+Rank: 0 (Points: 1)
+
+71. Luqq
+Rank: 0 (Points: 2)
+
+72. Maang
+Rank: 0 (Points: 3)
+
+73. Madurata
+Rank: 0 (Points: 4)
+
+74. Muslo
+Rank: 0 (Points: 2)
+
+75. Noggersstar
+Rank: 0 (Points: 2)
+
+76. Noggerstaar
+Rank: 0 (Points: 4)
+
+77. Nolthrak
+Rank: 0 (Points: 2)
+
+78. Noshh
+Rank: 0 (Points: 2)
+
+79. Osmanian
+Rank: 0 (Points: 1)
+
+80. Paljas
+Rank: 0 (Points: 1)
+
+81. Paskan
+Rank: 0 (Points: 3)
+
+82. Peeperkorn
+Rank: 0 (Points: 4)
+
+83. Pelosha
+Rank: 0 (Points: 2)
+
+84. Preburger
+Rank: 0 (Points: 3)
+
+85. Priestmane
+Rank: 0 (Points: 3)
+
+86. Qfte
+Rank: 0 (Points: 3)
+
+87. Quipu
+Rank: 0 (Points: 3)
+
+88. Rathali
+Rank: 0 (Points: 1)
+
+89. Rathalina
+Rank: 0 (Points: 3)
+
+90. Redband
+Rank: 0 (Points: 3)
+
+91. Rektstina
+Rank: 0 (Points: 2)
+
+92. Rentalhibi
+Rank: 0 (Points: 3)
+
+93. Rentalpri
+Rank: 0 (Points: 3)
+
+94. Retu
+Rank: 0 (Points: 4)
+
+95. Ribby
+Rank: 0 (Points: 4)
+
+96. Sakumo
+Rank: 0 (Points: 3)
+
+97. Savkay
+Rank: 0 (Points: 2)
+
+98. Scri
+Rank: 0 (Points: 1)
+
+99. Shadowfeind
+Rank: 0 (Points: 3)
+
+100. Sliekas
+Rank: 0 (Points: 4)
+
+101. Soulwarp
+Rank: 0 (Points: 1)
+
+102. Surume
+Rank: 0 (Points: 2)
+
+103. Susina
+Rank: 0 (Points: 4)
+
+104. Tayk
+Rank: 0 (Points: 3)
+
+105. Threesixty
+Rank: 0 (Points: 4)
+
+106. Trajtelka
+Rank: 0 (Points: 1)
+
+107. Trashlord
+Rank: 0 (Points: 3)
+
+108. Vaerad
+Rank: 0 (Points: 1)
+
+109. Vinland
+Rank: 0 (Points: 3)
+
+110. Vyrris
+Rank: 0 (Points: 2)
+
+111. Warloq
+Rank: 0 (Points: 2)
+
+112. Windfruy
+Rank: 0 (Points: 1)
+
+113. Youareit
+Rank: 0 (Points: 3)
+
+114. Zanarkand
+Rank: 0 (Points: 4)
+
+115. Zantara
+Rank: 0 (Points: 1)
+
+116. Ziguimi
+Rank: 0 (Points: 4)
+
