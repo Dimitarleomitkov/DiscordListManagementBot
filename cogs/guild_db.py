@@ -526,3 +526,50 @@ class gdb(commands.Cog):
 
         except Exception as e:
             await ctx.send(f"[BACKUP_GDB] {e}")
+
+    @commands.command(  name = 'gdb_export_lua',
+                        help = 'The bot will create a copy of the gdb list and send it to you for LUA code to use.',
+                        brief = '- Creates a copy of the gdb list for LUA format and sends it to you.')
+    async def lua_export(self, ctx):
+        try:
+            channel = ctx.channel
+            channel_id = ctx.channel.id
+
+            if channel_id != 1217479171811315712 and channel_id != 1197166207200153641:
+                proper_channel = self.bot.get_channel(1217479171811315712)
+                await channel.send(f"This command can only be executed in {proper_channel.mention}")
+                return
+
+            async_session = sessionmaker(self.engine, expire_on_commit = False, class_ = AsyncSession)
+            async with async_session() as session:
+                async with session.begin():
+                    # Get the the players
+                    players = await session.execute(select(Player).order_by(desc(Player.points), Player.name))
+
+            # Include the command name, author, and timestamp in buffer_str
+            # author = ctx.author.name
+            # timestamp = ctx.message.created_at.strftime("%Y-%m-%d %H:%M:%S")
+            buffer_str = f"SimpleRoll_RawText = [[\n"
+
+            i = 0
+            for player in players:
+                rank = int(re.search(r'\d+', player[0].rank).group())
+                buffer_str += f"{i + 1}. {player[0].name}\nRank: {rank} (Points: {player[0].points})\n\n"
+
+                i += 1
+
+            try:
+                temp_file = open(f"/home/pi/undeadko/GitProjects/DiscordListManagementBot/SimpleRollDB.lua", "w")
+                temp_file.write(buffer_str)
+                temp_file.close()
+
+                await ctx.author.send(file=discord.File(f'/home/pi/undeadko/GitProjects/DiscordListManagementBot/SimpleRollDB.lua'))
+
+                os.remove("/home/pi/undeadko/GitProjects/DiscordListManagementBot/SimpleRollDB.lua")
+                
+                await ctx.message.delete()
+            except Exception as e:
+                print(f"[RAIDERS_LUA_FILE] {e}")
+
+        except Exception as e:
+            await ctx.send(f"[BACKUP_GDB] {e}")
