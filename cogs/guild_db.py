@@ -558,6 +558,8 @@ class gdb(commands.Cog):
 
                 i += 1
 
+            buffer_str = buffer_str + f"]]"
+
             try:
                 temp_file = open(f"/home/pi/undeadko/GitProjects/DiscordListManagementBot/SimpleRollDB.lua", "w")
                 temp_file.write(buffer_str)
