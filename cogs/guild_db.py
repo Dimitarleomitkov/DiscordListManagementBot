@@ -644,8 +644,6 @@ class gdb(commands.Cog):
                     players = await session.execute(select(Player).order_by(desc(Player.points), Player.name))
 
             # Include the command name, author, and timestamp in buffer_str
-            # author = ctx.author.name
-            # timestamp = ctx.message.created_at.strftime("%Y-%m-%d %H:%M:%S")
             buffer_str = f"SimpleRoll_RawText = [[\n"
 
             i = 0
