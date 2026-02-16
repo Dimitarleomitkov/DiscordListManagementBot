@@ -215,6 +215,9 @@ class gdb(commands.Cog):
                     session.add(Player(name = player_name))
 
             await ctx.send(f"{player_name} was added to the database.")
+
+            bu_cmd = self.bot.get_command("gdb_update_lua")
+            await bu_cmd.invoke(ctx)
         except Exception as e:
             await ctx.send(f"[ADD_PLAYER] {e}")
 
@@ -263,6 +266,9 @@ class gdb(commands.Cog):
                                                     .execution_options(synchronize_session = "fetch"))
 
             await ctx.send(f"Awarded {awarded_points} to {player_name}")
+
+            bu_cmd = self.bot.get_command("gdb_update_lua")
+            await bu_cmd.invoke(ctx)
         except Exception as e:
             await ctx.send(f"[ADD_POINTS] {e}")
 
@@ -327,6 +333,9 @@ class gdb(commands.Cog):
                             await ctx.send(f":tada: Congratulations {player_name}! Your rank is now {player_rank}! Thank you for raiding with us! :tada:")
 
             await ctx.send(f"Awarded {awarded_points} to {players_names}")
+
+            bu_cmd = self.bot.get_command("gdb_update_lua")
+            await bu_cmd.invoke(ctx)
         except Exception as e:
             await ctx.send(f"[ADD_POINTS_TO_PLAYERS] {e}")
 
@@ -357,6 +366,9 @@ class gdb(commands.Cog):
                                                     .execution_options(synchronize_session = "fetch"))
 
                     await ctx.send(f"{player_name} deleted from the data base.")
+
+            bu_cmd = self.bot.get_command("gdb_update_lua")
+            await bu_cmd.invoke(ctx)
         except Exception as e:
             await ctx.send(f"[DELETE_PLAYER] {e}")
 
@@ -392,6 +404,9 @@ class gdb(commands.Cog):
                                                     .execution_options(synchronize_session = "fetch"))
 
             await ctx.send(f"Deleted {players_names}")
+
+            bu_cmd = self.bot.get_command("gdb_update_lua")
+            await bu_cmd.invoke(ctx)
         except Exception as e:
             await ctx.send(f"[DELETE_PLAYERS] {e}")
 
@@ -506,21 +521,55 @@ class gdb(commands.Cog):
             author = ctx.author.name
             timestamp = ctx.message.created_at.strftime("%Y-%m-%d %H:%M:%S")
             buffer_str = f"Command: {ctx.message.content}\nAuthor: {author}\nTimestamp: {timestamp}\n\n"
-            buffer_str_lua = f"SimpleRoll_RawText = [[\n"
 
             i = 0
             for player in players:
                 rank = int(re.search(r'\d+', player[0].rank).group())
                 buffer_str += f"{i + 1}. {player[0].name}\nRank: {rank} (Points: {player[0].points})\n\n"
+
+                i += 1
+
+            self.file_backup_of_list(buffer_str)
+            await self.git_push_backup(ctx, buffer_str)
+
+            await ctx.send(f"Backup complete!")
+        except Exception as e:
+            await ctx.send(f"[BACKUP_GDB] {e}")
+
+
+    @commands.command(  name = 'gdb_update_lua',
+                        help = 'The bot will create a copy of the gdb list for LUA.',
+                        brief = '- Creates a copy of the gdb list for LUA.')
+    @commands.has_any_role("Guild Master", "Officer")
+    async def update_lua(self, ctx):
+        try:
+            channel = ctx.channel
+            channel_id = ctx.channel.id
+
+            if channel_id != 1217479171811315712 and channel_id != 1197166207200153641:
+                proper_channel = self.bot.get_channel(1217479171811315712)
+                await channel.send(f"This command can only be executed in {proper_channel.mention}")
+                return
+
+
+            async_session = sessionmaker(self.engine, expire_on_commit = False, class_ = AsyncSession)
+            async with async_session() as session:
+                async with session.begin():
+                    # Get the the players
+                    players = await session.execute(select(Player).order_by(desc(Player.rank), Player.name))
+
+            buffer_str_lua = f"SimpleRoll_RawText = [[\n"
+
+            i = 0
+            for player in players:
+                rank = int(re.search(r'\d+', player[0].rank).group())
                 buffer_str_lua += f"{i + 1}. {player[0].name}\nRank: {rank} (Points: {player[0].points})\n\n"
 
                 i += 1
 
             buffer_str_lua = buffer_str_lua + f"]]"
 
-            self.file_backup_of_list(buffer_str)
             self.file_backup_of_lua(buffer_str_lua)
-            await self.git_push_backup(ctx, buffer_str)
             await self.git_push_backup_lua(ctx, buffer_str_lua)
 
             await ctx.send(f"Backup complete!")
