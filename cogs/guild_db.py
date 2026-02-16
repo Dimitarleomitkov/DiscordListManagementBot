@@ -405,6 +405,15 @@ class gdb(commands.Cog):
         except Exception as e:
             print(f"[RAIDERS_BACKUP] {e}")
 
+    def file_backup_of_lua(self, players):
+        try:
+            bu_file = open(f"/home/pi/undeadko/GitProjects/DiscordListManagementBot/SimpleRollDB.lua", "w")
+            bu_file.write(players)
+            bu_file.close()
+
+        except Exception as e:
+            print(f"[RAIDERS_BACKUP] {e}")
+
     async def git_push_backup(self, ctx, players):
         try:
             # Replace these values with your GitHub username, repository name, and access token
@@ -438,6 +447,39 @@ class gdb(commands.Cog):
         except Exception as e:
             await ctx.send(f"Error uploading backup to GitHub: {e}")
 
+    async def git_push_backup_lua(self, ctx, players):
+        try:
+            # Replace these values with your GitHub username, repository name, and access token
+            github_username = 'Dimitarleomitkov'
+            repo_name = 'DiscordListManagementBot'
+            access_token = GITHUB_TOKEN
+
+            git_dir = pathlib.Path(__file__).parent.parent.resolve()
+            commit_msg = f"LUA DB update {datetime.datetime.now(datetime.timezone.utc)}"
+
+            # Authenticate with GitHub using access token
+            g = Github(access_token)
+            repo = g.get_user(github_username).get_repo(repo_name)
+
+             # Define the file path in the repository
+            file_path = f"backups/SimpleRollDB.lua"
+            # Get the file's current content and SHA to delete it
+            try:
+                contents = repo.get_contents(file_path)
+                repo.delete_file(contents.path, f"Deleting old LUA backup: {commit_msg}", contents.sha)
+            except:
+                # If the file does not exist, continue
+                pass
+
+            # Create a new file in the repository
+            content = players
+            repo.create_file(file_path, commit_msg, content)
+
+            await ctx.send("LUA Backup uploaded to GitHub successfully!")
+
+        except Exception as e:
+            await ctx.send(f"Error uploading LUA backup to GitHub: {e}")
+
 
     @commands.command(  name = 'gdb_backup',
                         help = 'The bot will create a copy of the gdb list.',
@@ -464,16 +506,22 @@ class gdb(commands.Cog):
             author = ctx.author.name
             timestamp = ctx.message.created_at.strftime("%Y-%m-%d %H:%M:%S")
             buffer_str = f"Command: {ctx.message.content}\nAuthor: {author}\nTimestamp: {timestamp}\n\n"
+            buffer_str_lua = f"SimpleRoll_RawText = [[\n"
 
             i = 0
             for player in players:
                 rank = int(re.search(r'\d+', player[0].rank).group())
                 buffer_str += f"{i + 1}. {player[0].name}\nRank: {rank} (Points: {player[0].points})\n\n"
+                buffer_str_lua += f"{i + 1}. {player[0].name}\nRank: {rank} (Points: {player[0].points})\n\n"
 
                 i += 1
 
+            buffer_str_lua = buffer_str_lua + f"]]"
+
             self.file_backup_of_list(buffer_str)
+            self.file_backup_of_lua(buffer_str_lua)
             await self.git_push_backup(ctx, buffer_str)
+            await self.git_push_backup_lua(ctx, buffer_str_lua)
 
             await ctx.send(f"Backup complete!")
         except Exception as e:
