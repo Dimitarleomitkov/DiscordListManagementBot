@@ -1,7 +1,4 @@
-Command: >gdb_delete_player deleteme
-Author: undeadko
-Timestamp: 2026-02-16 10:48:46
-
+SimpleRoll_RawText = [[
 1. Acheron
 Rank: 3 (Points: 21)
 
@@ -398,3 +395,4 @@ Rank: 0 (Points: 3)
 132. deleteme
 Rank: 0 (Points: 3)
 
+]]
