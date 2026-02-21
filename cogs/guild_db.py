@@ -490,7 +490,7 @@ class gdb(commands.Cog):
             content = players
             repo.create_file(file_path, commit_msg, content)
 
-            await ctx.send("LUA Backup uploaded to GitHub successfully!")
+            await ctx.send("LUA file updated successfully!")
 
         except Exception as e:
             await ctx.send(f"Error uploading LUA backup to GitHub: {e}")
@@ -571,8 +571,6 @@ class gdb(commands.Cog):
 
             self.file_backup_of_lua(buffer_str_lua)
             await self.git_push_backup_lua(ctx, buffer_str_lua)
-
-            await ctx.send(f"Backup complete!")
         except Exception as e:
             await ctx.send(f"[BACKUP_GDB] {e}")
 
